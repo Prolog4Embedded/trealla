@@ -6,19 +6,11 @@
 #include <sys/time.h>
 #include <sys/stat.h>
 
-#include "history.h"
 #include "module.h"
 #include "parser.h"
 #include "prolog.h"
 #include "query.h"
 
-#ifdef _WIN32
-#include <windows.h>
-#define unsetenv(p1)
-#define setenv(p1,p2,p3) _putenv_s(p1,p2)
-#define msleep Sleep
-#define localtime_r(p1,p2) localtime(p1)
-#else
 #include <unistd.h>
 static void msleep(int ms)
 {
@@ -27,70 +19,8 @@ static void msleep(int ms)
 	tv.tv_nsec = ((ms) % 1000) * 1000 * 1000;
 	nanosleep(&tv, &tv);
 }
-#endif
 
-#ifdef _WIN32
-
-#define MS_PER_SEC      1000ULL     // MS = milliseconds
-#define US_PER_MS       1000ULL     // US = microseconds
-#define HNS_PER_US      10ULL       // HNS = hundred-nanoseconds (e.g., 1 hns = 100 ns)
-#define NS_PER_US       1000ULL
-
-#define HNS_PER_SEC     (MS_PER_SEC * US_PER_MS * HNS_PER_US)
-#define NS_PER_HNS      (100ULL)    // NS = nanoseconds
-#define NS_PER_SEC      (MS_PER_SEC * US_PER_MS * NS_PER_US)
-
-static int clock_gettime_monotonic(struct timespec *tv)
-{
-	static LARGE_INTEGER ticksPerSec = {0};
-	LARGE_INTEGER ticks;
-	double seconds;
-
-	if (!ticksPerSec.QuadPart) {
-		QueryPerformanceFrequency(&ticksPerSec);
-		if (!ticksPerSec.QuadPart) {
-			errno = ENOTSUP;
-			return -1;
-		}
-	}
-
-	QueryPerformanceCounter(&ticks);
-	seconds = (double) ticks.QuadPart / (double) ticksPerSec.QuadPart;
-	tv->tv_sec = (time_t)seconds;
-	tv->tv_nsec = (long)((ULONGLONG)(seconds * NS_PER_SEC) % NS_PER_SEC);
-	return 0;
-}
-
-static int clock_gettime_realtime(struct timespec *tv)
-{
-	FILETIME ft;
-	ULARGE_INTEGER hnsTime;
-	GetSystemTimeAsFileTime(&ft);
-	hnsTime.LowPart = ft.dwLowDateTime;
-	hnsTime.HighPart = ft.dwHighDateTime;
-
-	// To get POSIX Epoch as baseline, subtract the number of hns intervals from Jan 1, 1601 to Jan 1, 1970.
-	hnsTime.QuadPart -= (11644473600ULL * HNS_PER_SEC);
-
-	// modulus by hns intervals per second first, then convert to ns, as not to lose resolution
-	tv->tv_nsec = (long) ((hnsTime.QuadPart % HNS_PER_SEC) * NS_PER_HNS);
-	tv->tv_sec = (long) (hnsTime.QuadPart / HNS_PER_SEC);
-	return 0;
-}
-
-static int my_clock_gettime(clockid_t type, struct timespec *tp)
-{
-	if (type == CLOCK_MONOTONIC)
-		return clock_gettime_monotonic(tp);
-	else if (type == CLOCK_REALTIME)
-		return clock_gettime_realtime(tp);
-
-    errno = ENOTSUP;
-    return -1;
-}
-#else
 #define my_clock_gettime clock_gettime
-#endif
 
 uint64_t cpu_time_in_usec(void)
 {
@@ -110,7 +40,6 @@ uint64_t get_time_in_usec(void)
 	return (uint64_t)(now.tv_sec * 1000 * 1000) + (now.tv_nsec / 1000);
 }
 
-#ifndef __wasi__
 static bool bif_shell_1(query *q)
 {
 	GET_FIRST_ARG(p1,source_sink);
@@ -137,17 +66,6 @@ static bool bif_shell_2(query *q)
 	make_int(&tmp, status);
 	return unify(q, p2, p2_ctx, &tmp, q->st.cur_ctx);
 }
-#else
-static bool bif_shell_1(query *q)
-{
-	return false;
-}
-
-static bool bif_shell_2(query *q)
-{
-	return false;
-}
-#endif
 
 static bool bif_getenv_2(query *q)
 {
@@ -333,9 +251,6 @@ static bool bif_date_time_6(query *q)
 
 static bool bif_sys_alarm_1(query *q)
 {
-#if defined(_WIN32) || !defined(ITIMER_REAL)
-	return false;
-#else
 	GET_FIRST_ARG(p1,number);
 	int time0 = 0;
 
@@ -365,7 +280,6 @@ static bool bif_sys_alarm_1(query *q)
 	it.it_value.tv_usec = ms * 1000;
 	setitimer(ITIMER_REAL, &it, NULL);
 	return true;
-#endif
 }
 
 static bool bif_busy_1(query *q)
@@ -441,126 +355,12 @@ static bool bif_time_1(query *q)
 
 static bool bif_get_unbuffered_code_1(query *q)
 {
-	GET_FIRST_ARG(p1,integer_or_var);
-	int n = q->pl->current_input;
-	stream *str = &q->pl->streams[n];
 
-	if (is_bigint(p1))
-		return throw_error(q, p1, p1_ctx, "domain_error", "small_integer_range");
-
-	if (is_integer(p1) && (get_smallint(p1) < -1))
-		return throw_error(q, p1, p1_ctx, "representation_error", "in_character_code");
-
-	if (str->binary) {
-		cell tmp;
-		make_int(&tmp, n);
-		return throw_error(q, &tmp, q->st.cur_ctx, "permission_error", "input,binary_stream");
-	}
-
-	if (str->at_end_of_file && (str->eof_action == eof_action_error)) {
-		cell tmp;
-		make_int(&tmp, n);
-		return throw_error(q, &tmp, q->st.cur_ctx, "permission_error", "input,past_end_of_stream");
-	}
-
-	int ch = history_getch_fd(fileno(str->fp));
-
-	if (ch == 4)
-		ch = -1;
-
-	if (q->is_task && !feof(str->fp) && ferror(str->fp)) {
-		clearerr(str->fp);
-		return do_yield(q, 1);
-	}
-
-	str->did_getc = true;
-
-	if (FEOF(str)) {
-		str->did_getc = false;
-		str->at_end_of_file = str->eof_action != eof_action_reset;
-
-		if (str->eof_action == eof_action_reset)
-			clearerr(str->fp);
-
-		cell tmp;
-		make_int(&tmp, -1);
-		return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
-	}
-
-	str->ungetch = 0;
-
-	if ((ch == '\n') || (ch == EOF))
-		str->did_getc = false;
-
-	cell tmp;
-	make_int(&tmp, ch);
-	return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
 }
 
 static bool bif_get_unbuffered_char_1(query *q)
 {
-	GET_FIRST_ARG(p1,in_character_or_var);
-	int n = q->pl->current_input;
-	stream *str = &q->pl->streams[n];
 
-	if (is_bigint(p1))
-		return throw_error(q, p1, p1_ctx, "domain_error", "small_integer_range");
-
-	if (is_integer(p1) && (get_smallint(p1) < -1))
-		return throw_error(q, p1, p1_ctx, "representation_error", "in_character_code");
-
-	if (str->binary) {
-		cell tmp;
-		make_int(&tmp, n);
-		return throw_error(q, &tmp, q->st.cur_ctx, "permission_error", "input,binary_stream");
-	}
-
-	if (str->at_end_of_file && (str->eof_action == eof_action_error)) {
-		cell tmp;
-		make_int(&tmp, n);
-		return throw_error(q, &tmp, q->st.cur_ctx, "permission_error", "input,past_end_of_stream");
-	}
-
-	int ch = history_getch_fd(fileno(str->fp));
-
-	if (ch == 4)
-		ch = -1;
-
-	if (q->is_task && !feof(str->fp) && ferror(str->fp)) {
-		clearerr(str->fp);
-		return do_yield(q, 1);
-	}
-
-	str->did_getc = true;
-
-	if (FEOF(str)) {
-		str->did_getc = false;
-		str->at_end_of_file = str->eof_action != eof_action_reset;
-
-		if (str->eof_action == eof_action_reset)
-			clearerr(str->fp);
-
-		cell tmp;
-		make_atom(&tmp, g_eof_s);
-		return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
-	}
-
-	str->ungetch = 0;
-
-	if ((ch == '\n') || (ch == EOF))
-		str->did_getc = false;
-
-	if (ch == -1) {
-		cell tmp;
-		make_atom(&tmp, g_eof_s);
-		return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
-	}
-
-	char tmpbuf[80];
-	n = put_char_utf8(tmpbuf, ch);
-	cell tmp;
-	make_smalln(&tmp, tmpbuf, n);
-	return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
 }
 
 builtins g_os_bifs[] =

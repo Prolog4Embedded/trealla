@@ -56,7 +56,6 @@ set(TPL_SRC
   src/bif_threads.c
   src/compile.c
   src/heap.c
-  src/history.c
   src/library.c
   src/list.c
   src/module.c
