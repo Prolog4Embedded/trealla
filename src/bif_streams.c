@@ -24,7 +24,6 @@
 #include <sys/mman.h>
 #endif
 
-#include "history.h"
 #include "module.h"
 #include "network.h"
 #include "parser.h"
@@ -6512,16 +6511,7 @@ static bool bif_sys_bwrite_2(query *q)
 
 static bool bif_sys_readline_2(query *q)
 {
-	GET_FIRST_ARG(p1,string);
-	GET_NEXT_ARG(p2,var);
-	int n = q->pl->current_output;
-	stream *str = &q->pl->streams[n];
-	char *s = history_readline_eol(q->pl, C_STR(q, p1), '.');
-	if (!s) return false;
-	cell tmp;
-	make_string(&tmp, s);
-	free(s);
-	return unify(q, p2, p2_ctx, &tmp, q->st.cur_ctx);
+
 }
 
 static bool bif_sys_put_chars_1(query *q)

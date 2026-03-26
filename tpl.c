@@ -11,7 +11,6 @@
 
 #include "trealla.h"
 #include "builtins.h"
-#include "history.h"
 #include "library.h"
 #include "module.h"
 

@@ -6,7 +6,6 @@
 #include <sys/time.h>
 #include <sys/stat.h>
 
-#include "history.h"
 #include "module.h"
 #include "parser.h"
 #include "prolog.h"
@@ -356,126 +355,12 @@ static bool bif_time_1(query *q)
 
 static bool bif_get_unbuffered_code_1(query *q)
 {
-	GET_FIRST_ARG(p1,integer_or_var);
-	int n = q->pl->current_input;
-	stream *str = &q->pl->streams[n];
 
-	if (is_bigint(p1))
-		return throw_error(q, p1, p1_ctx, "domain_error", "small_integer_range");
-
-	if (is_integer(p1) && (get_smallint(p1) < -1))
-		return throw_error(q, p1, p1_ctx, "representation_error", "in_character_code");
-
-	if (str->binary) {
-		cell tmp;
-		make_int(&tmp, n);
-		return throw_error(q, &tmp, q->st.cur_ctx, "permission_error", "input,binary_stream");
-	}
-
-	if (str->at_end_of_file && (str->eof_action == eof_action_error)) {
-		cell tmp;
-		make_int(&tmp, n);
-		return throw_error(q, &tmp, q->st.cur_ctx, "permission_error", "input,past_end_of_stream");
-	}
-
-	int ch = history_getch_fd(fileno(str->fp));
-
-	if (ch == 4)
-		ch = -1;
-
-	if (q->is_task && !feof(str->fp) && ferror(str->fp)) {
-		clearerr(str->fp);
-		return do_yield(q, 1);
-	}
-
-	str->did_getc = true;
-
-	if (FEOF(str)) {
-		str->did_getc = false;
-		str->at_end_of_file = str->eof_action != eof_action_reset;
-
-		if (str->eof_action == eof_action_reset)
-			clearerr(str->fp);
-
-		cell tmp;
-		make_int(&tmp, -1);
-		return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
-	}
-
-	str->ungetch = 0;
-
-	if ((ch == '\n') || (ch == EOF))
-		str->did_getc = false;
-
-	cell tmp;
-	make_int(&tmp, ch);
-	return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
 }
 
 static bool bif_get_unbuffered_char_1(query *q)
 {
-	GET_FIRST_ARG(p1,in_character_or_var);
-	int n = q->pl->current_input;
-	stream *str = &q->pl->streams[n];
 
-	if (is_bigint(p1))
-		return throw_error(q, p1, p1_ctx, "domain_error", "small_integer_range");
-
-	if (is_integer(p1) && (get_smallint(p1) < -1))
-		return throw_error(q, p1, p1_ctx, "representation_error", "in_character_code");
-
-	if (str->binary) {
-		cell tmp;
-		make_int(&tmp, n);
-		return throw_error(q, &tmp, q->st.cur_ctx, "permission_error", "input,binary_stream");
-	}
-
-	if (str->at_end_of_file && (str->eof_action == eof_action_error)) {
-		cell tmp;
-		make_int(&tmp, n);
-		return throw_error(q, &tmp, q->st.cur_ctx, "permission_error", "input,past_end_of_stream");
-	}
-
-	int ch = history_getch_fd(fileno(str->fp));
-
-	if (ch == 4)
-		ch = -1;
-
-	if (q->is_task && !feof(str->fp) && ferror(str->fp)) {
-		clearerr(str->fp);
-		return do_yield(q, 1);
-	}
-
-	str->did_getc = true;
-
-	if (FEOF(str)) {
-		str->did_getc = false;
-		str->at_end_of_file = str->eof_action != eof_action_reset;
-
-		if (str->eof_action == eof_action_reset)
-			clearerr(str->fp);
-
-		cell tmp;
-		make_atom(&tmp, g_eof_s);
-		return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
-	}
-
-	str->ungetch = 0;
-
-	if ((ch == '\n') || (ch == EOF))
-		str->did_getc = false;
-
-	if (ch == -1) {
-		cell tmp;
-		make_atom(&tmp, g_eof_s);
-		return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
-	}
-
-	char tmpbuf[80];
-	n = put_char_utf8(tmpbuf, ch);
-	cell tmp;
-	make_smalln(&tmp, tmpbuf, n);
-	return unify(q, p1, p1_ctx, &tmp, q->st.cur_ctx);
 }
 
 builtins g_os_bifs[] =

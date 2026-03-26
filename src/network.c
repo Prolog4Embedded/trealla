@@ -5,7 +5,6 @@
 #include <string.h>
 #include <time.h>
 
-#include "history.h"
 #include "network.h"
 #include "query.h"
 
