@@ -21,7 +21,6 @@ extern int xgetc_utf8(void*, void*);
  */
 
 static inline int getc_utf8(FILE *fp) { return xgetc_utf8(fgetc, fp); }
-static inline int fgetc_utf8(FILE *fp) { return xgetc_utf8(fgetc, fp); }
 
 extern size_t strlen_utf8(const char *s);						// returns #chars
 extern size_t substrlen_utf8(const char *s, size_t n);			// returns #chars

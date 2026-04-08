@@ -12,6 +12,8 @@
 #include "parser.h"
 #include "query.h"
 
+#include "platform/linux/panic.h"
+
 typedef struct visit_ visit;
 
 struct visit_ {
@@ -1322,7 +1324,6 @@ static bool print_interned(query *q, cell *c, pl_ctx c_ctx, bool running, unsign
 static bool print_term_to_buf_(query *q, cell *c, pl_ctx c_ctx, int running, int cons, unsigned print_depth, unsigned depth, visit *visited)
 {
 	if (depth > g_max_depth) {
-		//printf("*** OOPS %u, %s %d\n", depth, __FILE__, __LINE__);
 		SB_sprintf(q->sb, "%s", "...");
 		q->cycle_error = true;
 		q->last_thing = WAS_OTHER;
@@ -1628,38 +1629,7 @@ bool print_canonical_to_stream(query *q, stream *str, cell *c, pl_ctx c_ctx, int
 
 bool print_canonical(query *q, FILE *fp, cell *c, pl_ctx c_ctx, int running)
 {
-	q->ignore_ops = true;
-	q->quoted = 1;
-	q->last_thing = WAS_OTHER;
-	q->did_quote = false;
-	SB_init(q->sb);
-	print_term_to_buf(q, c, c_ctx, running, false);
-	if (q->nl) SB_putchar(q->sb, '\n');
-	q->ignore_ops = false;
-	q->quoted = 0;
-	const char *src = SB_cstr(q->sb);
-	ssize_t len = SB_strlen(q->sb);
-
-	while (len) {
-		size_t nbytes = fwrite(src, 1, len, fp);
-
-		if (feof(fp)) {
-			q->error = true;
-			SB_free(q->sb);
-			return false;
-		}
-
-		if (ferror(fp)) {
-			SB_free(q->sb);
-			return throw_error(q, q->st.instr,q->st.cur_ctx, "existence_error", "stream");
-		}
-
-		len -= nbytes;
-		src += nbytes;
-	}
-
-	SB_free(q->sb);
-	return true;
+	not_implemented(__func__);
 }
 
 char *print_term_to_strbuf(query *q, cell *c, pl_ctx c_ctx, int running)
@@ -1711,6 +1681,7 @@ bool print_term_to_stream(query *q, stream *str, cell *c, pl_ctx c_ctx, int runn
 
 bool print_term(query *q, FILE *fp, cell *c, pl_ctx c_ctx, int running)
 {
+	// TODO: Implement print to UART
 	q->did_quote = false;
 	q->last_thing = WAS_SPACE;
 	SB_init(q->sb);

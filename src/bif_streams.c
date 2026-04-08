@@ -31,6 +31,8 @@
 #include "prolog.h"
 #include "query.h"
 
+#include "platform/linux/panic.h"
+
 #define MAX_ARGS 128
 #define PROMPT ""
 
@@ -4198,108 +4200,7 @@ static bool bif_read_line_to_string_2(query *q)
 
 static bool bif_read_file_to_string_3(query *q)
 {
-	GET_FIRST_ARG(p1,source_sink);
-	GET_NEXT_ARG(p2,var);
-	GET_NEXT_ARG(p3,list_or_nil);
-	char *filename;
-	char *src = NULL;
-
-	if (is_iso_list(p1)) {
-		size_t len = scan_is_chars_list(q, p1, p1_ctx, true);
-
-		if (!len)
-			return throw_error(q, p1, p1_ctx, "type_error", "atom");
-
-		src = chars_list_to_string(q, p1, p1_ctx);
-		filename = src;
-	} else
-		filename = src = DUP_STRING(q, p1);
-
-	convert_path(filename);
-
-	bool bom_specified = false, use_bom = false, is_binary = false;
-	LIST_HANDLER(p3);
-
-	while (is_list(p3)) {
-		cell *h = LIST_HEAD(p3);
-		cell *c = deref(q, h, p3_ctx);
-
-		if (is_var(c))
-			return throw_error(q, c, q->latest_ctx, "instantiation_error", "args_not_sufficiently_instantiated");
-
-		if (is_compound(c) && (c->arity == 1)) {
-			cell *name = c + 1;
-			name = deref(q, name, q->latest_ctx);
-
-			if (!CMP_STRING_TO_CSTR(q, c, "type")) {
-				if (is_atom(name) && !CMP_STRING_TO_CSTR(q, name, "binary")) {
-					is_binary = true;
-				} else if (is_atom(name) && !CMP_STRING_TO_CSTR(q, name, "text"))
-					is_binary = false;
-				else
-					return throw_error(q, c, q->latest_ctx, "domain_error", "stream_option");
-			} else if (!CMP_STRING_TO_CSTR(q, c, "bom")) {
-				bom_specified = true;
-
-				if (is_atom(name) && !CMP_STRING_TO_CSTR(q, name, "true"))
-					use_bom = true;
-				else if (is_atom(name) && !CMP_STRING_TO_CSTR(q, name, "false"))
-					use_bom = false;
-			}
-		} else
-			return throw_error(q, c, q->latest_ctx, "domain_error", "stream_option");
-
-		p3 = LIST_TAIL(p3);
-		p3 = deref(q, p3, p3_ctx);
-		p3_ctx = q->latest_ctx;
-
-		if (is_var(p3))
-			return throw_error(q, p3, p3_ctx, "instantiation_error", "args_not_sufficiently_instantiated");
-	}
-
-	FILE *fp = fopen(filename, is_binary?"rb":"r");
-	free(src);
-
-	if (!fp)
-		return throw_error(q, p1, p1_ctx, "existence_error", "cannot_open_file");
-
-	// Check for a BOM
-
-	size_t offset = 0;
-
-	if (!is_binary && (!bom_specified || use_bom)) {
-		int ch = getc_utf8(fp);
-
-		if ((unsigned)ch != 0xFEFF)
-			fseek(fp, 0, SEEK_SET);
-		else
-			offset = 3;
-	}
-
-	struct stat st = {0};
-
-	if (fstat(fileno(fp), &st)) {
-		return false;
-	}
-
-	size_t len = st.st_size - offset;
-	char *s = malloc(len+1);
-	checked(s, fclose(fp));
-
-	if (fread(s, 1, len, fp) != (size_t)len) {
-		free(s);
-		fclose(fp);
-		return throw_error(q, p1, p1_ctx, "domain_error", "cannot_read");
-	}
-
-	s[st.st_size] = '\0';
-	fclose(fp);
-	cell tmp;
-	make_stringn(&tmp, s, len);
-	bool ok = unify(q, p2, p2_ctx, &tmp, q->st.cur_ctx);
-	unshare_cell(&tmp);
-	free(s);
-	return ok;
+	not_implemented(__func__);
 }
 
 bool do_load_file(query *q, cell *p1, pl_ctx p1_ctx)
@@ -4445,150 +4346,17 @@ static bool bif_make_0(query *q)
 
 static bool bif_savefile_2(query *q)
 {
-	GET_FIRST_ARG(p1,source_sink);
-	GET_NEXT_ARG(p2,atom);
-	char *filename;
-
-	if (is_iso_list(p1)) {
-		size_t len = scan_is_chars_list(q, p1, p1_ctx, true);
-
-		if (!len)
-			return throw_error(q, p1, p1_ctx, "type_error", "atom");
-
-		filename = chars_list_to_string(q, p1, p1_ctx);
-	} else
-		filename = DUP_STRING(q, p1);
-
-	convert_path(filename);
-	FILE *fp = fopen(filename, "wb");
-	checked(fp);
-	fwrite(C_STR(q, p2), 1, C_STRLEN(q, p2), fp);
-	fclose(fp);
-	free(filename);
-	return true;
+	not_implemented(__func__);
 }
 
 static bool bif_loadfile_2(query *q)
 {
-	GET_FIRST_ARG(p1,source_sink);
-	GET_NEXT_ARG(p2,var);
-	char *filename;
-
-	if (is_iso_list(p1)) {
-		size_t len = scan_is_chars_list(q, p1, p1_ctx, true);
-
-		if (!len)
-			return throw_error(q, p1, p1_ctx, "type_error", "atom");
-
-		filename = chars_list_to_string(q, p1, p1_ctx);
-	} else
-		filename = DUP_STRING(q, p1);
-
-	convert_path(filename);
-	FILE *fp = fopen(filename, "rb");
-	free(filename);
-
-	if (!fp)
-		return throw_error(q, p1, p1_ctx, "existence_error", "cannot_open_file");
-
-	// Check for a BOM
-
-	int ch = getc_utf8(fp), offset = 0;
-
-	if ((unsigned)ch != 0xFEFF)
-		fseek(fp, 0, SEEK_SET);
-	else
-		offset = 3;
-
-	struct stat st = {0};
-
-	if (fstat(fileno(fp), &st)) {
-		return false;
-	}
-
-	size_t len = st.st_size - offset;
-	char *s = malloc(len+1);
-	checked(s, fclose(fp));
-
-	if (fread(s, 1, len, fp) != (size_t)len) {
-		free(s);
-		fclose(fp);
-		return throw_error(q, p1, p1_ctx, "domain_error", "cannot_read");
-	}
-
-	s[st.st_size] = '\0';
-	fclose(fp);
-	cell tmp;
-
-	if (!len)
-		make_atom(&tmp, g_nil_s);
-	else
-		make_stringn(&tmp, s, len);
-
-	bool ok = unify(q, p2, p2_ctx, &tmp, q->st.cur_ctx);
-	unshare_cell(&tmp);
-	free(s);
-	return ok;
+	not_implemented(__func__);
 }
 
 static bool bif_getfile_2(query *q)
 {
-	GET_FIRST_ARG(p1,source_sink);
-	GET_NEXT_ARG(p2,var);
-	char *filename;
-
-	if (is_iso_list(p1)) {
-		size_t len = scan_is_chars_list(q, p1, p1_ctx, true);
-
-		if (!len)
-			return throw_error(q, p1, p1_ctx, "type_error", "atom");
-
-		filename = chars_list_to_string(q, p1, p1_ctx);
-	} else
-		filename = DUP_STRING(q, p1);
-
-	convert_path(filename);
-	FILE *fp = fopen(filename, "r");
-	free(filename);
-
-	if (!fp)
-		return throw_error(q, p1, p1_ctx, "existence_error", "cannot_open_file");
-
-	// Check for a BOM
-
-	int ch = getc_utf8(fp);
-
-	if ((unsigned)ch != 0xFEFF)
-		fseek(fp, 0, SEEK_SET);
-
-	char *line = NULL;
-	size_t len = 0;
-	checked(init_tmp_heap(q));
-
-	while (getline(&line, &len, fp) != -1) {
-		int len = strlen(line);
-
-		if (len && (line[len-1] == '\n')) {
-			line[len-1] = '\0';
-			len--;
-		}
-
-		if (len && (line[len-1] == '\r')) {
-			line[len-1] = '\0';
-			len--;
-		}
-
-		cell tmp;
-		make_stringn(&tmp, line, len);
-		append_list(q, &tmp);
-	}
-
-	free(line);
-	fclose(fp);
-	cell *l = end_list(q);
-	checked(l);
-	unify(q, p2, p2_ctx, l, q->st.cur_ctx);
-	return true;
+	not_implemented(__func__);
 }
 
 static bool get_terminator(query *q, cell *l, pl_ctx l_ctx)
@@ -4621,66 +4389,7 @@ static bool get_terminator(query *q, cell *l, pl_ctx l_ctx)
 
 static bool bif_getfile_3(query *q)
 {
-	GET_FIRST_ARG(p1,source_sink);
-	GET_NEXT_ARG(p2,var);
-	GET_NEXT_ARG(p3,list_or_nil);
-	char *filename;
-	bool terminator = get_terminator(q, p3, p3_ctx);
-
-	if (is_iso_list(p1)) {
-		size_t len = scan_is_chars_list(q, p1, p1_ctx, true);
-
-		if (!len)
-			return throw_error(q, p1, p1_ctx, "type_error", "atom");
-
-		filename = chars_list_to_string(q, p1, p1_ctx);
-	} else
-		filename = DUP_STRING(q, p1);
-
-	convert_path(filename);
-	FILE *fp = fopen(filename, "r");
-	free(filename);
-
-	if (!fp)
-		return throw_error(q, p1, p1_ctx, "existence_error", "cannot_open_file");
-
-	// Check for a BOM
-
-	int ch = getc_utf8(fp);
-
-	if ((unsigned)ch != 0xFEFF)
-		fseek(fp, 0, SEEK_SET);
-
-	char *line = NULL;
-	size_t len = 0;
-	checked(init_tmp_heap(q));
-
-	while (getline(&line, &len, fp) != -1) {
-		int len = strlen(line);
-
-		if (!terminator) {
-			if (len && (line[len-1] == '\n')) {
-				line[len-1] = '\0';
-				len--;
-			}
-
-			if (len && (line[len-1] == '\r')) {
-				line[len-1] = '\0';
-				len--;
-			}
-		}
-
-		cell tmp;
-		make_stringn(&tmp, line, len);
-		append_list(q, &tmp);
-	}
-
-	free(line);
-	fclose(fp);
-	cell *l = end_list(q);
-	checked(l);
-	unify(q, p2, p2_ctx, l, q->st.cur_ctx);
-	return true;
+	not_implemented(__func__);
 }
 
 static bool bif_getlines_1(query *q)
@@ -5293,72 +5002,7 @@ static bool bif_rename_file_2(query *q)
 
 static bool bif_copy_file_2(query *q)
 {
-	GET_FIRST_ARG(p1,source_sink);
-	GET_NEXT_ARG(p2,source_sink);
-	char *filename1, *filename2;
-
-	if (is_iso_list(p1)) {
-		size_t len = scan_is_chars_list(q, p1, p1_ctx, true);
-
-		if (!len)
-			return throw_error(q, p1, p1_ctx, "type_error", "atom");
-
-		filename1 = chars_list_to_string(q, p1, p1_ctx);
-	} else
-		filename1 = DUP_STRING(q, p1);
-
-	if (is_iso_list(p2)) {
-		size_t len = scan_is_chars_list(q, p2, p2_ctx, true);
-
-		if (!len) {
-			free(filename1);
-			return throw_error(q, p2, p2_ctx, "type_error", "atom");
-		}
-
-		filename2 = chars_list_to_string(q, p2, p2_ctx);
-	} else
-		filename2 = DUP_STRING(q, p2);
-
-	convert_path(filename1);
-	convert_path(filename2);
-	FILE *fp1 = fopen(filename1, "rb");
-
-	if (!fp1) {
-		free(filename1);
-		free(filename2);
-		return throw_error(q, p1, p1_ctx, "existence_error", "file");
-	}
-
-	free(filename1);
-	FILE *fp2 = fopen(filename2, "wb");
-
-	if (!fp2) {
-		fclose(fp1);
-		free(filename2);
-		return throw_error(q, p2, p2_ctx, "permission_error", "file");
-	}
-
-	free(filename2);
-	char buffer[1024];
-	size_t n;
-
-	while ((n = fread(buffer, 1, sizeof(buffer), fp1)) > 0) {
-		if (fwrite(buffer, 1, n, fp2) != n) {
-			fclose(fp2);
-			fclose(fp1);
-			return throw_error(q, p2, p2_ctx, "system_error", "file");
-		}
-	}
-
-	fclose(fp2);
-
-	if (!feof(fp1)) {
-		fclose(fp1);
-		return throw_error(q, p1, p1_ctx, "system_error", "file");
-	}
-
-	fclose(fp1);
-	return true;
+	not_implemented(__func__);
 }
 
 static bool bif_time_file_2(query *q)

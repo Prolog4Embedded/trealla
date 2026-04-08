@@ -87,7 +87,6 @@ static int compare_structs(query *q, cell *p1, pl_ctx p1_ctx, cell *p2, pl_ctx p
 static int compare_internal(query *q, cell *p1, pl_ctx p1_ctx, cell *p2, pl_ctx p2_ctx, unsigned depth)
 {
 	if (depth > 30) {
-		//printf("*** OOPS %s %d\n", __FILE__, __LINE__);
 		return 0;
 	}
 
@@ -605,12 +604,10 @@ static bool unify_internal(query *q, cell *p1, pl_ctx p1_ctx, cell *p2, pl_ctx p
 
 	if ((q->is_cyclic1 || q->is_cyclic2)) {
 		if (depth > 30) {
-			//printf("*** OOPS %s %d\n", __FILE__, __LINE__);
 			q->cycle_error++;
 			return true;
 		}
 	} else if (depth > 30) {
-		//printf("*** OOPS %s %d\n", __FILE__, __LINE__);
 		q->cycle_error++;
 		return true;
 	}

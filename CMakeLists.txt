@@ -91,6 +91,7 @@ set(TPL_PLATFORM_COMMON_SRC
 
 set(TPL_LINUX_SRC
     src/platform/linux/memory_linux.c
+    src/platform/linux/panic.c
 )
 
 set(TPL_BAREMETAL_SRC

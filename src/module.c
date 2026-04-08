@@ -11,6 +11,8 @@
 #include "prolog.h"
 #include "query.h"
 
+#include "platform/linux/panic.h"
+
 struct loaded_file_ {
 	loaded_file *next;
 	char *filename;
@@ -2317,33 +2319,12 @@ module *load_fp(module *m, FILE *fp, const char *filename, bool including, bool 
 
 bool restore_log(module *m, const char *filename)
 {
-	FILE *fp = fopen(filename, "r");
-	char *line = NULL;
-
-	if (!fp)
-		return false;
-
-	FILE *save = m->pl->logfp;
-	m->pl->logfp = NULL;
-
-	for (;;) {
-		size_t n = 0;
-
-		if (getline(&line, &n, fp) < 0) {
-			free(line);
-			break;
-		}
-
-		pl_eval(m->pl, line, false);
-	}
-
-	fclose(fp);
-	m->pl->logfp = save;
-	return true;
+	not_implemented(__func__);
 }
 
 module *load_file(module *m, const char *filename, bool including, bool init)
 {
+	// TODO: must be removed
 	const char *orig_filename = filename;
 
 	if (!strcmp(filename, "user")) {
@@ -2517,43 +2498,12 @@ module *load_file(module *m, const char *filename, bool including, bool init)
 
 static void module_save_fp(module *m, FILE *fp, int canonical, int dq)
 {
-	(void) dq;
-	pl_ctx ctx = 0;
-	query q = (query){0};
-	q.pl = m->pl;
-	q.st.m = m;
-
-	for (predicate *pr = list_front(&m->predicates);
-		pr; pr = list_next(pr)) {
-		if (pr->is_builtin)
-			continue;
-
-		for (rule *r = pr->head; r; r = r->next) {
-			if (r->dbgen_retracted)
-				continue;
-
-			if (canonical)
-				print_canonical(&q, fp, r->cl.cells, ctx, 0);
-			else
-				print_term(&q, fp, r->cl.cells, ctx, 0);
-
-			fprintf(fp, "\n");
-		}
-	}
+	not_implemented(__func__);
 }
 
 bool save_file(module *m, const char *filename)
 {
-	FILE *fp = fopen(filename, "w");
-
-	if (!fp) {
-		fprintf(stderr, "Error: file '%s' cannot be created\n", filename);
-		return false;
-	}
-
-	module_save_fp(m, fp, 0, 0);
-	fclose(fp);
-	return true;
+	not_implemented(__func__);
 }
 
 void module_destroy(module *m)

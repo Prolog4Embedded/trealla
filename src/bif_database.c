@@ -11,6 +11,8 @@
 #include "prolog.h"
 #include "query.h"
 
+#include "platform/linux/panic.h"
+
 static bool module_context(query *q, cell **p1, pl_ctx p1_ctx)
 {
 	if (!is_var(*p1)) {
@@ -109,35 +111,7 @@ static bool bif_clause_3(query *q)
 
 static void db_log(query *q, rule *r, enum log_type l)
 {
-	FILE *fp = q->pl->logfp;
-
-	if (!fp)
-		return;
-
-	char tmpbuf[256];
-	char *dst;
-	q->quoted = 2;
-
-	switch(l) {
-	case LOG_ASSERTA:
-		dst = print_term_to_strbuf(q, r->cl.cells, q->st.cur_ctx, 1);
-		uuid_to_buf(&r->u, tmpbuf, sizeof(tmpbuf));
-		fprintf(fp, "%s:'$a_'((%s),'%s').\n", q->st.m->name, dst, tmpbuf);
-		free(dst);
-		break;
-	case LOG_ASSERTZ:
-		dst = print_term_to_strbuf(q, r->cl.cells, q->st.cur_ctx, 1);
-		uuid_to_buf(&r->u, tmpbuf, sizeof(tmpbuf));
-		fprintf(fp, "%s:'$z_'((%s),'%s').\n", q->st.m->name, dst, tmpbuf);
-		free(dst);
-		break;
-	case LOG_ERASE:
-		uuid_to_buf(&r->u, tmpbuf, sizeof(tmpbuf));
-		fprintf(fp, "%s:'$e_'('%s').\n", q->st.m->name, tmpbuf);
-		break;
-	}
-
-	q->quoted = 0;
+	not_implemented(__func__);
 }
 
 static bool bif_iso_clause_2(query *q)
@@ -688,51 +662,6 @@ static bool bif_sys_assertz_2(query *q)
 	return do_assertz_2(q);
 }
 
-void save_db(FILE *fp, query *q, int logging)
-{
-	q->listing = true;
-	q->double_quotes = true;
-
-	for (predicate *pr = list_front(&q->st.m->predicates);
-		pr; pr = list_next(pr)) {
-		if (pr->is_builtin)
-			continue;
-
-		const char *src = C_STR(q, &pr->key);
-
-		if (src[0] == '$')
-			continue;
-
-		for (rule *r = pr->head; r; r = r->next) {
-			if (r->dbgen_retracted)
-				continue;
-
-			if (logging)
-				fprintf(fp, "'$z_'(");
-
-			for (unsigned i = 0; i < MAX_IGNORES; i++)
-				q->ignores[i] = false;
-
-			q->print_idx = 0;
-			print_term(q, fp, r->cl.cells, 0, 0);
-
-			if (logging) {
-				char tmpbuf[256];
-				uuid_to_buf(&r->u, tmpbuf, sizeof(tmpbuf));
-				fprintf(fp, ",'%s')", tmpbuf);
-			}
-
-			if (q->last_thing == WAS_SYMBOL)
-				fprintf(fp, " ");
-
-			fprintf(fp, ".\n");
-		}
-	}
-
-	q->double_quotes = false;
-	q->listing = false;
-}
-
 static bool bif_abolish_2(query *q)
 {
 	GET_FIRST_ARG(p1,callable);
@@ -957,170 +886,17 @@ static bool do_dump_term(query *q, cell *p1x, pl_ctx p1x_ctx, cell *p1, pl_ctx p
 
 static bool bif_listing_0(query *q)
 {
-	int n = q->pl->current_output;
-	stream *str = &q->pl->streams[n];
-	save_db(str->fp, q, 0);
-	return true;
-}
-
-static bool save_name(FILE *fp, query *q, pl_idx name, unsigned arity, bool alt, bool dump)
-{
-	module *m = q->st.dbe ? q->st.dbe->owner->m : q->st.m;
-	q->listing = true;
-	bool any = false;
-
-	for (predicate *pr = list_front(&m->predicates);
-		pr; pr = list_next(pr)) {
-		if (pr->is_builtin && (arity == -1U))
-			continue;
-
-		if (name != pr->key.val_off)
-			continue;
-
-		if ((arity != pr->key.arity) && (arity != -1U))
-			continue;
-
-		any = true;
-
-		for (rule *r = pr->head; r; r = r->next) {
-			if (r->dbgen_retracted)
-				continue;
-
-			for (unsigned i = 0; i < MAX_IGNORES; i++)
-				q->ignores[i] = false;
-
-			q->print_idx = 0;
-
-			if (alt) {
-				print_term(q, fp, get_head(r->cl.cells), 0, 0);
-				printf(":-\n");
-
-				if (r->cl.alt) {
-					cell *c = r->cl.alt;
-
-					while (!is_end(c)) {
-						printf("  ");
-						print_term(q, fp, c, 0, 0);
-						c += c->num_cells;
-						printf("\n");
-					}
-				} else
-					fprintf(fp, "  true\n");
-			} else if (dump) {
-				do_dump_term(q, r->cl.cells, 0, r->cl.cells, 0, 0, 0);
-			} else {
-				print_term(q, fp, r->cl.cells, 0, 0);
-				fprintf(fp, ".\n");
-			}
-		}
-	}
-
-	q->listing = false;
-	return any;
+	not_implemented(__func__);
 }
 
 static bool bif_listing_1(query *q)
 {
-	GET_FIRST_ARG(p1,callable);
-	pl_idx name = p1->val_off;
-	unsigned arity = -1;
-
-	if (p1->val_off == g_colon_s) {
-		p1 = p1 + 1;
-		cell *cm = deref(q, p1, p1_ctx);
-		module *m = find_module(q->pl, C_STR(q, cm));
-
-		if (!m)
-			return throw_error(q, cm, p1_ctx, "existence_error", "module");
-
-		p1 += p1->num_cells;
-	}
-
-	if (p1->arity) {
-		if (CMP_STRING_TO_CSTR(q, p1, "/") && CMP_STRING_TO_CSTR(q, p1, "//"))
-			return throw_error(q, p1, p1_ctx, "type_error", "predicate_indicator");
-
-		cell *p2 = p1 + 1;
-
-		if (!is_atom(p2))
-			return throw_error(q, p2, p1_ctx, "type_error", "atom");
-
-		cell *p3 = p2 + p2->num_cells;
-
-		if (!is_integer(p3))
-			return throw_error(q, p3, p1_ctx, "type_error", "integer");
-
-		name = new_atom(q->pl, C_STR(q, p2));
-		arity = get_smallint(p3);
-
-		if (!CMP_STRING_TO_CSTR(q, p1, "//"))
-			arity += 2;
-	}
-
-	cell tmp;
-	make_atom(&tmp, name);
-	tmp.arity = arity;
-	bool found;
-
-	if (get_builtin_term(q->st.m, &tmp, &found, NULL), found)
-		return throw_error(q, &tmp, p1_ctx, "permission_error", "access,private_procedure");
-
-	int n = q->pl->current_output;
-	stream *str = &q->pl->streams[n];
-	return save_name(str->fp, q, name, arity, false, false);
+	not_implemented(__func__);
 }
 
 static bool bif_sys_xlisting_1(query *q)
 {
-	GET_FIRST_ARG(p1,callable);
-	pl_idx name = p1->val_off;
-	unsigned arity = -1;
-
-	if (p1->val_off == g_colon_s) {
-		p1 = p1 + 1;
-		cell *cm = deref(q, p1, p1_ctx);
-		module *m = find_module(q->pl, C_STR(q, cm));
-
-		if (!m)
-			return throw_error(q, cm, p1_ctx, "existence_error", "module");
-
-		p1 += p1->num_cells;
-	}
-
-	if (p1->arity) {
-		if (CMP_STRING_TO_CSTR(q, p1, "/") && CMP_STRING_TO_CSTR(q, p1, "//"))
-			return throw_error(q, p1, p1_ctx, "type_error", "predicate_indicator");
-
-		cell *p2 = p1 + 1;
-
-		if (!is_atom(p2))
-			return throw_error(q, p2, p1_ctx, "type_error", "atom");
-
-		cell *p3 = p2 + p2->num_cells;
-
-		if (!is_integer(p3))
-			return throw_error(q, p3, p1_ctx, "type_error", "integer");
-
-		name = new_atom(q->pl, C_STR(q, p2));
-		arity = get_smallint(p3);
-
-		if (!CMP_STRING_TO_CSTR(q, p1, "//"))
-			arity += 2;
-	}
-
-	cell tmp;
-	make_atom(&tmp, name);
-	tmp.arity = arity;
-	bool found;
-
-	if (get_builtin_term(q->st.m, &tmp, &found, NULL), found)
-		return throw_error(q, &tmp, p1_ctx, "permission_error", "access,private_procedure");
-
-	int n = q->pl->current_output;
-	stream *str = &q->pl->streams[n];
-	save_name(str->fp, q, name, arity, true, false);
-	fprintf(str->fp, "\n");
-	return true;
+	not_implemented(__func__);
 }
 
 static bool bif_sys_dump_term_2(query *q)
@@ -1135,55 +911,7 @@ static bool bif_sys_dump_term_2(query *q)
 
 static bool bif_sys_dlisting_1(query *q)
 {
-	GET_FIRST_ARG(p1,callable);
-	pl_idx name = p1->val_off;
-	unsigned arity = -1;
-
-	if (p1->val_off == g_colon_s) {
-		p1 = p1 + 1;
-		cell *cm = deref(q, p1, p1_ctx);
-		module *m = find_module(q->pl, C_STR(q, cm));
-
-		if (!m)
-			return throw_error(q, cm, p1_ctx, "existence_error", "module");
-
-		p1 += p1->num_cells;
-	}
-
-	if (p1->arity) {
-		if (CMP_STRING_TO_CSTR(q, p1, "/") && CMP_STRING_TO_CSTR(q, p1, "//"))
-			return throw_error(q, p1, p1_ctx, "type_error", "predicate_indicator");
-
-		cell *p2 = p1 + 1;
-
-		if (!is_atom(p2))
-			return throw_error(q, p2, p1_ctx, "type_error", "atom");
-
-		cell *p3 = p2 + p2->num_cells;
-
-		if (!is_integer(p3))
-			return throw_error(q, p3, p1_ctx, "type_error", "integer");
-
-		name = new_atom(q->pl, C_STR(q, p2));
-		arity = get_smallint(p3);
-
-		if (!CMP_STRING_TO_CSTR(q, p1, "//"))
-			arity += 2;
-	}
-
-	cell tmp;
-	make_atom(&tmp, name);
-	tmp.arity = arity;
-	bool found;
-
-	if (get_builtin_term(q->st.m, &tmp, &found, NULL), found)
-		return throw_error(q, &tmp, p1_ctx, "permission_error", "access,private_procedure");
-
-	int n = q->pl->current_output;
-	stream *str = &q->pl->streams[n];
-	save_name(str->fp, q, name, arity, false, true);
-	fprintf(str->fp, "\n");
-	return true;
+	not_implemented(__func__);
 }
 
 builtins g_database_bifs[] =

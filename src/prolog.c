@@ -132,7 +132,6 @@ void set_quiet(prolog *pl) { pl->quiet = true; }
 void set_opt(prolog *pl, int level) { pl->opt = level; }
 
 bool pl_isatty(prolog* pl) { return isatty(fileno(pl->streams[0].fp)); }
-FILE *pl_stdin(prolog *pl) { return pl->streams[0].fp; }
 
 bool pl_eval(prolog *pl, const char *s, bool interactive)
 {
@@ -211,11 +210,6 @@ bool pl_done(pl_sub_query *subq)
 	query *q = (query*)subq;
 	query_destroy(q);
 	return true;
-}
-
-bool pl_consult_fp(prolog *pl, FILE *fp, const char *filename)
-{
-	return load_fp(pl->user_m, fp, filename, false, true) != NULL;
 }
 
 bool pl_consult(prolog *pl, const char *filename)
