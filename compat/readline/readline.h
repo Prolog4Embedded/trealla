@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__READLINE_READLINE_H
 #warning "Using generated compat stub for <readline/readline.h>"
-

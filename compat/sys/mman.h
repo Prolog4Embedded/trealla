@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__SYS_MMAN_H
 #warning "Using generated compat stub for <sys/mman.h>"
-

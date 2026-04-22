@@ -36,23 +36,24 @@ extern "C" {
 #endif
 
 typedef struct {
-  mpz_t   num;    /* Numerator         */
-  mpz_t   den;    /* Denominator, <> 0 */
+    mpz_t num; /* Numerator         */
+    mpz_t den; /* Denominator, <> 0 */
 } mpq_t, *mp_rat;
 
 /* Return a pointer to the numerator. */
-static inline mp_int MP_NUMER_P(mp_rat Q) { return &(Q->num); }
+static inline mp_int MP_NUMER_P(mp_rat Q)
+{
+    return &(Q->num);
+}
 
 /* Return a pointer to the denominator. */
-static inline mp_int MP_DENOM_P(mp_rat Q) { return &(Q->den); }
+static inline mp_int MP_DENOM_P(mp_rat Q)
+{
+    return &(Q->den);
+}
 
 /* Rounding constants */
-typedef enum {
-  MP_ROUND_DOWN,
-  MP_ROUND_HALF_UP,
-  MP_ROUND_UP,
-  MP_ROUND_HALF_DOWN
-} mp_round_mode;
+typedef enum { MP_ROUND_DOWN, MP_ROUND_HALF_UP, MP_ROUND_UP, MP_ROUND_HALF_DOWN } mp_round_mode;
 
 /** Initializes `r` with 1-digit precision and sets it to zero. This function
     cannot fail unless `r` is NULL. */
@@ -212,8 +213,8 @@ mp_result mp_rat_to_string(mp_rat r, mp_size radix, char *str, int limit);
          Example:  12.005 to 2dp becomes 12.01, but
                    12.004 to 2dp becomes 12.00
 */
-mp_result mp_rat_to_decimal(mp_rat r, mp_size radix, mp_size prec,
-                            mp_round_mode round, char *str, int limit);
+mp_result mp_rat_to_decimal(mp_rat r, mp_size radix, mp_size prec, mp_round_mode round, char *str,
+                            int limit);
 
 /** Reports the minimum number of characters required to represent `r` as a
     zero-terminated string in the given `radix`.
@@ -235,8 +236,7 @@ mp_result mp_rat_read_string(mp_rat r, mp_size radix, const char *str);
     denominator has value zero. If `end` is not NULL then `*end` is set to
     point to the first unconsumed character in the string, after parsing.
 */
-mp_result mp_rat_read_cstring(mp_rat r, mp_size radix, const char *str,
-			      char **end);
+mp_result mp_rat_read_cstring(mp_rat r, mp_size radix, const char *str, char **end);
 
 /** Sets `r` to the value represented by a zero-terminated string `str` having
     one of the following formats, each with an optional leading sign flag:
@@ -249,8 +249,7 @@ mp_result mp_rat_read_cstring(mp_rat r, mp_size radix, const char *str,
     NULL then `*end` is set to point to the first unconsumed character in the
     string, after parsing.
 */
-mp_result mp_rat_read_ustring(mp_rat r, mp_size radix, const char *str,
-			      char **end);
+mp_result mp_rat_read_ustring(mp_rat r, mp_size radix, const char *str, char **end);
 
 /** Sets `r` to the value represented by a zero-terminated string `str` in the
     format `"z.ffff"` including a sign flag. It returns `MP_UNDEF` if the
@@ -261,8 +260,7 @@ mp_result mp_rat_read_decimal(mp_rat r, mp_size radix, const char *str);
     format `"z.ffff"` including a sign flag. It returns `MP_UNDEF` if the
     effective denominator. If `end` is not NULL then `*end` is set to point to
     the first unconsumed character in the string, after parsing. */
-mp_result mp_rat_read_cdecimal(mp_rat r, mp_size radix, const char *str,
-			       char **end);
+mp_result mp_rat_read_cdecimal(mp_rat r, mp_size radix, const char *str, char **end);
 
 #ifdef __cplusplus
 }

@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__FLOAT_H
 #warning "Using generated compat stub for <float.h>"
-

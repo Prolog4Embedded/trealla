@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__TIME_H
 #warning "Using generated compat stub for <time.h>"
-

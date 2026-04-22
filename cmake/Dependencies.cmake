@@ -46,7 +46,9 @@ if(TPL_USE_FFI)
     list(APPEND TPL_LINK_LIBS "${FFI_LIBRARY}")
   endif()
 
-  if(UNIX AND NOT APPLE AND NOT TPL_WASI)
+  if(UNIX
+     AND NOT APPLE
+     AND NOT TPL_WASI)
     list(APPEND TPL_LINK_LIBS dl)
   endif()
 endif()

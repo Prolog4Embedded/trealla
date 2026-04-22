@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__NETINET_TCP_H
 #warning "Using generated compat stub for <netinet/tcp.h>"
-

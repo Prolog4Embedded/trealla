@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__MATH_H
 #warning "Using generated compat stub for <math.h>"
-

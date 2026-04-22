@@ -2,7 +2,8 @@
 
 #include "internal.h"
 
-builtins *get_builtin(prolog *pl, const char *name, size_t len, unsigned arity, bool *found, bool *evaluable);
+builtins *get_builtin(prolog *pl, const char *name, size_t len, unsigned arity, bool *found,
+                      bool *evaluable);
 builtins *get_help(prolog *pl, const char *name, unsigned arity, bool *found, bool *evaluable);
 module *find_module(prolog *pl, const char *name);
 pl_idx new_atom(prolog *pl, const char *name);
@@ -18,12 +19,12 @@ bool is_closed_stream(prolog *pl, cell *p1);
 
 inline static void prolog_lock(prolog *pl)
 {
-	acquire_lock(&pl->guard);
+    acquire_lock(&pl->guard);
 }
 
 inline static void prolog_unlock(prolog *pl)
 {
-	release_lock(&pl->guard);
+    release_lock(&pl->guard);
 }
 
 #define MAX_PIDS 64
@@ -74,4 +75,3 @@ extern builtins g_tasks_bifs[];
 extern builtins g_threads_bifs[];
 
 extern void keyfree(const void *key, const void *val, const void *p);
-

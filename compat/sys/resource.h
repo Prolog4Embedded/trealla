@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__SYS_RESOURCE_H
 #warning "Using generated compat stub for <sys/resource.h>"
-

@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__GNU_STUBS_32_H
 #warning "Using generated compat stub for <gnu/stubs-32.h>"
-

@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__SPAWN_H
 #warning "Using generated compat stub for <spawn.h>"
-

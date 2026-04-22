@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__FENV_H
 #warning "Using generated compat stub for <fenv.h>"
-

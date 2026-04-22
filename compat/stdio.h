@@ -6,4 +6,3 @@
 
 #define TPL_MISSING_HEADER__STDIO_H
 #warning "Using generated compat stub for <stdio.h>"
-

@@ -1,6 +1,8 @@
 find_program(XXD_EXECUTABLE xxd)
 if(NOT XXD_EXECUTABLE)
-  message(FATAL_ERROR "xxd not found (needed to generate library/*.c from library/*.pl).")
+  message(
+    FATAL_ERROR
+      "xxd not found (needed to generate library/*.c from library/*.pl).")
 endif()
 
 file(GLOB TPL_LIBRARY_PL "${CMAKE_SOURCE_DIR}/library/*.pl")
@@ -15,10 +17,10 @@ foreach(pl ${TPL_LIBRARY_PL})
 
   add_custom_command(
     OUTPUT "${gen_c}"
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/generated/library"
+    COMMAND ${CMAKE_COMMAND} -E make_directory
+            "${CMAKE_BINARY_DIR}/generated/library"
     COMMAND ${CMAKE_COMMAND} -E echo "#include <stddef.h>" > "${gen_c}"
     COMMAND "${XXD_EXECUTABLE}" -i -n "${sym}" "${pl}" >> "${gen_c}"
     DEPENDS "${pl}"
-    VERBATIM
-  )
+    VERBATIM)
 endforeach()
