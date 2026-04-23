@@ -1522,7 +1522,7 @@ void assign_vars(parser *p, unsigned start, bool rebase)
 
         if (rebase) {
             char tmpbuf[20];
-            snprintf(tmpbuf, sizeof(tmpbuf), "___V%u", c->var_num);
+            snprintf(tmpbuf, sizeof(tmpbuf), "___V%" PRIu32 "", c->var_num);
             c->var_num = get_varno(p, tmpbuf, in_body, c->var_num);
         } else
             c->var_num = get_varno(p, C_STR(p, c), in_body, c->var_num);
@@ -1558,7 +1558,7 @@ void assign_vars(parser *p, unsigned start, bool rebase)
 
         if (rebase) {
             char tmpbuf[20];
-            snprintf(tmpbuf, sizeof(tmpbuf), "___V%u", c->var_num);
+            snprintf(tmpbuf, sizeof(tmpbuf), "___V%" PRIu32 "", c->var_num);
             c->var_num = get_varno(p, tmpbuf, in_body, c->var_num);
         } else
             c->var_num = get_varno(p, C_STR(p, c), in_body, c->var_num);

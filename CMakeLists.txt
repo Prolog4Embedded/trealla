@@ -87,6 +87,13 @@ set(TPL_VENDOR_SRC src/imath/imath.c src/imath/imrat.c src/sre/re.c)
 
 set(TPL_PLATFORM_COMMON_SRC src/platform/common/pl4bm_debug.c)
 
+set(TPL_LINUX_SRC
+    src/platform/linux/memory_linux.c
+    src/platform/common/memory_stats.c)
+
+set(TPL_NOLIBC_SRC src/platform/baremetal/memory_baremetal.c)
+set(TPL_PICOLIBC_SRC src/platform/baremetal/memory_baremetal.c)
+
 set(TPL_BAREMETAL_STUBS_SRC src/platform/baremetal/stubs.c)
 
 include(Formatting)
@@ -100,32 +107,9 @@ file(CREATE_LINK "${CMAKE_BINARY_DIR}/compile_commands.json"
 
 set(TPL_ALL_SRC ${TPL_CORE_SRC} ${TPL_VENDOR_SRC} ${TPL_PLATFORM_COMMON_SRC})
 
-if(TPL_EXCLUDED_BIF_SRCS)
-  foreach(_excl ${TPL_EXCLUDED_BIF_SRCS})
-    list(REMOVE_ITEM TPL_ALL_SRC "src/${_excl}.c")
-  endforeach()
-endif()
-
 list(APPEND TPL_ALL_SRC ${TPL_BOARD_SRCS})
 
 list(APPEND TPL_ALL_SRC ${TPL_LIBRARY_GEN_C})
-
-if(TPL_PROGRAM_PL)
-  find_program(XXD_EXECUTABLE xxd)
-  if(NOT XXD_EXECUTABLE)
-    message(FATAL_ERROR "xxd not found (needed to embed TPL_PROGRAM_PL=${TPL_PROGRAM_PL})")
-  endif()
-  set(_tpl_program_gen_c "${CMAKE_BINARY_DIR}/generated/program_pl.c")
-  add_custom_command(
-    OUTPUT "${_tpl_program_gen_c}"
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/generated"
-    COMMAND ${CMAKE_COMMAND} -E echo "#include <stddef.h>" > "${_tpl_program_gen_c}"
-    COMMAND "${XXD_EXECUTABLE}" -i -n "program_pl" "${TPL_PROGRAM_PL}"
-            >> "${_tpl_program_gen_c}"
-    DEPENDS "${TPL_PROGRAM_PL}"
-    VERBATIM)
-  list(APPEND TPL_ALL_SRC "${_tpl_program_gen_c}")
-endif()
 
 set(TPL_INCLUDE_DIRS
     "${CMAKE_SOURCE_DIR}/src" "${CMAKE_SOURCE_DIR}/src/platform"
@@ -178,6 +162,7 @@ if(TPL_BACKEND STREQUAL "linux")
 elseif(TPL_BACKEND STREQUAL "baremetal")
   target_compile_definitions(tpl PRIVATE TPL_BACKEND_BAREMETAL USE_MMAP=0)
 
+# TODO: Dont like all these hardcoded flags!
 target_compile_options(tpl PRIVATE
   -Os
   -g
@@ -199,10 +184,6 @@ target_link_options(tpl PRIVATE
   elseif(TPL_LIBC_BACKEND STREQUAL "none")
     target_compile_definitions(tpl PRIVATE TPL_LIBC_BACKEND_NONE)
   endif()
-endif()
-
-if(TPL_MEMORY_LOGGING)
-  target_compile_definitions(tpl PRIVATE TPL_MEMORY_LOGGING)
 endif()
 
 # Compile / link options
@@ -297,7 +278,7 @@ if(TPL_BACKEND STREQUAL "baremetal")
   add_custom_command(
     TARGET tpl
     POST_BUILD
-    COMMAND "${OBJ_COPY}" ARGS -O binary $<TARGET_FILE:tpl>
+    COMMAND "${CMAKE_OBJCOPY}" ARGS -O binary $<TARGET_FILE:tpl>
             $<TARGET_FILE_BASE_NAME:tpl>.bin
     VERBATIM)
 endif()

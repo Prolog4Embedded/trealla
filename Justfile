@@ -108,4 +108,4 @@ qemu:
 
 gdb:
     # May need to use arm-none-eabi-gdb depending on os
-    gdb build/qemu-mps3-an524-picolibc-debug/tpl.elf
+    gdb -x .gdbinit build/qemu-mps3-an524-picolibc-debug/tpl.elf

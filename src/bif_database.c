@@ -906,8 +906,8 @@ static bool do_dump_term(query *q, cell *p1x, pl_ctx p1x_ctx, cell *p1, pl_ctx p
 {
     if (!depth) {
         const frame *f = GET_CURR_FRAME();
-        printf("f=%u, f->initial_slots=%u, f->actual_slots=%u\n", q->st.cur_ctx, f->initial_slots,
-               f->actual_slots);
+        printf("f=%" PRIu32 ", f->initial_slots=%" PRIu32 ", f->actual_slots=%" PRIu32 "\n",
+               q->st.cur_ctx, f->initial_slots, f->actual_slots);
     }
 
     cell *tmp = p1;
@@ -919,7 +919,7 @@ static bool do_dump_term(query *q, cell *p1x, pl_ctx p1x_ctx, cell *p1, pl_ctx p
         if (depth)
             printf("  ");
 
-        printf("[%02u] tag=%10s, num_cells=%u, arity=%u", i,
+        printf("[%02u] tag=%10s, num_cells=%" PRIu32 ", arity=%" PRIu32 "", i,
                ((tmp->tag == TAG_VAR && is_ref(tmp)) ? "var_ref"
                 : tmp->tag == TAG_VAR                ? "var"
                 : tmp->tag == TAG_INTERNED           ? "interned"
@@ -949,9 +949,9 @@ static bool do_dump_term(query *q, cell *p1x, pl_ctx p1x_ctx, cell *p1, pl_ctx p
                    is_anon(tmp) ? 1 : 0);
 
         if (is_ref(tmp))
-            printf(", slot=%u, ctx=%u", tmp->var_num, tmp->val_ctx);
+            printf(", slot=%" PRIu32 ", ctx=%" PRIu32 "", tmp->var_num, tmp->val_ctx);
         else if (is_var(tmp))
-            printf(", slot=%u, %s", tmp->var_num, C_STR(q, tmp));
+            printf(", slot=%" PRIu32 ", %s", tmp->var_num, C_STR(q, tmp));
 
         if (is_var(tmp) && deref) {
             const frame *f = GET_FRAME(is_ref(tmp) ? tmp->val_ctx : p1_ctx);
@@ -1202,34 +1202,35 @@ static bool bif_sys_dlisting_1(query *q)
     return true;
 }
 
-builtins g_database_bifs[] = {
-    {"abolish", 1, bif_iso_abolish_1, "+predicate_indicator", true, false, BLAH},
-    {"asserta", 1, bif_iso_asserta_1, "+term", true, false, BLAH},
-    {"assertz", 1, bif_iso_assertz_1, "+term", true, false, BLAH},
-    {"retract", 1, bif_iso_retract_1, "+term", true, false, BLAH},
-    {"retractall", 1, bif_iso_retractall_1, "+term", true, false, BLAH},
-    {"clause", 2, bif_iso_clause_2, "+term,?term", true, false, BLAH},
+// builtins g_database_bifs[] = {
+// {"abolish", 1, bif_iso_abolish_1, "+predicate_indicator", true, false, BLAH},
+// {"asserta", 1, bif_iso_asserta_1, "+term", true, false, BLAH},
+// {"assertz", 1, bif_iso_assertz_1, "+term", true, false, BLAH},
+// {"retract", 1, bif_iso_retract_1, "+term", true, false, BLAH},
+// {"retractall", 1, bif_iso_retractall_1, "+term", true, false, BLAH},
+// {"clause", 2, bif_iso_clause_2, "+term,?term", true, false, BLAH},
+//
+// {"asserta", 2, bif_asserta_2, "+term,-string", false, false, BLAH},
+// {"assertz", 2, bif_assertz_2, "+term,-string", false, false, BLAH},
+// {"erase", 1, bif_erase_1, "+string", false, false, BLAH},
+// {"clause", 3, bif_clause_3, "?term,?term,-string", false, false, BLAH},
+// {"abolish", 2, bif_abolish_2, "+term,+list", false, false, BLAH},
+// {"instance", 2, bif_instance_2, "+string,?term", false, false, BLAH},
+//
+// {"listing", 0, bif_listing_0, NULL, false, false, BLAH},
+// {"listing", 1, bif_listing_1, "+predicate_indicator", false, false, BLAH},
+//
+// {"$xlisting", 1, bif_sys_xlisting_1, "+predicate_indicator", false, false, BLAH},
+// {"$dlisting", 1, bif_sys_dlisting_1, "+predicate_indicator", false, false, BLAH},
+// {"$dump_term", 2, bif_sys_dump_term_2, "+term,+bool", false, false, BLAH},
+// {"$clause", 2, bif_sys_clause_2, "?term,?term", false, false, BLAH},
+// {"$clause", 3, bif_sys_clause_3, "?term,?term,-string", false, false, BLAH},
+// {"$retract_on_backtrack", 1, bif_sys_retract_on_backtrack_1, "+string", false, false, BLAH},
+// {"$assertz", 1, bif_sys_assertz_1, "+term", true, false, BLAH},
+//
+// {"$a_", 2, bif_sys_asserta_2, "+term,+atom", true, false, BLAH},
+// {"$z_", 2, bif_sys_assertz_2, "+term,+atom", true, false, BLAH},
+// {"$e_", 1, bif_erase_1, "+atom", true, false, BLAH},
 
-    {"asserta", 2, bif_asserta_2, "+term,-string", false, false, BLAH},
-    {"assertz", 2, bif_assertz_2, "+term,-string", false, false, BLAH},
-    {"erase", 1, bif_erase_1, "+string", false, false, BLAH},
-    {"clause", 3, bif_clause_3, "?term,?term,-string", false, false, BLAH},
-    {"abolish", 2, bif_abolish_2, "+term,+list", false, false, BLAH},
-    {"instance", 2, bif_instance_2, "+string,?term", false, false, BLAH},
-
-    {"listing", 0, bif_listing_0, NULL, false, false, BLAH},
-    {"listing", 1, bif_listing_1, "+predicate_indicator", false, false, BLAH},
-
-    {"$xlisting", 1, bif_sys_xlisting_1, "+predicate_indicator", false, false, BLAH},
-    {"$dlisting", 1, bif_sys_dlisting_1, "+predicate_indicator", false, false, BLAH},
-    {"$dump_term", 2, bif_sys_dump_term_2, "+term,+bool", false, false, BLAH},
-    {"$clause", 2, bif_sys_clause_2, "?term,?term", false, false, BLAH},
-    {"$clause", 3, bif_sys_clause_3, "?term,?term,-string", false, false, BLAH},
-    {"$retract_on_backtrack", 1, bif_sys_retract_on_backtrack_1, "+string", false, false, BLAH},
-    {"$assertz", 1, bif_sys_assertz_1, "+term", true, false, BLAH},
-
-    {"$a_", 2, bif_sys_asserta_2, "+term,+atom", true, false, BLAH},
-    {"$z_", 2, bif_sys_assertz_2, "+term,+atom", true, false, BLAH},
-    {"$e_", 1, bif_erase_1, "+atom", true, false, BLAH},
-
-    {0}};
+// };
+// {0}};

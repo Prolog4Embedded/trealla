@@ -47,12 +47,12 @@ void dump_term(query *q, const char *s, const cell *c)
 
     for (unsigned i = 0; i < num_cells; i++, c++) {
         printf("    ");
-        printf("[%u] tag=%u ", i, c->tag);
+        printf("[%u] tag=%" PRIu32 " ", i, c->tag);
 
         if (is_atom(c))
             printf("%s ", C_STR(q, c));
         else if (is_var(c))
-            printf("_%u ", c->var_num);
+            printf("_%" PRIu32 " ", c->var_num);
         else if (is_compound(c))
             printf("%s/%u ", C_STR(q, c), c->arity);
 
@@ -99,8 +99,11 @@ static void trace_call(query *q, cell *c, pl_ctx c_ctx, box_t box)
     q->step++;
     SB(pr);
 
-    SB_sprintf(pr, "[%u:%s:%" PRIu64 ":f%u:fp%u:cp%u:sp%u:hp%u:tp%u] ", q->my_chan, q->st.m->name,
-               q->step, q->st.cur_ctx, q->st.new_fp, q->cp, q->st.sp, q->st.hp, q->st.tp);
+    SB_sprintf(pr,
+               "[%u:%s:%" PRIu64 ":f%" PRIu32 ":fp%" PRIu32 ":cp%" PRIu32 ":sp%" PRIu32
+               ":hp%" PRIu32 ":tp%" PRIu32 "] ",
+               q->my_chan, q->st.m->name, q->step, q->st.cur_ctx, q->st.new_fp, q->cp, q->st.sp,
+               q->st.hp, q->st.tp);
 
     SB_sprintf(pr, "%s ",
                box == CALL   ? "CALL"

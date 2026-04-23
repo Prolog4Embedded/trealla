@@ -9,8 +9,9 @@ message(STATUS "cppcheck: ${CPPCHECK}")
 
 set(_lint_sources
     ${TPL_CORE_SRC} ${TPL_PLATFORM_COMMON_SRC} ${TPL_LINUX_SRC}
-    ${TPL_NOLIBC_SRC} ${TPL_PICOLIBC_SRC} ${TPL_PICOLIBC_STUBS_SRC})
+    ${TPL_NOLIBC_SRC} ${TPL_PICOLIBC_SRC} ${TPL_BAREMETAL_STUBS_SRC})
 list(FILTER _lint_sources EXCLUDE REGEX ".*(imath|sre)/.*")
+list(FILTER _lint_sources EXCLUDE REGEX ".*/picolibc/.*")
 
 set(_lint_abs)
 foreach(_src ${_lint_sources})
@@ -24,9 +25,18 @@ endforeach()
 add_custom_target(
   lint
   COMMAND
-    ${CPPCHECK} --enable=warning,style,performance,portability --std=c99
-    --suppress=missingIncludeSystem --error-exitcode=1 --quiet -I
-    "${CMAKE_SOURCE_DIR}/src" -I "${CMAKE_SOURCE_DIR}/src/platform/api"
+    ${CPPCHECK} #
+    --enable=warning,style,performance,portability #
+    --std=c99 #
+    --suppress=missingIncludeSystem #
+    --error-exitcode=1 #
+	--max-configs=4 #
+    -UUSE_FFI #
+	-UUSE_32BIT_WORDS #
+    -j8 #
+    # --quiet #
+    -I "${CMAKE_SOURCE_DIR}/src" #
+    -I "${CMAKE_SOURCE_DIR}/src/platform/api" #
     ${_lint_abs}
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
   COMMENT "Running cppcheck on sources"

@@ -19,7 +19,7 @@ endif()
 
 # Map CMake build type to meson optimization level / debug flag
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  set(_picolibc_optimization "0")
+  set(_picolibc_optimization "s") # 0 is too large lol
   set(_picolibc_debug "true")
 elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
   set(_picolibc_optimization "2")
@@ -47,6 +47,7 @@ else()
   set(_picolibc_semihost "false")
   set(_picolibc_byproducts
       "${_picolibc_install}/lib/libc.a"
+	  # TODO: libcrt0.a yes or no?
       "${_picolibc_install}/lib/picolibc.specs")
 endif()
 

@@ -11,8 +11,7 @@
 			"cacheVariables": {
 				"CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/arm-none-eabi-picolibc.cmake",
 				"TPL_BAREMETAL_CPU": "cortex-m33",
-				"TPL_BOARD_CMAKE": "${sourceDir}/boards/mps3-an524/board.cmake",
-				"TPL_EMBEDDED_LIBRARIES": "builtins;lists;error;iso_ext;dcgs"
+				"TPL_BOARD_CMAKE": "${sourceDir}/boards/mps3-an524/board.cmake"
 			}
 		},
 		{
