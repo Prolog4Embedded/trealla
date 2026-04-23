@@ -86,7 +86,12 @@ set(TPL_CORE_SRC
 
 set(TPL_VENDOR_SRC src/imath/imath.c src/imath/imrat.c src/sre/re.c)
 
-set(TPL_PLATFORM_COMMON_SRC src/platform/common/memory_stats.c)
+set(TPL_PLATFORM_COMMON_SRC
+  src/platform/common/memory_stats.c
+)
+include(Formatting)
+include(Linting)
+include(Hooks)
 
 set(TPL_LINUX_SRC src/platform/linux/memory_linux.c)
 
