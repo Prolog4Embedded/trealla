@@ -159,7 +159,7 @@ bool do_abolish(query *q, cell *c_orig, cell *c_pi, bool hard);
 enum log_type { LOG_ASSERTA = 1, LOG_ASSERTZ = 2, LOG_ERASE = 3 };
 
 int uuid_from_buf(const char *s, uuid *u);
-builtins *get_fn_ptr(void *fn);
+const builtins *get_fn_ptr(void *fn);
 
 #define FEOF(str) feof(str->fp) && !str->ungetch
 
