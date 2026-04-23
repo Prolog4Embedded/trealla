@@ -1,0 +1,43 @@
+{
+	"version": 7,
+	"include": [
+		"../../cmake/presets/base.json"
+	],
+	"configurePresets": [
+		{
+			"name": "teensy41-picolibc-base",
+			"hidden": true,
+			"inherits": "base",
+			"cacheVariables": {
+				"CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/arm-none-eabi-picolibc.cmake",
+				"TPL_BOARD_CMAKE": "${sourceDir}/boards/teensy41/board.cmake"
+			}
+		},
+		{
+			"name": "teensy41-picolibc-debug",
+			"displayName": "QEMU teensy41 picolibc Debug",
+			"inherits": [
+				"teensy41-picolibc-base",
+				"base-debug"
+			]
+		},
+		{
+			"name": "teensy41-picolibc-release",
+			"displayName": "QEMU teensy41 picolibc Release",
+			"inherits": [
+				"teensy41-picolibc-base",
+				"base-release"
+			]
+		}
+	],
+	"buildPresets": [
+		{
+			"name": "teensy41-picolibc-debug",
+			"configurePreset": "teensy41-picolibc-debug"
+		},
+		{
+			"name": "teensy41-picolibc-release",
+			"configurePreset": "teensy41-picolibc-release"
+		}
+	]
+}
