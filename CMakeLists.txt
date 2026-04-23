@@ -17,7 +17,8 @@ endif()
 include(Options)
 include(Version)
 
-# Board API — must run before Picolibc so board-declared hardware variables are visible.
+# Board API — must run before Picolibc so board-declared hardware variables are
+# visible.
 
 if(TPL_BOARD_CMAKE)
   include(BoardAPI)
@@ -87,13 +88,6 @@ set(TPL_VENDOR_SRC src/imath/imath.c src/imath/imrat.c src/sre/re.c)
 
 set(TPL_PLATFORM_COMMON_SRC src/platform/common/pl4bm_debug.c)
 
-set(TPL_LINUX_SRC
-    src/platform/linux/memory_linux.c
-    src/platform/common/memory_stats.c)
-
-set(TPL_NOLIBC_SRC src/platform/baremetal/memory_baremetal.c)
-set(TPL_PICOLIBC_SRC src/platform/baremetal/memory_baremetal.c)
-
 set(TPL_BAREMETAL_STUBS_SRC src/platform/baremetal/stubs.c)
 
 include(Formatting)
@@ -154,7 +148,8 @@ if(TPL_BOARD_NAME)
   target_compile_definitions(tpl PRIVATE BOARD_NAME="${TPL_BOARD_NAME}")
 endif()
 if(TPL_BOARD_DESCRIPTION)
-  target_compile_definitions(tpl PRIVATE BOARD_DESCRIPTION="${TPL_BOARD_DESCRIPTION}")
+  target_compile_definitions(
+    tpl PRIVATE BOARD_DESCRIPTION="${TPL_BOARD_DESCRIPTION}")
 endif()
 
 if(TPL_BACKEND STREQUAL "linux")
@@ -162,18 +157,11 @@ if(TPL_BACKEND STREQUAL "linux")
 elseif(TPL_BACKEND STREQUAL "baremetal")
   target_compile_definitions(tpl PRIVATE TPL_BACKEND_BAREMETAL USE_MMAP=0)
 
-# TODO: Dont like all these hardcoded flags!
-target_compile_options(tpl PRIVATE
-  -Os
-  -g
-  -ffunction-sections
-  -fdata-sections
-)
+  # TODO: Dont like all these hardcoded flags!
+  target_compile_options(tpl PRIVATE -Os -g -ffunction-sections -fdata-sections)
 
-target_link_options(tpl PRIVATE
-  -Wl,--gc-sections
-  -Wl,-Map=${CMAKE_CURRENT_BINARY_DIR}/tpl.map
-)
+  target_link_options(tpl PRIVATE -Wl,--gc-sections
+                      -Wl,-Map=${CMAKE_CURRENT_BINARY_DIR}/tpl.map)
 
   if(TPL_LIBC_BACKEND STREQUAL "picolibc")
     target_compile_definitions(tpl PRIVATE TPL_LIBC_BACKEND_PICOLIBC)

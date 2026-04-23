@@ -78,18 +78,18 @@ clean-all:
 
 gen-compat-stubs preset="arm-none-eabi-nolibc-generic":
     rm -rf build/{{preset}}
-    cmake --preset {{preset}} -DCOMPILE_DIAGNOSTICS_FORMAT=text
+    cmake --preset {{preset}} -DCOMPILE_DIAGNOSTICS_FORMAT=text -G "Unix Makefiles"
     ./tools/gen-compat-stubs cmake --build --preset {{preset}} -- -k -j$(nproc)
 
 report preset="arm-none-eabi-nolibc-generic":
     rm -rf build/{{preset}}
-    cmake --preset {{preset}} -DCOMPILE_DIAGNOSTICS_FORMAT=json-file
+    cmake --preset {{preset}} -DCOMPILE_DIAGNOSTICS_FORMAT=json-file -G "Unix Makefiles"
     cmake --build --preset {{preset}} -- -k -j1$(nproc) || true
     ./tools/create-report build/{{preset}}
 
 report-preview preset="arm-none-eabi-nolibc-generic":
     rm -rf build/{{preset}}
-    cmake --preset {{preset}} -DCOMPILE_DIAGNOSTICS_FORMAT=json-file
+    cmake --preset {{preset}} -DCOMPILE_DIAGNOSTICS_FORMAT=json-file -G "Unix Makefiles"
     cmake --build --preset {{preset}} -- -k -j1$(nproc) || true
     ./tools/create-report build/{{preset}} --preview
 
