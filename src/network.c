@@ -9,6 +9,7 @@
 #include "network.h"
 #include "query.h"
 
+#if !defined(TPL_BACKEND_BAREMETAL)
 #include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
@@ -16,6 +17,7 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <unistd.h>
+#endif
 
 int net_domain_connect(const char *name, bool udp)
 {
