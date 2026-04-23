@@ -5,9 +5,25 @@ if ! command -v clang-format &>/dev/null; then
     exit 1
 fi
 
-staged=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(c|h)$' | grep -vE '(imath|sre)/' || true)
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep -vE '(imath|sre|picolibc)/' || true)
 
 [ -z "$staged" ] && exit 0
 
-echo "$staged" | xargs clang-format -i
-echo "$staged" | xargs git add
+cfiles=$(echo "$staged" | grep -E '\.(sh|bash)')
+cmakefiles=$(echo "$staged" | grep -E '(^|/)(CMakeLists\.txt|.*\.cmake)$')
+shfiles=$(echo "$staged" | grep -E '\.(sh|bash)')
+
+if [[ -n "$cfiles" ]]; then
+    echo "$cfiles" | xargs clang-format -i
+    echo "$cfiles" | xargs git add
+fi
+
+if command -v cmake-format >/dev/null 2>&1 && [[ -n "$cmakefiles" ]]; then
+    printf '%s\n' "$cmakefiles" | xargs -r cmake-format -i
+    printf '%s\n' "$cmakefiles" | xargs -r git add
+fi
+
+if command -v shfmt >/dev/null 2>&1 && [[ -n "$shfiles" ]]; then
+    printf '%s\n' "$shfiles" | xargs -r shfmt -w
+    printf '%s\n' "$shfiles" | xargs -r git add
+fi

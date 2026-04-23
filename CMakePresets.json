@@ -1,56 +1,56 @@
 {
-	"version": 7,
-	"include": [
-		"cmake/presets/base.json",
-		"boards/generic/CMakePresets.json",
-		"boards/mps3-an524/CMakePresets.json",
-		"boards/teensy41/CMakePresets.json"
-	],
-	"configurePresets": [
-		{
-			"name": "linux-debug",
-			"displayName": "Linux Debug",
-			"inherits": "base-debug"
-		},
-		{
-			"name": "linux-release",
-			"displayName": "Linux Release",
-			"inherits": "base-release"
-		},
-		{
-			"name": "linux-minsizerel",
-			"displayName": "Linux MinSizeRel",
-			"inherits": "base-minsizerel"
-		}
-	],
-	"buildPresets": [
-		{
-			"name": "linux-debug",
-			"configurePreset": "linux-debug"
-		},
-		{
-			"name": "linux-release",
-			"configurePreset": "linux-release"
-		},
-		{
-			"name": "linux-minsizerel",
-			"configurePreset": "linux-minsizerel"
-		}
-	],
-	"testPresets": [
-		{
-			"name": "linux-debug",
-			"configurePreset": "linux-debug",
-			"output": {
-				"outputOnFailure": true
-			}
-		},
-		{
-			"name": "linux-release",
-			"configurePreset": "linux-release",
-			"output": {
-				"outputOnFailure": true
-			}
-		}
-	]
+    "version": 7,
+    "include": [
+        "cmake/presets/base.json",
+        "boards/generic/CMakePresets.json",
+        "boards/mps3-an524/CMakePresets.json",
+        "boards/teensy41/CMakePresets.json"
+    ],
+    "configurePresets": [
+        {
+            "name": "linux-debug",
+            "displayName": "Linux Debug",
+            "inherits": "base-debug"
+        },
+        {
+            "name": "linux-release",
+            "displayName": "Linux Release",
+            "inherits": "base-release"
+        },
+        {
+            "name": "linux-minsizerel",
+            "displayName": "Linux MinSizeRel",
+            "inherits": "base-minsizerel"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "linux-debug",
+            "configurePreset": "linux-debug"
+        },
+        {
+            "name": "linux-release",
+            "configurePreset": "linux-release"
+        },
+        {
+            "name": "linux-minsizerel",
+            "configurePreset": "linux-minsizerel"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "linux-debug",
+            "configurePreset": "linux-debug",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "linux-release",
+            "configurePreset": "linux-release",
+            "output": {
+                "outputOnFailure": true
+            }
+        }
+    ]
 }
