@@ -19,12 +19,15 @@
 #include <readline/readline.h>
 #endif
 
+#if !defined(TPL_BACKEND_BAREMETAL)
 #include <termios.h>
+#endif
 
 #include "history.h"
 #include "internal.h"
 #include "prolog.h"
 
+#if !defined(TPL_BACKEND_BAREMETAL)
 int history_getch_fd(int fd)
 {
     struct termios oldattr, newattr;
@@ -47,6 +50,17 @@ int history_getch(void)
 {
     return history_getch_fd(STDIN_FILENO);
 }
+#else
+int history_getch_fd(int fd)
+{
+    (void)fd;
+    return -1;
+}
+int history_getch(void)
+{
+    return -1;
+}
+#endif
 
 static char g_filename[1024];
 
@@ -301,98 +315,104 @@ static char *functor_name_generator(const char *text, int state)
             return strdup(name);
     }
 
-    return NULL;
-}
+#if defined(TPL_BACKEND_BAREMETAL)
+    char *history_readline_eol(prolog * pl, const char *prompt, char eol)
+    {
+        (void)pl;
+        (void)prompt;
+        (void)eol;
+        return NULL;
+    }
 
-static char **functor_name_completion(const char *text, int start, int end)
-{
-    rl_attempted_completion_over = 1;
-    rl_completion_append_character = '\0';
-    return rl_completion_matches(text, functor_name_generator);
-}
+    void history_load(const char *filename)
+    {
+        rl_attempted_completion_over = 1;
+        rl_completion_append_character = '\0';
+        return rl_completion_matches(text, functor_name_generator);
+    }
 
-void history_load(const char *filename)
-{
-    snprintf(g_filename, sizeof(g_filename), "%s", filename);
-    using_history();
-    read_history(g_filename);
-    rl_attempted_completion_function = functor_name_completion;
-}
+    void history_keywords(const char **word_array)
+    {
+        snprintf(g_filename, sizeof(g_filename), "%s", filename);
+        using_history();
+        read_history(g_filename);
+        rl_attempted_completion_function = functor_name_completion;
+    }
 
-void history_save(void)
-{
-    write_history(g_filename);
-    // rl_clear_history();
-    clear_history();
-}
+    void history_save(void)
+    {
+        write_history(g_filename);
+        // rl_clear_history();
+        clear_history();
+    }
 #endif
 
 #if USE_ISOCLINE
-char *history_readline_eol(prolog *pl, const char *prompt, char eol)
-{
-    char *cmd = NULL;
-    char *line;
+    char *history_readline_eol(prolog * pl, const char *prompt, char eol)
+    {
+        char *cmd = NULL;
+        char *line;
 
-LOOP:
+    LOOP:
 
-    if ((line = ic_readline(prompt)) == NULL)
-        return NULL;
+        if ((line = ic_readline(prompt)) == NULL)
+            return NULL;
 
-    if (cmd) {
-        size_t n = strlen(cmd) + strlen(line);
-        cmd = realloc(cmd, n + 1);
-        ensure(cmd);
-        strcat(cmd, line);
-    } else {
-        cmd = strdup(line);
-    }
-
-    free(line);
-    const char *s = cmd;
-
-    for (;;) {
-        int ch = get_char_utf8(&s);
-        const char *end_ptr = cmd + strlen(cmd) - (strlen(cmd) ? 1 : 0);
-
-        while (isspace(*end_ptr) && (end_ptr != cmd))
-            end_ptr--;
-
-        if ((ch == 0) && (*end_ptr == eol)) {
-            if (strcmp(cmd, "halt.") && strcmp(cmd, "."))
-                ic_history_add(cmd);
-
-            break;
-        }
-
-        if (ch == 0) {
-            cmd = realloc(cmd, strlen(cmd) + 1 + 1);
+        if (cmd) {
+            size_t n = strlen(cmd) + strlen(line);
+            cmd = realloc(cmd, n + 1);
             ensure(cmd);
-            strcat(cmd, "\n");
-            prompt = "";
-            goto LOOP;
+            strcat(cmd, line);
+        } else {
+            cmd = strdup(line);
         }
+
+        free(line);
+        const char *s = cmd;
+
+        for (;;) {
+            int ch = get_char_utf8(&s);
+            const char *end_ptr = cmd + strlen(cmd) - (strlen(cmd) ? 1 : 0);
+
+            while (isspace(*end_ptr) && (end_ptr != cmd))
+                end_ptr--;
+
+            if ((ch == 0) && (*end_ptr == eol)) {
+                if (strcmp(cmd, "halt.") && strcmp(cmd, "."))
+                    ic_history_add(cmd);
+
+                break;
+            }
+
+            if (ch == 0) {
+                cmd = realloc(cmd, strlen(cmd) + 1 + 1);
+                ensure(cmd);
+                strcat(cmd, "\n");
+                prompt = "";
+                goto LOOP;
+            }
+        }
+
+        return cmd;
     }
 
-    return cmd;
-}
+    void history_load(const char *filename)
+    {
+        snprintf(g_filename, sizeof(g_filename), "%s", filename);
+        ic_set_history(g_filename, 9999);
 
-void history_load(const char *filename)
-{
-    snprintf(g_filename, sizeof(g_filename), "%s", filename);
-    ic_set_history(g_filename, 9999);
+        ic_enable_brace_matching(false);
+        ic_enable_brace_insertion(false);
+        ic_enable_completion_preview(false);
+        ic_enable_color(false);
 
-    ic_enable_brace_matching(false);
-    ic_enable_brace_insertion(false);
-    ic_enable_completion_preview(false);
-    ic_enable_color(false);
+        ic_set_default_completer(NULL, NULL);
+        ic_set_default_highlighter(NULL, NULL);
 
-    ic_set_default_completer(NULL, NULL);
-    ic_set_default_highlighter(NULL, NULL);
+        ic_set_prompt_marker("", "");
+    }
 
-    ic_set_prompt_marker("", "");
-}
-
-void history_save(void)
-{
-}
+    void history_save(void)
+    {
+    }
 #endif
