@@ -1046,7 +1046,7 @@ bool throw_error3(query *q, cell *c, pl_ctx c_ctx, const char *err_type, const c
         else {
             char tmpbuf[1024 * 8];
             strcpy(tmpbuf, expected);
-            const char *ptr = tmpbuf;
+            char *ptr = tmpbuf;
             char *ptr2 = strchr(ptr, ',');
             if (*ptr2)
                 *ptr2++ = '\0';
@@ -1092,7 +1092,7 @@ bool throw_error3(query *q, cell *c, pl_ctx c_ctx, const char *err_type, const c
         else {
             char tmpbuf[1024 * 8];
             strcpy(tmpbuf, expected);
-            const char *ptr = tmpbuf;
+            char *ptr = tmpbuf;
             char *ptr2 = strchr(ptr, ',');
             if (*ptr2)
                 *ptr2++ = '\0';
@@ -1184,7 +1184,7 @@ bool throw_error3(query *q, cell *c, pl_ctx c_ctx, const char *err_type, const c
         } else {
             char tmpbuf[1024 * 8];
             strcpy(tmpbuf, expected);
-            const char *ptr = tmpbuf;
+            char *ptr = tmpbuf;
             char *ptr2 = strchr(ptr, ',');
             if (*ptr2)
                 *ptr2++ = '\0';
@@ -1237,7 +1237,7 @@ bool throw_error(query *q, cell *c, pl_ctx c_ctx, const char *err_type, const ch
     return throw_error3(q, c, c_ctx, err_type, expected, q->st.instr);
 }
 
-builtins g_control_bifs[] = {
+const builtins g_control_bifs[] = {
     {"true", 0, bif_iso_true_0, NULL, true, false, BLAH},
     {"fail", 0, bif_iso_fail_0, NULL, true, false, BLAH},
     {"false", 0, bif_iso_fail_0, NULL, true, false, BLAH},

@@ -989,7 +989,7 @@ static bool bif_format_3(query *q)
     return do_format(q, pstr, pstr_ctx, p1, p1_ctx, !is_nil(p2) ? p2 : NULL, p2_ctx);
 }
 
-builtins g_format_bifs[] = {
+const builtins g_format_bifs[] = {
     {"format", 1, bif_format_1, "+string", false, false, BLAH},
     {"format", 2, bif_format_2, "+string,+list", false, false, BLAH},
     {"format", 3, bif_format_3, "+stream,+string,+list", false, false, BLAH},

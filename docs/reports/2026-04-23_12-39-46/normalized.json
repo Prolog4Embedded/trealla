@@ -1,0 +1,490 @@
+{
+  "meta": {
+    "source_directory": "build/arm-none-eabi-nolibc-generic",
+    "source_file": "/tmp/tmp.6U5Cm6dYMO",
+    "generated_at": "2026-04-23_12-39-46",
+    "root_dir": "/home/simon/uni/sta/picolibc",
+    "top_level_count": 39,
+    "flattened_count": 39
+  },
+  "diagnostics": [
+    {
+      "kind": "fatal error",
+      "message": "stdio.h: No such file or directory",
+      "option": null,
+      "file": "src/base64.c",
+      "line": 2,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_atts.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdio.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_bboard.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_control.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdio.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_csv.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_database.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "errno.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_ffi.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdio.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_format.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_functions.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdio.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_maps.c",
+      "line": 2,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_os.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_posix.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_predicates.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_sort.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdio.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_sregex.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_streams.c",
+      "line": 2,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/bif_tasks.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "assert.h: No such file or directory",
+      "option": null,
+      "file": "src/internal.h",
+      "line": 3,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/compile.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/heap.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/history.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "limits.h: No such file or directory",
+      "option": null,
+      "file": "/usr/lib/gcc/arm-none-eabi/14.2.0/include/limits.h",
+      "line": 210,
+      "column": 15,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "limits.h: No such file or directory",
+      "option": null,
+      "file": "/usr/lib/gcc/arm-none-eabi/14.2.0/include/limits.h",
+      "line": 210,
+      "column": 15,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdlib.h: No such file or directory",
+      "option": null,
+      "file": "src/list.c",
+      "line": 2,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/module.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/network.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/parser.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdio.h: No such file or directory",
+      "option": null,
+      "file": "src/platform/common/pl4bm_debug.c",
+      "line": 3,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/print.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/prolog.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdio.h: No such file or directory",
+      "option": null,
+      "file": "src/query.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/sre/re.c",
+      "line": 32,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "assert.h: No such file or directory",
+      "option": null,
+      "file": "src/skiplist.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "errno.h: No such file or directory",
+      "option": null,
+      "file": "src/platform/baremetal/stubs.c",
+      "line": 3,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdlib.h: No such file or directory",
+      "option": null,
+      "file": "src/terms.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "signal.h: No such file or directory",
+      "option": null,
+      "file": "src/toplevel.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "errno.h: No such file or directory",
+      "option": null,
+      "file": "tpl.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "stdlib.h: No such file or directory",
+      "option": null,
+      "file": "src/unify.c",
+      "line": 1,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    },
+    {
+      "kind": "fatal error",
+      "message": "ctype.h: No such file or directory",
+      "option": null,
+      "file": "src/utf8.c",
+      "line": 5,
+      "column": 10,
+      "suggested_headers": [],
+      "compat_stub_header": null,
+      "fixits": []
+    }
+  ],
+  "stats": {
+    "by_kind": [
+      {
+        "kind": "fatal error",
+        "count": 39
+      }
+    ],
+    "top_messages": [
+      {
+        "kind": "fatal error",
+        "message": "ctype.h: No such file or directory",
+        "count": 20
+      },
+      {
+        "kind": "fatal error",
+        "message": "stdio.h: No such file or directory",
+        "count": 8
+      },
+      {
+        "kind": "fatal error",
+        "message": "stdlib.h: No such file or directory",
+        "count": 3
+      },
+      {
+        "kind": "fatal error",
+        "message": "errno.h: No such file or directory",
+        "count": 3
+      },
+      {
+        "kind": "fatal error",
+        "message": "limits.h: No such file or directory",
+        "count": 2
+      },
+      {
+        "kind": "fatal error",
+        "message": "assert.h: No such file or directory",
+        "count": 2
+      },
+      {
+        "kind": "fatal error",
+        "message": "signal.h: No such file or directory",
+        "count": 1
+      }
+    ],
+    "top_error_files": [],
+    "compat_stubs": [],
+    "suggested_headers": [],
+    "top_fixits": []
+  }
+}

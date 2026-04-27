@@ -391,7 +391,7 @@ static bool bif_sort_4(query *q)
     return unify(q, p4x, p4x_ctx, l, q->st.cur_ctx);
 }
 
-builtins g_sort_bifs[] = {
+const builtins g_sort_bifs[] = {
     {"$sort", 2, bif_iso_sort_2, "+list,?list", true, false, BLAH},
     {"$msort", 2, bif_iso_msort_2, "+list,?list", true, false, BLAH},
     {"$keysort", 2, bif_iso_keysort_2, "+list,?list", true, false, BLAH},

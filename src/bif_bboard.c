@@ -366,7 +366,7 @@ static bool bif_bb_update_3(query *q)
     return true;
 }
 
-builtins g_bboard_bifs[] = {
+const builtins g_bboard_bifs[] = {
     {"bb_b_put", 2, bif_bb_b_put_2, ":atom,+term", false, false, BLAH},
     {"bb_put", 2, bif_bb_put_2, ":atom,+term", false, false, BLAH},
     {"bb_get", 2, bif_bb_get_2, ":atom,?term", false, false, BLAH},

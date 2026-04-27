@@ -3214,23 +3214,23 @@ bool bif_statistics_0(query *q)
             "Matches %" PRIu64 ","
             "(succeeded %" PRIu64 ").\n"
 
-            "Max frames %u, "
-            "choices %u, "
-            "trails %u, "
-            "slots %u, "
-            "heap %u, "
-            "deref %u.\n"
+            "Max frames %" PRIu32 ", "
+            "choices %" PRIu32 ", "
+            "trails %" PRIu32 ", "
+            "slots %" PRIu32 ", "
+            "heap %" PRIu32 ", "
+            "deref %" PRIu32 ".\n"
 
-            "Realloc frames %u, "
-            "choices %u, "
-            "trails %u, "
-            "slots %u.\n"
+            "Realloc frames %" PRIu32 ", "
+            "choices %" PRIu32 ", "
+            "trails %" PRIu32 ", "
+            "slots %" PRIu32 ".\n"
 
-            "Active frames %u, "
-            "choices %u, "
-            "trails %u, "
-            "slots %u, "
-            "heap %u.\n"
+            "Active frames %" PRIu32 ", "
+            "choices %" PRIu32 ", "
+            "trails %" PRIu32 ", "
+            "slots %" PRIu32 ", "
+            "heap %" PRIu32 ".\n"
 
             "Backtracks %" PRIu64 ", "
             "Retries %" PRIu64 ", "
@@ -5833,51 +5833,51 @@ static void load_properties(module *m)
         SB_strcat(pr, tmpbuf);
     }
 
-    for (const builtins *ptr = g_csv_bifs; ptr->name; ptr++) {
-        sl_app(m->pl->biftab, ptr->name, ptr);
-        if (ptr->name[0] == '$')
-            continue;
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        if (ptr->iso) {
-            format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
-                            ptr->evaluable ? true : false);
-            SB_strcat(pr, tmpbuf);
-        }
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, false);
-        SB_strcat(pr, tmpbuf);
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, true);
-        SB_strcat(pr, tmpbuf);
-    }
-
-    for (const builtins *ptr = g_database_bifs; ptr->name; ptr++) {
-        sl_app(m->pl->biftab, ptr->name, ptr);
-        if (ptr->name[0] == '$')
-            continue;
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        if (ptr->iso) {
-            format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
-                            ptr->evaluable ? true : false);
-            SB_strcat(pr, tmpbuf);
-        }
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, false);
-        SB_strcat(pr, tmpbuf);
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, true);
-        SB_strcat(pr, tmpbuf);
-    }
+    // for (const builtins *ptr = g_csv_bifs; ptr->name; ptr++) {
+    //     sl_app(m->pl->biftab, ptr->name, ptr);
+    //     if (ptr->name[0] == '$')
+    //         continue;
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     if (ptr->iso) {
+    //         format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
+    //                         ptr->evaluable ? true : false);
+    //         SB_strcat(pr, tmpbuf);
+    //     }
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, true);
+    //     SB_strcat(pr, tmpbuf);
+    // }
+    //
+    // for (const builtins *ptr = g_database_bifs; ptr->name; ptr++) {
+    //     sl_app(m->pl->biftab, ptr->name, ptr);
+    //     if (ptr->name[0] == '$')
+    //         continue;
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     if (ptr->iso) {
+    //         format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
+    //                         ptr->evaluable ? true : false);
+    //         SB_strcat(pr, tmpbuf);
+    //     }
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, true);
+    //     SB_strcat(pr, tmpbuf);
+    // }
 
     for (const builtins *ptr = g_evaluable_bifs; ptr->name; ptr++) {
         sl_app(m->pl->biftab, ptr->name, ptr);
@@ -5902,31 +5902,31 @@ static void load_properties(module *m)
         SB_strcat(pr, tmpbuf);
     }
 
-    for (const builtins *ptr = g_ffi_bifs; ptr->name; ptr++) {
-        sl_app(m->pl->biftab, ptr->name, ptr);
-        if (ptr->name[0] == '$')
-            continue;
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "foreign",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        if (ptr->iso) {
-            format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
-                            ptr->evaluable ? true : false);
-            SB_strcat(pr, tmpbuf);
-        }
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, false);
-        SB_strcat(pr, tmpbuf);
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, true);
-        SB_strcat(pr, tmpbuf);
-    }
+    // for (const builtins *ptr = g_ffi_bifs; ptr->name; ptr++) {
+    //     sl_app(m->pl->biftab, ptr->name, ptr);
+    //     if (ptr->name[0] == '$')
+    //         continue;
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "foreign",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     if (ptr->iso) {
+    //         format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
+    //                         ptr->evaluable ? true : false);
+    //         SB_strcat(pr, tmpbuf);
+    //     }
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, true);
+    //     SB_strcat(pr, tmpbuf);
+    // }
 
     for (const builtins *ptr = g_iso_bifs; ptr->name; ptr++) {
         sl_app(m->pl->biftab, ptr->name, ptr);
@@ -5974,28 +5974,28 @@ static void load_properties(module *m)
         SB_strcat(pr, tmpbuf);
     }
 
-    for (const builtins *ptr = g_os_bifs; ptr->name; ptr++) {
-        sl_app(m->pl->biftab, ptr->name, ptr);
-        if (ptr->name[0] == '$')
-            continue;
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        if (ptr->iso) {
-            format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
-                            ptr->evaluable ? true : false);
-            SB_strcat(pr, tmpbuf);
-        }
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, false);
-        SB_strcat(pr, tmpbuf);
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, true);
-        SB_strcat(pr, tmpbuf);
-    }
+    // for (const builtins *ptr = g_os_bifs; ptr->name; ptr++) {
+    //     sl_app(m->pl->biftab, ptr->name, ptr);
+    //     if (ptr->name[0] == '$')
+    //         continue;
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     if (ptr->iso) {
+    //         format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
+    //                         ptr->evaluable ? true : false);
+    //         SB_strcat(pr, tmpbuf);
+    //     }
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, true);
+    //     SB_strcat(pr, tmpbuf);
+    // }
 
     for (const builtins *ptr = g_other_bifs; ptr->name; ptr++) {
         sl_app(m->pl->biftab, ptr->name, ptr);
@@ -6043,28 +6043,28 @@ static void load_properties(module *m)
         SB_strcat(pr, tmpbuf);
     }
 
-    for (const builtins *ptr = g_posix_bifs; ptr->name; ptr++) {
-        sl_app(m->pl->biftab, ptr->name, ptr);
-        if (ptr->name[0] == '$')
-            continue;
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        if (ptr->iso) {
-            format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
-                            ptr->evaluable ? true : false);
-            SB_strcat(pr, tmpbuf);
-        }
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, false);
-        SB_strcat(pr, tmpbuf);
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, true);
-        SB_strcat(pr, tmpbuf);
-    }
+    // for (const builtins *ptr = g_posix_bifs; ptr->name; ptr++) {
+    //     sl_app(m->pl->biftab, ptr->name, ptr);
+    //     if (ptr->name[0] == '$')
+    //         continue;
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     if (ptr->iso) {
+    //         format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
+    //                         ptr->evaluable ? true : false);
+    //         SB_strcat(pr, tmpbuf);
+    //     }
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, true);
+    //     SB_strcat(pr, tmpbuf);
+    // }
 
     for (const builtins *ptr = g_sort_bifs; ptr->name; ptr++) {
         sl_app(m->pl->biftab, ptr->name, ptr);
@@ -6089,97 +6089,97 @@ static void load_properties(module *m)
         SB_strcat(pr, tmpbuf);
     }
 
-    for (const builtins *ptr = g_sregex_bifs; ptr->name; ptr++) {
-        sl_app(m->pl->biftab, ptr->name, ptr);
-        if (ptr->name[0] == '$')
-            continue;
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        if (ptr->iso) {
-            format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
-                            ptr->evaluable ? true : false);
-            SB_strcat(pr, tmpbuf);
-        }
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, false);
-        SB_strcat(pr, tmpbuf);
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, true);
-        SB_strcat(pr, tmpbuf);
-    }
-
-    for (const builtins *ptr = g_streams_bifs; ptr->name; ptr++) {
-        sl_app(m->pl->biftab, ptr->name, ptr);
-        if (ptr->name[0] == '$')
-            continue;
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        if (ptr->iso) {
-            format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
-                            ptr->evaluable ? true : false);
-            SB_strcat(pr, tmpbuf);
-        }
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, false);
-        SB_strcat(pr, tmpbuf);
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, true);
-        SB_strcat(pr, tmpbuf);
-    }
-
-    for (const builtins *ptr = g_tasks_bifs; ptr->name; ptr++) {
-        sl_app(m->pl->biftab, ptr->name, ptr);
-        if (ptr->name[0] == '$')
-            continue;
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        if (ptr->iso) {
-            format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
-                            ptr->evaluable ? true : false);
-            SB_strcat(pr, tmpbuf);
-        }
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, false);
-        SB_strcat(pr, tmpbuf);
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, true);
-        SB_strcat(pr, tmpbuf);
-    }
-
-    for (const builtins *ptr = g_threads_bifs; ptr->name; ptr++) {
-        sl_app(m->pl->biftab, ptr->name, ptr);
-        if (ptr->name[0] == '$')
-            continue;
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
-                        ptr->evaluable ? true : false);
-        SB_strcat(pr, tmpbuf);
-        if (ptr->iso) {
-            format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
-                            ptr->evaluable ? true : false);
-            SB_strcat(pr, tmpbuf);
-        }
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, false);
-        SB_strcat(pr, tmpbuf);
-        format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
-                        ptr->evaluable ? true : false, true);
-        SB_strcat(pr, tmpbuf);
-    }
+    // for (const builtins *ptr = g_sregex_bifs; ptr->name; ptr++) {
+    //     sl_app(m->pl->biftab, ptr->name, ptr);
+    //     if (ptr->name[0] == '$')
+    //         continue;
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     if (ptr->iso) {
+    //         format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
+    //                         ptr->evaluable ? true : false);
+    //         SB_strcat(pr, tmpbuf);
+    //     }
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, true);
+    //     SB_strcat(pr, tmpbuf);
+    // }
+    //
+    // for (const builtins *ptr = g_streams_bifs; ptr->name; ptr++) {
+    //     sl_app(m->pl->biftab, ptr->name, ptr);
+    //     if (ptr->name[0] == '$')
+    //         continue;
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     if (ptr->iso) {
+    //         format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
+    //                         ptr->evaluable ? true : false);
+    //         SB_strcat(pr, tmpbuf);
+    //     }
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, true);
+    //     SB_strcat(pr, tmpbuf);
+    // }
+    //
+    // for (const builtins *ptr = g_tasks_bifs; ptr->name; ptr++) {
+    //     sl_app(m->pl->biftab, ptr->name, ptr);
+    //     if (ptr->name[0] == '$')
+    //         continue;
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     if (ptr->iso) {
+    //         format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
+    //                         ptr->evaluable ? true : false);
+    //         SB_strcat(pr, tmpbuf);
+    //     }
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, true);
+    //     SB_strcat(pr, tmpbuf);
+    // }
+    //
+    // for (const builtins *ptr = g_threads_bifs; ptr->name; ptr++) {
+    //     sl_app(m->pl->biftab, ptr->name, ptr);
+    //     if (ptr->name[0] == '$')
+    //         continue;
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "built_in",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "static",
+    //                     ptr->evaluable ? true : false);
+    //     SB_strcat(pr, tmpbuf);
+    //     if (ptr->iso) {
+    //         format_property(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, "iso",
+    //                         ptr->evaluable ? true : false);
+    //         SB_strcat(pr, tmpbuf);
+    //     }
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, false);
+    //     SB_strcat(pr, tmpbuf);
+    //     format_template(m, tmpbuf, sizeof(tmpbuf), ptr->name, ptr->arity, ptr,
+    //                     ptr->evaluable ? true : false, true);
+    //     SB_strcat(pr, tmpbuf);
+    // }
 
     parser *p = parser_create(m);
     p->srcptr = SB_cstr(pr);
@@ -6327,7 +6327,7 @@ static void load_ops(query *q)
     SB_free(pr);
 }
 
-builtins g_iso_bifs[] = {
+const builtins g_iso_bifs[] = {
     {":", 2, bif_iso_qualify_2, "+atom,:callable", true, false, BLAH},
     {"=..", 2, bif_iso_univ_2, "+term,?list", true, false, BLAH},
     {"=", 2, bif_iso_unify_2, "+term,+term", true, false, BLAH},
@@ -6374,7 +6374,7 @@ builtins g_iso_bifs[] = {
 
     {0}};
 
-builtins g_other_bifs[] = {
+const builtins g_other_bifs[] = {
     {"trace", 0, bif_trace_0, NULL, false, false, BLAH},
     {"statistics", 0, bif_statistics_0, NULL, false, false, BLAH},
     {"statistics", 2, bif_statistics_2, "+atom,-term", false, false, BLAH},

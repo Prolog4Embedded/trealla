@@ -474,7 +474,7 @@ bool do_post_unify_hook(query *q, bool is_builtin)
     return true;
 }
 
-builtins g_atts_bifs[] = {
+const builtins g_atts_bifs[] = {
     {"attribute", 3, bif_attribute_3, "?atom,+atom,+integer", false, false, BLAH},
     {"put_atts", 2, bif_put_atts_2, "@variable,+term", false, false, BLAH},
     {"get_atts", 2, bif_get_atts_2, "@variable,-term", false, false, BLAH},
