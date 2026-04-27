@@ -5,7 +5,8 @@ default:
 # You can override it per-command using `just preset=<preset> [command]`
 preset := `cat .preset 2>/dev/null || echo linux-debug`
 
-use p:
+use p="":
+    @if [ -z '{{p}}' ]; then cmake --list-presets && echo && exit 1; fi
     @echo '{{p}}' > .preset
     @echo "preset: {{p}}"
 

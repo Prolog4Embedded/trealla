@@ -14,7 +14,7 @@
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/arm-none-eabi-nolibc.cmake",
                 "TPL_BOARD_CMAKE": "${sourceDir}/boards/generic/board.cmake",
-                "TPL_BAREMETAL_CPU": "cortex-m0",
+                "TPL_BAREMETAL_CPU": "cortex-m4",
                 "TPL_EMBEDDED_LIBRARIES": "builtins;lists;error;iso_ext;dcgs"
             }
         },
@@ -30,7 +30,6 @@
                     "${sourceDir}/cmake/toolchains/arm-none-eabi-picolibc.cmake",
                 "TPL_BAREMETAL_CPU": "cortex-m4",
                 "TPL_PICOLIBC_CROSS_FILE": "${sourceDir}/boards/generic/picolibc-cross.txt",
-                "TPL_ENTRY": "${sourceDir}/boards/generic/entry.S",
                 "TPL_USE_SEMIHOST": "ON",
                 "TPL_BOARD_CMAKE": "${sourceDir}/boards/generic/board.cmake"
             }

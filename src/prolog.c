@@ -374,92 +374,47 @@ builtins *get_builtin(prolog *pl, const char *name, size_t len, unsigned arity, 
     return NULL;
 }
 
-const builtins *get_fn_ptr(void *fn)
+builtins *get_fn_ptr(void *fn)
 {
     for (const builtins *ptr = g_iso_bifs; ptr->name; ptr++) {
         if (ptr->fn == fn)
-            return ptr;
+            return (builtins *)ptr;
     }
 
     for (const builtins *ptr = g_evaluable_bifs; ptr->name; ptr++) {
         if (ptr->fn == fn)
-            return ptr;
+            return (builtins *)ptr;
     }
-
-    // for (builtins *ptr = g_os_bifs; ptr->name; ptr++) {
-    //     if (ptr->fn == fn)
-    //         return ptr;
-    // }
 
     for (const builtins *ptr = g_other_bifs; ptr->name; ptr++) {
         if (ptr->fn == fn)
-            return ptr;
+            return (builtins *)ptr;
     }
 
     for (const builtins *ptr = g_control_bifs; ptr->name; ptr++) {
         if (ptr->fn == fn)
-            return ptr;
+            return (builtins *)ptr;
     }
 
     for (const builtins *ptr = g_atts_bifs; ptr->name; ptr++) {
         if (ptr->fn == fn)
-            return ptr;
+            return (builtins *)ptr;
     }
 
     for (const builtins *ptr = g_bboard_bifs; ptr->name; ptr++) {
         if (ptr->fn == fn)
-            return ptr;
+            return (builtins *)ptr;
     }
-
-    // for (builtins *ptr = g_database_bifs; ptr->name; ptr++) {
-    //     if (ptr->fn == fn)
-    //         return ptr;
-    // }
-    //
-    // for (builtins *ptr = g_csv_bifs; ptr->name; ptr++) {
-    //     if (ptr->fn == fn)
-    //         return ptr;
-    // }
-
-    // for (builtins *ptr = g_sregex_bifs; ptr->name; ptr++) {
-    //     if (ptr->fn == fn)
-    //         return ptr;
-    // }
 
     for (const builtins *ptr = g_sort_bifs; ptr->name; ptr++) {
         if (ptr->fn == fn)
-            return ptr;
+            return (builtins *)ptr;
     }
-
-    // for (builtins *ptr = g_tasks_bifs; ptr->name; ptr++) {
-    //     if (ptr->fn == fn)
-    //         return ptr;
-    // }
-
-    // for (builtins *ptr = g_threads_bifs; ptr->name; ptr++) {
-    //     if (ptr->fn == fn)
-    //         return ptr;
-    // }
-    //
-    // for (builtins *ptr = g_streams_bifs; ptr->name; ptr++) {
-    //     if (ptr->fn == fn)
-    //         return ptr;
-    // }
 
     for (const builtins *ptr = g_maps_bifs; ptr->name; ptr++) {
         if (ptr->fn == fn)
-            return ptr;
+            return (builtins *)ptr;
     }
-
-    // for (builtins *ptr = g_ffi_bifs; ptr->name; ptr++) {
-    //     if (ptr->fn == fn)
-    //         return ptr;
-    // }
-    //
-    // for (builtins *ptr = g_posix_bifs; ptr->name; ptr++) {
-    //     if (ptr->fn == fn)
-    //         return ptr;
-    // }
 
     return NULL;
 }
@@ -480,33 +435,12 @@ void load_builtins(prolog *pl)
         sl_app(pl->help, ptr->name, ptr);
     }
 
-    // for (const builtins *ptr = g_csv_bifs; ptr->name; ptr++) {
-    //     sl_app(pl->biftab, ptr->name, ptr);
-    //     if (ptr->name[0] == '$')
-    //         continue;
-    //     sl_app(pl->help, ptr->name, ptr);
-    // }
-    //
-    // for (const builtins *ptr = g_database_bifs; ptr->name; ptr++) {
-    //     sl_app(pl->biftab, ptr->name, ptr);
-    //     if (ptr->name[0] == '$')
-    //         continue;
-    //     sl_app(pl->help, ptr->name, ptr);
-    // }
-
     for (const builtins *ptr = g_evaluable_bifs; ptr->name; ptr++) {
         sl_app(pl->biftab, ptr->name, ptr);
         if (ptr->name[0] == '$')
             continue;
         sl_app(pl->help, ptr->name, ptr);
     }
-
-    // for (const builtins *ptr = g_ffi_bifs; ptr->name; ptr++) {
-    //     sl_app(pl->biftab, ptr->name, ptr);
-    //     if (ptr->name[0] == '$')
-    //         continue;
-    //     sl_app(pl->help, ptr->name, ptr);
-    // }
 
     for (const builtins *ptr = g_format_bifs; ptr->name; ptr++) {
         sl_app(pl->biftab, ptr->name, ptr);
@@ -529,13 +463,6 @@ void load_builtins(prolog *pl)
         sl_app(pl->help, ptr->name, ptr);
     }
 
-    // for (const builtins *ptr = g_os_bifs; ptr->name; ptr++) {
-    //     sl_app(pl->biftab, ptr->name, ptr);
-    //     if (ptr->name[0] == '$')
-    //         continue;
-    //     sl_app(pl->help, ptr->name, ptr);
-    // }
-
     for (const builtins *ptr = g_other_bifs; ptr->name; ptr++) {
         sl_app(pl->biftab, ptr->name, ptr);
         if (ptr->name[0] == '$')
@@ -550,13 +477,6 @@ void load_builtins(prolog *pl)
         sl_app(pl->help, ptr->name, ptr);
     }
 
-    // for (const builtins *ptr = g_posix_bifs; ptr->name; ptr++) {
-    //     sl_app(pl->biftab, ptr->name, ptr);
-    //     if (ptr->name[0] == '$')
-    //         continue;
-    //     sl_app(pl->help, ptr->name, ptr);
-    // }
-
     for (const builtins *ptr = g_sort_bifs; ptr->name; ptr++) {
         sl_app(pl->biftab, ptr->name, ptr);
         if (ptr->name[0] == '$')
@@ -564,33 +484,6 @@ void load_builtins(prolog *pl)
         sl_app(pl->help, ptr->name, ptr);
     }
 
-    // for (const builtins *ptr = g_sregex_bifs; ptr->name; ptr++) {
-    //     sl_app(pl->biftab, ptr->name, ptr);
-    //     if (ptr->name[0] == '$')
-    //         continue;
-    //     sl_app(pl->help, ptr->name, ptr);
-    // }
-    //
-    // for (const builtins *ptr = g_streams_bifs; ptr->name; ptr++) {
-    //     sl_app(pl->biftab, ptr->name, ptr);
-    //     if (ptr->name[0] == '$')
-    //         continue;
-    //     sl_app(pl->help, ptr->name, ptr);
-    // }
-    //
-    // for (const builtins *ptr = g_tasks_bifs; ptr->name; ptr++) {
-    //     sl_app(pl->biftab, ptr->name, ptr);
-    //     if (ptr->name[0] == '$')
-    //         continue;
-    //     sl_app(pl->help, ptr->name, ptr);
-    // }
-    //
-    // for (const builtins *ptr = g_threads_bifs; ptr->name; ptr++) {
-    //     sl_app(pl->biftab, ptr->name, ptr);
-    //     if (ptr->name[0] == '$')
-    //         continue;
-    //     sl_app(pl->help, ptr->name, ptr);
-    // }
 }
 
 static bool g_init(prolog *pl)

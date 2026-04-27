@@ -16,6 +16,3 @@ void release_lock(lock *l)
 {
 }
 
-// builtins g_threads_bifs[] = {
-//
-//     {0}};
