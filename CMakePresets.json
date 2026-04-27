@@ -4,7 +4,9 @@
         "cmake/presets/base.json",
         "boards/generic/CMakePresets.json",
         "boards/mps3-an524/CMakePresets.json",
-        "boards/teensy41/CMakePresets.json"
+		"boards/mps2-an500/CMakePresets.json",
+        "boards/teensy41/CMakePresets.json",
+		"boards/netduinoplus2/CMakePresets.json"
     ],
     "configurePresets": [
         {

@@ -86,7 +86,7 @@ set(TPL_CORE_SRC
 
 set(TPL_VENDOR_SRC src/imath/imath.c src/imath/imrat.c src/sre/re.c)
 
-set(TPL_PLATFORM_COMMON_SRC src/platform/common/pl4bm_debug.c)
+set(TPL_PLATFORM_COMMON_SRC src/platform/debug/pl4bm_debug.c)
 
 set(TPL_BAREMETAL_STUBS_SRC src/platform/baremetal/stubs.c)
 
@@ -111,10 +111,13 @@ set(TPL_INCLUDE_DIRS
     ${TPL_BOARD_INCLUDE_DIRS})
 
 if(TPL_BACKEND STREQUAL "linux")
+  list(APPEND TPL_ALL_SRC "${CMAKE_SOURCE_DIR}/src/platform/linux/board.c")
   list(APPEND TPL_ALL_SRC ${TPL_LINUX_SRC})
 
 elseif(TPL_BACKEND STREQUAL "baremetal")
   if(TPL_LIBC_BACKEND STREQUAL "picolibc")
+    list(APPEND TPL_ALL_SRC
+         "${CMAKE_SOURCE_DIR}/src/platform/baremetal/picolibc/iob.c")
     list(APPEND TPL_ALL_SRC ${TPL_PICOLIBC_SRC})
   else()
     list(APPEND TPL_ALL_SRC ${TPL_NOLIBC_SRC})
@@ -139,6 +142,12 @@ target_include_directories(tpl PRIVATE ${TPL_INCLUDE_DIRS})
 
 target_compile_definitions(tpl PRIVATE _GNU_SOURCE VERSION="${TPL_GIT_VERSION}"
                                        BACKEND="${TPL_BACKEND}")
+
+if(TPL_TRACE_ALLOC)
+  target_sources(tpl PRIVATE src/platform/debug/alloc_trace.c)
+  target_link_options(tpl PRIVATE -Wl,--wrap=malloc -Wl,--wrap=free
+                      -Wl,--wrap=calloc -Wl,--wrap=realloc)
+endif()
 
 if(TPL_PROGRAM_PL)
   target_compile_definitions(tpl PRIVATE TPL_HAS_PROGRAM_PL)

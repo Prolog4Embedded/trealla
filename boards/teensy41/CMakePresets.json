@@ -11,13 +11,15 @@
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE":
                     "${sourceDir}/cmake/toolchains/arm-none-eabi-picolibc.cmake",
-				"TPL_BAREMETAL_CPU": "cortex-m7",
+                "TPL_BAREMETAL_CPU": "cortex-m7",
+                "TPL_BAREMETAL_FPU": "fpv5-d16",
+                "TPL_BAREMETAL_FLOAT_ABI": "hard",
                 "TPL_BOARD_CMAKE": "${sourceDir}/boards/teensy41/board.cmake"
             }
         },
         {
             "name": "teensy41-picolibc-debug",
-            "displayName": "QEMU teensy41 picolibc Debug",
+            "displayName": "Teensy 4.1 picolibc Debug",
             "inherits": [
                 "teensy41-picolibc-base",
                 "base-debug"
@@ -25,7 +27,7 @@
         },
         {
             "name": "teensy41-picolibc-release",
-            "displayName": "QEMU teensy41 picolibc Release",
+            "displayName": "Teensy 4.1 picolibc Release",
             "inherits": [
                 "teensy41-picolibc-base",
                 "base-release"

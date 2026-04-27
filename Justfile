@@ -107,6 +107,13 @@ qemu:
       -kernel build/qemu-mps3-an524-picolibc-debug/tpl.elf \
       -gdb tcp::1234
 
+qemu-uart:
+    qemu-system-arm \
+      -M mps3-an524 \
+      -nographic \
+      -serial stdio \
+      -kernel build/mps3-an524-nosemihost-debug/tpl.elf
+
 gdb:
     # May need to use arm-none-eabi-gdb depending on os
     gdb -x .gdbinit build/qemu-mps3-an524-picolibc-debug/tpl.elf

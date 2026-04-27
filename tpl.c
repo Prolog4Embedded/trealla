@@ -8,6 +8,7 @@
 #include <string.h>
 #include <time.h>
 
+#include "board_hal.h"
 #include "builtins.h"
 #include "src/trealla.h"
 #include "trealla.h"
@@ -30,6 +31,7 @@ void fucked_up_repl(prolog *pl, char *line, size_t line_size);
 
 int main(void)
 {
+	board_init();
     printf("Trealla Prolog\n");
     srand((unsigned)time(NULL));
     setlocale(LC_ALL, "");
@@ -39,6 +41,10 @@ int main(void)
 
     if (!pl) {
         fprintf(stderr, "Failed to create prolog: %s\n", strerror(errno));
+        fprintf(stderr, "[DEBUG] Staying in main function in endless repl...\n");
+        char line[256];
+        fucked_up_repl(NULL, line, sizeof(line));
+
         return 1;
     }
 
@@ -132,7 +138,14 @@ void fucked_up_repl(prolog *pl, char *line, size_t line_size)
             }
         }
 
-        pl_eval(pl, line, true);
+        if (pl) {
+            pl_eval(pl, line, true);
+        } else {
+            fprintf(stderr, "(Prolog is NULL, not evaluating)\n");
+            printf("--> %s\n", line);
+			printf("-------------\n\n");
+			continue;
+        }
 
         if (get_halt(pl))
             break;

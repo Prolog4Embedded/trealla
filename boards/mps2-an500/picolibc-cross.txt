@@ -16,5 +16,5 @@ endian = 'little'
 needs_exe_wrapper = true
 
 [built-in options]
-c_args = ['-mcpu=cortex-m7', '-mthumb', '-mfpu=fpv5-d16', '-mfloat-abi=hard']
-c_link_args = ['-mcpu=cortex-m7', '-mthumb', '-mfpu=fpv5-d16', '-mfloat-abi=hard']
+c_args = ['-mcpu=cortex-m7', '-mthumb']
+c_link_args = ['-mcpu=cortex-m7', '-mthumb']

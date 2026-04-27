@@ -5,7 +5,7 @@
     ],
     "configurePresets": [
         {
-            "name": "qemu-mps3-an524-picolibc-base",
+            "name": "mps3-an524-picolibc-base",
             "hidden": true,
             "inherits": "base",
             "cacheVariables": {
@@ -16,30 +16,30 @@
             }
         },
         {
-            "name": "qemu-mps3-an524-picolibc-debug",
+            "name": "mps3-an524-picolibc-debug",
             "displayName": "QEMU mps3-an524 picolibc Debug",
             "inherits": [
-                "qemu-mps3-an524-picolibc-base",
+                "mps3-an524-picolibc-base",
                 "base-debug"
             ]
         },
         {
-            "name": "qemu-mps3-an524-picolibc-release",
+            "name": "mps3-an524-picolibc-release",
             "displayName": "QEMU mps3-an524 picolibc Release",
             "inherits": [
-                "qemu-mps3-an524-picolibc-base",
+                "mps3-an524-picolibc-base",
                 "base-release"
             ]
         }
     ],
     "buildPresets": [
         {
-            "name": "qemu-mps3-an524-picolibc-debug",
-            "configurePreset": "qemu-mps3-an524-picolibc-debug"
+            "name": "mps3-an524-picolibc-debug",
+            "configurePreset": "mps3-an524-picolibc-debug"
         },
         {
-            "name": "qemu-mps3-an524-picolibc-release",
-            "configurePreset": "qemu-mps3-an524-picolibc-release"
+            "name": "mps3-an524-picolibc-release",
+            "configurePreset": "mps3-an524-picolibc-release"
         }
     ]
 }

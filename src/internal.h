@@ -36,18 +36,18 @@ typedef uint32_t pl_ctx;
 #define CTX_NUL (ERR_IDX - 1)
 
 #define MAX_SMALL_STRING ((sizeof(void *) * 2) - 1)
-#define MAX_VAR_POOL_SIZE 16000
+#define MAX_VAR_POOL_SIZE 4000 // pl4bm: changed to 4000
 #define MAX_ARITY UINT8_MAX
-#define MAX_IF_DEPTH 255
-#define MAX_VARS 1024
-#define MAX_QUEUES 255
-#define MAX_MODULES 1024
-#define MAX_IGNORES 64000
-#define MAX_STREAMS 1024
-#define MAX_THREADS 2048
+#define MAX_IF_DEPTH 257 // pl4bm: changed to 127
+#define MAX_VARS 128 // pl4bm: changed to 128
+#define MAX_QUEUES 0 // pl4bm: changed to 0
+#define MAX_MODULES 128 // pl4bm: changed to 128
+#define MAX_IGNORES 0 // pl4bm: changed to 0
+#define MAX_STREAMS 0 // pl4bm: changed to 0
+#define MAX_THREADS 0 // pl4bm: changed to 0
 #define MAX_ACTUAL_THREADS 256 // Does nothing
 
-#define STREAM_BUFLEN 1024
+#define STREAM_BUFLEN 0 // pl4bm: changed to 0
 
 #define MAX_OF(a, b) (a) > (b) ? (a) : (b)
 #define MIN_OF(a, b) (a) < (b) ? (a) : (b)

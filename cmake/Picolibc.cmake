@@ -3,18 +3,21 @@ include(ExternalProject)
 find_program(MESON_EXECUTABLE meson)
 find_program(NINJA_EXECUTABLE ninja)
 
-if (NOT MESON_EXECUTABLE)
-    message(NOTICE "meson can be found here 'https://github.com/mesonbuild/meson'")
-    message(FATAL_ERROR "meson not found (needed to compile picolibc)")
+if(NOT MESON_EXECUTABLE)
+  message(NOTICE
+          "meson can be found here 'https://github.com/mesonbuild/meson'")
+  message(FATAL_ERROR "meson not found (needed to compile picolibc)")
 endif()
 
 if(NOT NINJA_EXECUTABLE)
-    message(NOTICE "ninja can be found here 'https://github.com/ninja-build/ninja'")
-    message(FATAL_ERROR "ninja not found (needed to compile picolibc)")
+  message(NOTICE
+          "ninja can be found here 'https://github.com/ninja-build/ninja'")
+  message(FATAL_ERROR "ninja not found (needed to compile picolibc)")
 endif()
 
 if(NOT TPL_PICOLIBC_CROSS_FILE)
-  message(FATAL_ERROR "TPL_PICOLIBC_CROSS_FILE must be set for picolibc backend")
+  message(
+    FATAL_ERROR "TPL_PICOLIBC_CROSS_FILE must be set for picolibc backend")
 endif()
 
 # Map CMake build type to meson optimization level / debug flag
@@ -47,7 +50,7 @@ else()
   set(_picolibc_semihost "false")
   set(_picolibc_byproducts
       "${_picolibc_install}/lib/libc.a"
-	  # TODO: libcrt0.a yes or no?
+      "${_picolibc_install}/lib/libcrt0-minimal.a"
       "${_picolibc_install}/lib/picolibc.specs")
 endif()
 
@@ -56,23 +59,23 @@ ExternalProject_Add(
   SOURCE_DIR "${CMAKE_SOURCE_DIR}/picolibc"
   BINARY_DIR "${_picolibc_build}"
   CONFIGURE_COMMAND
-    "${MESON_EXECUTABLE}" setup "${_picolibc_build}" "${CMAKE_SOURCE_DIR}/picolibc" #
-        --cross-file "${TPL_PICOLIBC_CROSS_FILE}" #
-        --prefix "${_picolibc_install}" #
-        -Dmultilib=false #
-        -Dsemihost=${_picolibc_semihost} #
-        -Dpicocrt=true #
-        -Dpicocrt-lib=true #
-        -Denable-malloc=true #
-        -Dthread-local-storage=false #
-        -Dthread-local-storage-api=false #
-        -Dspecsdir=${_picolibc_install}/lib #
-        -Doptimization=${_picolibc_optimization} #
-        -Ddebug=${_picolibc_debug} #
+    "${MESON_EXECUTABLE}" setup "${_picolibc_build}"
+    "${CMAKE_SOURCE_DIR}/picolibc" #
+    --cross-file "${TPL_PICOLIBC_CROSS_FILE}" #
+    --prefix "${_picolibc_install}" #
+    -Dmultilib=false #
+    -Dsemihost=${_picolibc_semihost} #
+    -Dpicocrt=true #
+    -Dpicocrt-lib=true #
+    -Denable-malloc=true #
+    -Dthread-local-storage=false #
+    -Dthread-local-storage-api=false #
+    -Dspecsdir=${_picolibc_install}/lib #
+    -Doptimization=${_picolibc_optimization} #
+    -Ddebug=${_picolibc_debug} #
   BUILD_COMMAND "${MESON_EXECUTABLE}" compile -C "${_picolibc_build}"
   INSTALL_COMMAND "${MESON_EXECUTABLE}" install -C "${_picolibc_build}"
-  BUILD_BYPRODUCTS ${_picolibc_byproducts}
- )
+  BUILD_BYPRODUCTS ${_picolibc_byproducts})
 
 set(PICOLIBC_INSTALL_DIR
     "${_picolibc_install}"

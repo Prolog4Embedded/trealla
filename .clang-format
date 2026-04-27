@@ -9,3 +9,6 @@ ColumnLimit: 100
 PointerAlignment: Right
 SpaceBeforeParens: ControlStatements
 SortIncludes: true
+BinPackArguments: false
+BinPackParameters: false
+BinPackAssignments: false

@@ -1,8 +1,8 @@
 tpl_board(
   NAME
-  "teensy41"
+  "netduinoplus2"
   DESCRIPTION
-  "Teensy 4.1, ARM Cortex-M7 @ 600MHz, LPUART6"
+  "Netduino Plus 2, Arm Cortex M4 @ 168 MHz"
   LINKER_SCRIPT
   "${CMAKE_CURRENT_LIST_DIR}/linker_script.ld"
   PICOLIBC_CROSS_FILE
@@ -13,6 +13,6 @@ tpl_board(
   "${CMAKE_CURRENT_LIST_DIR}/startup.c"
   "${CMAKE_CURRENT_LIST_DIR}/hal/board.c"
   "${CMAKE_CURRENT_LIST_DIR}/hal/time.c"
-  "${CMAKE_CURRENT_LIST_DIR}/hal/io/uart.c"
+  "${CMAKE_CURRENT_LIST_DIR}/hal/io/usart.c"
   INCLUDE_DIRS
   "${CMAKE_CURRENT_LIST_DIR}")

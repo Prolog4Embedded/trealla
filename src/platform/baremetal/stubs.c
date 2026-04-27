@@ -1,4 +1,4 @@
-#include "common/pl4bm_debug.h"
+#include "debug/pl4bm_debug.h"
 #include "time_hal.h"
 #include <errno.h> // IWYU pragma: keep: errno.h is falsely flagged as unused
 #include <stddef.h>
@@ -204,6 +204,114 @@ char *realpath(const char *path, char *resolved_path)
     errno = ENOSYS;
     PL4BM_STUB_LOG("path=%s resolved_path=%p", path ? path : "(null)", (void *)resolved_path);
     return NULL;
+}
+
+struct stat {
+    long st_dev;
+    long st_ino;
+    int st_mode;
+    int st_nlink;
+    int st_uid;
+    int st_gid;
+    long st_rdev;
+    long st_size;
+    long st_blksize;
+    long st_blocks;
+    long st_atime;
+    long st_mtime;
+    long st_ctime;
+};
+
+struct tms {
+    long tms_utime;
+    long tms_stime;
+    long tms_cutime;
+    long tms_cstime;
+};
+
+__attribute__((noreturn)) void _exit(int status)
+{
+    (void)status;
+    for (;;)
+        ;
+}
+
+int isatty(int fd)
+{
+    return (fd >= 0 && fd <= 2) ? 1 : 0;
+}
+
+int stat(const char *pathname, struct stat *statbuf)
+{
+    (void)statbuf;
+    errno = ENOENT;
+    PL4BM_STUB_LOG("pathname=%s", pathname ? pathname : "(null)");
+    return -1;
+}
+
+int open(const char *pathname, int flags, int mode)
+{
+    (void)flags;
+    (void)mode;
+    errno = ENOENT;
+    PL4BM_STUB_LOG("pathname=%s flags=%d", pathname ? pathname : "(null)", flags);
+    return -1;
+}
+
+int close(int fd)
+{
+    errno = EBADF;
+    PL4BM_STUB_LOG("fd=%d", fd);
+    return -1;
+}
+
+int read(int fd, void *buf, size_t count)
+{
+    (void)buf;
+    (void)count;
+    errno = EBADF;
+    PL4BM_STUB_LOG("fd=%d count=%lu", fd, (unsigned long)count);
+    return -1;
+}
+
+int write(int fd, const void *buf, size_t count)
+{
+    (void)buf;
+    (void)count;
+    errno = EBADF;
+    PL4BM_STUB_LOG("fd=%d count=%lu", fd, (unsigned long)count);
+    return -1;
+}
+
+long lseek(int fd, long offset, int whence)
+{
+    (void)offset;
+    (void)whence;
+    errno = EBADF;
+    PL4BM_STUB_LOG("fd=%d whence=%d", fd, whence);
+    return -1;
+}
+
+long times(struct tms *buf)
+{
+    if (buf) {
+        buf->tms_utime = 0;
+        buf->tms_stime = 0;
+        buf->tms_cutime = 0;
+        buf->tms_cstime = 0;
+    }
+    return -1;
+}
+
+int gettimeofday(struct timeval *tv, void *tz)
+{
+    (void)tz;
+    if (tv) {
+        uint64_t ns = pl4bm_monotonic_ns();
+        tv->tv_sec = (time_t)(ns / 1000000000ULL);
+        tv->tv_usec = (suseconds_t)((ns % 1000000000ULL) / 1000ULL);
+    }
+    return 0;
 }
 
 // Linker symbol: value is the configured stack size (take address to read it)

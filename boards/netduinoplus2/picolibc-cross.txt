@@ -9,12 +9,12 @@ size = 'arm-none-eabi-size'
 [host_machine]
 system = 'none'
 cpu_family = 'arm'
-cpu = 'cortex-m7'
+cpu = 'cortex-m4'
 endian = 'little'
 
 [properties]
 needs_exe_wrapper = true
 
 [built-in options]
-c_args = ['-mcpu=cortex-m7', '-mthumb', '-mfpu=fpv5-d16', '-mfloat-abi=hard']
-c_link_args = ['-mcpu=cortex-m7', '-mthumb', '-mfpu=fpv5-d16', '-mfloat-abi=hard']
+c_args = ['-mcpu=cortex-m4', '-mthumb']
+c_link_args = ['-mcpu=cortex-m4', '-mthumb']

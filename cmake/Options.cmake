@@ -1,6 +1,9 @@
 option(TPL_LTO "Enable link-time optimization (IPO/LTO)" OFF)
 
-# Backend / libc (naming kind of weird, backend means linux or baremetal, libc_backend means which libc to use)
+option(TPL_TRACE_MALLOC "Trace malloc/free calls" OFF)
+
+# Backend / libc (naming kind of weird, backend means linux or baremetal,
+# libc_backend means which libc to use)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Generic")
   set(_tpl_backend_default "baremetal")
@@ -17,8 +20,10 @@ if(NOT DEFINED TPL_LIBC_BACKEND)
   set(TPL_LIBC_BACKEND
       "system"
       CACHE STRING "C library backend (system|none|picolibc)")
-elseif((NOT DEFINED TPL_LIBC_BACKEND OR TPL_LIBC_BACKEND STREQUAL "system") AND TPL_BACKEND STREQUAL "baremetal")
-	message(WARNING "Backend is set to 'baremetal', but trying to use 'system' libc!")
+elseif((NOT DEFINED TPL_LIBC_BACKEND OR TPL_LIBC_BACKEND STREQUAL "system")
+       AND TPL_BACKEND STREQUAL "baremetal")
+  message(
+    WARNING "Backend is set to 'baremetal', but trying to use 'system' libc!")
 endif()
 set_property(CACHE TPL_LIBC_BACKEND PROPERTY STRINGS system none picolibc)
 
@@ -31,8 +36,10 @@ set(TPL_EMBEDDED_LIBRARIES
 
 set(TPL_PROGRAM_PL
     ""
-    CACHE FILEPATH
-          "Path to a Prolog file to embed as the program (sets program_pl / program_pl_len in tpl.c)")
+    CACHE
+      FILEPATH
+      "Path to a Prolog file to embed as the program (sets program_pl / program_pl_len in tpl.c)"
+)
 
 # Build customization
 
@@ -50,7 +57,10 @@ else()
 endif()
 set(COMPILE_DIAGNOSTICS_FORMAT
     "${_default_diag_format}"
-    CACHE STRING "Compiler diagnostics format (GCC: text|json|json-file; Clang: clang|msvc|vi)")
+    CACHE
+      STRING
+      "Compiler diagnostics format (GCC: text|json|json-file; Clang: clang|msvc|vi)"
+)
 
 # Bare-metal / embedded options
 
@@ -63,8 +73,10 @@ set(TPL_ENABLE_POSIX_STUBS
 
 set(TPL_BOARD_CMAKE
     ""
-    CACHE FILEPATH
-          "Per-board cmake file; appends to TPL_BOARD_SRCS and TPL_BOARD_INCLUDE_DIRS")
+    CACHE
+      FILEPATH
+      "Per-board cmake file; appends to TPL_BOARD_SRCS and TPL_BOARD_INCLUDE_DIRS"
+)
 
 # Picolibc (only used when TPL_LIBC_BACKEND=picolibc)
 
