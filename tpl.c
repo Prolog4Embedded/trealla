@@ -14,145 +14,147 @@
 #include "trealla.h"
 
 #ifdef TPL_HAS_PROGRAM_PL
-extern unsigned char program_pl[];
-extern unsigned int program_pl_len;
+extern const unsigned char program_pl[];
+extern const unsigned int program_pl_len;
 #endif
 
-void sigfn(int s)
-{
-    g_tpl_interrupt = s;
-    printf("sigfn called: %d", s);
-    signal(SIGINT, &sigfn);
+void sigfn(int s) {
+  g_tpl_interrupt = s;
+  printf("sigfn called: %d", s);
+  signal(SIGINT, &sigfn);
 }
 
 char **g_envp = NULL;
 
 void fucked_up_repl(prolog *pl, char *line, size_t line_size);
 
-int main(void)
-{
-	board_init();
-    printf("Trealla Prolog\n");
-    srand((unsigned)time(NULL));
-    setlocale(LC_ALL, "");
-    setlocale(LC_NUMERIC, "C");
+int main(int argc, char **argv) {
+  board_init();
+  printf("Trealla Prolog\n");
+  srand((unsigned)time(NULL));
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
 
-    prolog *pl = pl_create();
+  prolog *pl = pl_create();
 
-    if (!pl) {
-        fprintf(stderr, "Failed to create prolog: %s\n", strerror(errno));
-        fprintf(stderr, "[DEBUG] Staying in main function in endless repl...\n");
-        char line[256];
-        fucked_up_repl(NULL, line, sizeof(line));
+  if (!pl) {
+    fprintf(stderr, "Failed to create prolog: %s\n", strerror(errno));
+    fprintf(stderr, "[DEBUG] Staying in main function in endless repl...\n");
+    char line[256];
+    fucked_up_repl(NULL, line, sizeof(line));
 
-        return 1;
-    }
+    return 1;
+  }
 
-    set_autofail(pl);
+  set_autofail(pl);
 
 #ifdef TPL_HAS_PROGRAM_PL
-    if (!pl_consult_text(pl, (const char *)program_pl)) {
-        fprintf(stderr, "Failed to load embedded program\n");
-        pl_destroy(pl);
-        return 1;
-    }
+  if (!pl_consult_text(pl, (const char *)program_pl)) {
+    fprintf(stderr, "Failed to load embedded program\n");
+    pl_destroy(pl);
+    return 1;
+  }
 
-    printf("Program loaded.\n");
+  printf("Program loaded.\n");
+  printf("program_pl_len = %u\n", program_pl_len);
+  printf("program_pl start:\n%.*s\n", 200, program_pl);
 #else
-    fprintf(stderr,
-            "[FATAL] No prolog program was embedded, dynamic loading is not currently supported!");
-    exit(EXIT_FAILURE);
+  fprintf(stderr, "[FATAL] No prolog program was embedded, dynamic loading is "
+                  "not currently supported!");
+  exit(EXIT_FAILURE);
 #endif
 
+  if (argc > 1) {
+    pl_eval(pl, argv[1], true);
+  } else {
     char line[256];
-
     fucked_up_repl(pl, line, sizeof(line));
+  }
 
-    int halt_code = get_halt_code(pl);
-    pl_destroy(pl);
+  int halt_code = get_halt_code(pl);
+  pl_destroy(pl);
 
-    return halt_code;
+  return halt_code;
 }
 
-void fucked_up_repl(prolog *pl, char *line, size_t line_size)
-{
+void fucked_up_repl(prolog *pl, char *line, size_t line_size) {
+  for (;;) {
+    printf("?- ");
+    fflush(stdout);
+
+    size_t len = 0;
+
     for (;;) {
-        printf("?- ");
+      int c = getchar();
+
+      if (c == EOF) {
+        printf("\n");
+        return;
+      }
+
+      if (c == '\r')
+        continue;
+
+      if (c == '\n') {
+        putchar('\n');
+        fflush(stdout);
+        break;
+      }
+
+      if (c == '\b' || c == 127) {
+        if (len > 0) {
+          len--;
+          printf("\b \b");
+          fflush(stdout);
+        }
+        continue;
+      }
+
+      if (len + 1 < line_size) {
+        line[len++] = (char)c;
+        putchar(c);
         fflush(stdout);
 
-        size_t len = 0;
-
-        for (;;) {
-            int c = getchar();
-
-            if (c == EOF) {
-                printf("\n");
-                return;
-            }
-
-            if (c == '\r')
-                continue;
-
-            if (c == '\n') {
-                putchar('\n');
-                fflush(stdout);
-                break;
-            }
-
-            if (c == '\b' || c == 127) {
-                if (len > 0) {
-                    len--;
-                    printf("\b \b");
-                    fflush(stdout);
-                }
-                continue;
-            }
-
-            if (len + 1 < line_size) {
-                line[len++] = (char)c;
-                putchar(c);
-                fflush(stdout);
-
-                if (c == '.') {
-                    printf("\nAutomatically continuing on '.'...\n");
-                    break;
-                }
-            }
+        if (c == '.') {
+          printf("\nAutomatically continuing on '.'...\n");
+          break;
         }
-
-        line[len] = '\0';
-
-        while (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
-            line[--len] = '\0';
-
-        if (len == 0)
-            continue;
-
-        if (line[len - 1] != '.') {
-            if (len + 1 < line_size) {
-                line[len++] = '.';
-                line[len] = '\0';
-            } else {
-                fprintf(stderr, "Input too long\n");
-                continue;
-            }
-        }
-
-        if (pl) {
-            pl_eval(pl, line, true);
-        } else {
-            fprintf(stderr, "(Prolog is NULL, not evaluating)\n");
-            printf("--> %s\n", line);
-			printf("-------------\n\n");
-			continue;
-        }
-
-        if (get_halt(pl))
-            break;
-
-        if (!get_status(pl))
-            printf("false.\n");
-        else if (!did_dump_vars(pl))
-            printf("true.\n");
+      }
     }
+
+    line[len] = '\0';
+
+    while (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
+      line[--len] = '\0';
+
+    if (len == 0)
+      continue;
+
+    if (line[len - 1] != '.') {
+      if (len + 1 < line_size) {
+        line[len++] = '.';
+        line[len] = '\0';
+      } else {
+        fprintf(stderr, "Input too long\n");
+        continue;
+      }
+    }
+
+    if (pl) {
+      pl_eval(pl, line, true);
+    } else {
+      fprintf(stderr, "(Prolog is NULL, not evaluating)\n");
+      printf("--> %s\n", line);
+      printf("-------------\n\n");
+      continue;
+    }
+
+    if (get_halt(pl))
+      break;
+
+    if (!get_status(pl))
+      printf("false.\n");
+    else if (!did_dump_vars(pl))
+      printf("true.\n");
+  }
 }

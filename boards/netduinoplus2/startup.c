@@ -6,6 +6,7 @@ extern void _start();     // picolibc crt0
 
 static void reset_handler();
 static void default_handler();
+static void frame_dumping_handler(void);
 
 static inline uint32_t interrupt_number()
 {
@@ -24,7 +25,7 @@ __attribute__((used, section(".text.init.enter"))) const void *const __interrupt
     (void *)&__stack,        // -, stack pointer
     (void *)reset_handler,   // -, Reset
     (void *)default_handler, // -, NMI
-    (void *)default_handler, // -, HardFault
+    (void *)frame_dumping_handler, // -, HardFault
     (void *)default_handler, // -, MemManage
     (void *)default_handler, // -, BusFault
     (void *)default_handler, // -, UsageFault
@@ -55,7 +56,7 @@ static void reset_handler()
     _start();
     printf("RETURNED FROM _start\n");
     for (;;) {
-        __asm__ volatile("bkpt #0");
+        __asm__ volatile("wfi");
     }
 }
 
@@ -81,6 +82,57 @@ static void default_handler()
     printf("\n");
 
     for (;;) {
-        __asm__ volatile("bkpt #0");
+        __asm__ volatile("wfi");
     }
+}
+
+#define SCB_CFSR  (*(volatile uint32_t *)0xE000ED28)
+#define SCB_HFSR  (*(volatile uint32_t *)0xE000ED2C)
+#define SCB_MMFAR (*(volatile uint32_t *)0xE000ED34)
+#define SCB_BFAR  (*(volatile uint32_t *)0xE000ED38)
+
+void fault_handler_c(uint32_t *frame) {
+  uint32_t interrupt = interrupt_number();
+
+  printf("Unhandled interrupt: %lu", (unsigned long)interrupt);
+
+  if (interrupt >= 16) {
+    printf(" IRQ=%lu", (unsigned long)(interrupt - 16));
+  }
+
+  if (interrupt < sizeof(interrupt_names) / sizeof(interrupt_names[0]) &&
+      interrupt_names[interrupt]) {
+    printf(" %s", interrupt_names[interrupt]);
+  }
+
+  printf("\n");
+
+  printf("r0   = 0x%08lx\n", (unsigned long)frame[0]);
+  printf("r1   = 0x%08lx\n", (unsigned long)frame[1]);
+  printf("r2   = 0x%08lx\n", (unsigned long)frame[2]);
+  printf("r3   = 0x%08lx\n", (unsigned long)frame[3]);
+  printf("r12  = 0x%08lx\n", (unsigned long)frame[4]);
+  printf("lr   = 0x%08lx\n", (unsigned long)frame[5]);
+  printf("pc   = 0x%08lx\n", (unsigned long)frame[6]);
+  printf("xpsr = 0x%08lx\n", (unsigned long)frame[7]);
+
+  printf("CFSR = 0x%08lx\n", (unsigned long)SCB_CFSR);
+  printf("HFSR = 0x%08lx\n", (unsigned long)SCB_HFSR);
+  printf("MMFAR= 0x%08lx\n", (unsigned long)SCB_MMFAR);
+  printf("BFAR = 0x%08lx\n", (unsigned long)SCB_BFAR);
+
+  for (;;) {
+    __asm__ volatile("wfi");
+  }
+}
+
+__attribute__((naked))
+static void frame_dumping_handler(void) {
+  __asm__ volatile(
+      "tst lr, #4        \n"
+      "ite eq            \n"
+      "mrseq r0, msp     \n"
+      "mrsne r0, psp     \n"
+      "b fault_handler_c \n"
+  );
 }

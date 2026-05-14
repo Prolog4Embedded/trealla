@@ -42,8 +42,7 @@ foreach(pl ${TPL_LIBRARY_PL})
 
   string(APPEND _tpl_lib_externs
          "extern unsigned char ${sym}[];\nextern unsigned int ${sym}_len;\n")
-  string(APPEND _tpl_lib_entries
-         "    {\"${stem}\", ${sym}, &${sym}_len},\n")
+  string(APPEND _tpl_lib_entries "    {\"${stem}\", ${sym}, &${sym}_len},\n")
 endforeach()
 
 # Always generate library_table.c (empty table when no libs selected)
@@ -59,13 +58,31 @@ file(
 
 if(TPL_PROGRAM_PL)
   set(_tpl_program_gen_c "${CMAKE_BINARY_DIR}/generated/program_pl.c")
-  add_custom_command(
-    OUTPUT "${_tpl_program_gen_c}"
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/generated"
-    COMMAND ${CMAKE_COMMAND} -E echo "#include <stddef.h>" > "${_tpl_program_gen_c}"
+  set(_tpl_program_tmp_c "${CMAKE_BINARY_DIR}/generated/program_pl.tmp.c")
+
+  file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/generated")
+
+  execute_process(
     COMMAND "${XXD_EXECUTABLE}" -i -n "program_pl" "${TPL_PROGRAM_PL}"
-            >> "${_tpl_program_gen_c}"
-    DEPENDS "${TPL_PROGRAM_PL}"
-    VERBATIM)
+    OUTPUT_FILE "${_tpl_program_tmp_c}" COMMAND_ERROR_IS_FATAL ANY)
+
+  file(READ "${_tpl_program_tmp_c}" _tpl_program_c)
+
+  string(
+    REPLACE
+      "unsigned char program_pl[]"
+      "__attribute__((section(\".rodata.embedded_program\"), used, aligned(4)))\nconst unsigned char program_pl[]"
+      _tpl_program_c
+      "${_tpl_program_c}")
+
+  string(
+    REPLACE
+      "unsigned int program_pl_len"
+      "__attribute__((section(\".rodata.embedded_program_meta\"), used))\nconst unsigned int program_pl_len"
+      _tpl_program_c
+      "${_tpl_program_c}")
+
+  file(WRITE "${_tpl_program_gen_c}" "#include <stddef.h>\n\n${_tpl_program_c}")
+
   list(APPEND TPL_LIBRARY_GEN_C "${_tpl_program_gen_c}")
 endif()
