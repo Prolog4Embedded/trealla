@@ -1,0 +1,12 @@
+heaptrack output will be written to "/home/simon/uni/sta/bench/original/bench-results/2026-05-18_14-47-06/memory/heaptrack.zst"
+starting application, this might take some time...
+   Fault = undervoltage, Action = enter_safe_mode.
+   Component = battery, Fault = undervoltage, Action = enter_safe_mode Component = solar_array, Fault = degraded_power, Action = reduce_load Component = computer, Fault = software_hang, Action = reboot_computer Component = radio, Fault = comms_fault, Action = reset_radio Component = imu, Fault = sensor_fault, Action = switch_to_backup_estimator Component = wheel_left, Fault = actuator_fault, Action = stop_mobility Component = thermal, Fault = overheat, Action = disable_payload.
+   S = power, C = battery, F = undervoltage S = power, C = solar_array, F = degraded_power S = avionics, C = computer, F = software_hang S = comms, C = radio, F = comms_fault S = adcs, C = imu, F = sensor_fault S = mobility, C = wheel_left, F = actuator_fault S = thermal_control, C = thermal, F = overheat.
+   C = battery, F = undervoltage C = computer, F = software_hang C = radio, F = comms_fault C = thermal, F = overheat.
+   true   C = computer C = thermal C = radio C = camera C = imu C = wheel_left C = wheel_right   true   N = s(s(s(s(zero)))).
+   X = [battery,computer,radio,thermal].
+   X = [thermal,radio,computer,battery].
+Heaptrack finished! Now run the following to investigate the data:
+
+  heaptrack --analyze "/home/simon/uni/sta/bench/original/bench-results/2026-05-18_14-47-06/memory/heaptrack.zst"

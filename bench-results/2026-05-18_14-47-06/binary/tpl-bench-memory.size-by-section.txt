@@ -1,0 +1,42 @@
+build/bench/tpl-bench-memory  :
+section                  size      addr
+.note.gnu.build-id         36       904
+.interp                    28       940
+.gnu.hash                  68       968
+.dynsym                  4200      1040
+.dynstr                  1781      5240
+.gnu.version              350      7022
+.gnu.version_r            208      7376
+.rela.dyn               40824      7584
+.rela.plt                3864     48408
+.init                      27     53248
+.plt                     2592     53280
+.plt.got                    8     55872
+.text                 1284563     55936
+.fini                      13   1340500
+.rodata                 25837   1343488
+.eh_frame_hdr            8724   1369328
+.eh_frame               74264   1378056
+.sframe                   136   1452320
+.note.gnu.property         64   1452512
+.note.ABI-tag              32   1452576
+.init_array                 8   1456112
+.fini_array                 8   1456120
+.data.rel.ro             1408   1456128
+.dynamic                  528   1457536
+.got                       64   1458064
+.got.plt                 1312   1458152
+.data                  933985   1459488
+.bss                   676400   2393504
+.comment                   27         0
+.debug_aranges           3136         0
+.debug_info           3920343         0
+.debug_abbrev           70339         0
+.debug_line           1225251         0
+.debug_str              37835         0
+.debug_line_str          5888         0
+.debug_loclists       1773757         0
+.debug_rnglists        248724         0
+Total                10346632
+
+

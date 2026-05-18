@@ -1,0 +1,230 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BUILD_DIR="build/bench"
+RESULT_ROOT="bench-results"
+RUN_ID="$(date +'%Y-%m-%d_%H-%M-%S')"
+OUT_DIR="${RESULT_ROOT}/${RUN_ID}"
+
+LOG_DIR="${OUT_DIR}/logs"
+CYCLES_DIR="${OUT_DIR}/cycles"
+RUNTIME_DIR="${OUT_DIR}/runtime"
+MEMORY_DIR="${OUT_DIR}/memory"
+PERF_DIR="${OUT_DIR}/perf"
+BINARY_DIR="${OUT_DIR}/binary"
+
+mkdir -p "$LOG_DIR" "$CYCLES_DIR" "$RUNTIME_DIR" "$MEMORY_DIR" "$PERF_DIR" "$BINARY_DIR"
+
+panic() {
+  echo "Failed to run benchmarks: $*" >&2
+  echo "Results so far: $OUT_DIR" >&2
+  exit 1
+}
+
+need_cmd() {
+  command -v "$1" >/dev/null 2>&1 || panic "missing command: $1"
+}
+
+run_with_spinner() {
+  local message="$1"
+  local logfile="$2"
+  shift 2
+
+  local spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+
+  "$@" >"$logfile" 2>&1 &
+  local pid=$!
+
+  while kill -0 "$pid" 2>/dev/null; do
+    for ((i = 0; i < ${#spin}; i++)); do
+      printf "\r%s %s" "${spin:$i:1}" "$message"
+      sleep 0.1
+    done
+  done
+
+  wait "$pid"
+  local status=$?
+
+  if [ "$status" -eq 0 ]; then
+    printf "\r✓ %s\n" "$message"
+  else
+    printf "\r✗ %s\n" "$message"
+    tail -n 60 "$logfile" >&2 || true
+  fi
+
+  return "$status"
+}
+
+analyze_binary() {
+  local bin="$1"
+  local name
+  name="$(basename "$bin")"
+
+  {
+    echo "Binary: $bin"
+    echo
+    file "$bin"
+    echo
+    ls -lh "$bin"
+  } > "${BINARY_DIR}/${name}.overview.txt"
+
+  size "$bin" > "${BINARY_DIR}/${name}.size.txt"
+  size -A "$bin" > "${BINARY_DIR}/${name}.size-by-section.txt"
+
+  readelf -h "$bin" > "${BINARY_DIR}/${name}.elf-header.txt"
+  readelf -S "$bin" > "${BINARY_DIR}/${name}.sections.txt"
+  readelf -sW "$bin" > "${BINARY_DIR}/${name}.symbols-readelf.txt" || true
+  readelf -l "$bin" > "${BINARY_DIR}/${name}.program-headers.txt"
+
+  objdump -h "$bin" > "${BINARY_DIR}/${name}.section-headers.txt"
+  objdump -t "$bin" > "${BINARY_DIR}/${name}.symbols-objdump.txt" || true
+
+  nm --size-sort -S "$bin" > "${BINARY_DIR}/${name}.symbols-by-size.txt" || true
+  nm --size-sort -S "$bin" | tail -n 80 > "${BINARY_DIR}/${name}.largest-symbols.txt" || true
+}
+
+inspect_binaries() {
+  for bin in \
+    "${BUILD_DIR}/tpl" \
+    "${BUILD_DIR}/tpl-bench-cycles" \
+    "${BUILD_DIR}/tpl-bench-runtime" \
+    "${BUILD_DIR}/tpl-bench-memory"
+  do
+    if [ -x "$bin" ]; then
+      analyze_binary "$bin"
+    else
+      echo "missing binary: $bin" >&2
+    fi
+  done
+}
+
+cycles_benchmark() {
+  taskset -c 2 "${BUILD_DIR}/tpl-bench-cycles" \
+    > "${CYCLES_DIR}/cycles.txt" \
+    2> "${CYCLES_DIR}/cycles.stderr.txt"
+}
+
+hyperfine_benchmark() {
+  hyperfine \
+    --warmup 10 \
+    --export-json "${RUNTIME_DIR}/hyperfine.json" \
+    --export-markdown "${RUNTIME_DIR}/hyperfine.md" \
+    "${BUILD_DIR}/tpl-bench-runtime" \
+    > "${RUNTIME_DIR}/hyperfine.txt"
+}
+
+perf_stat_benchmark() {
+  perf stat \
+    -e cycles,instructions,branches,branch-misses,cache-references,cache-misses,page-faults,context-switches,cpu-migrations \
+    -r 10 \
+    -o "${PERF_DIR}/perf-stat.txt" \
+    -- "${BUILD_DIR}/tpl-bench-runtime"
+}
+
+heaptrack_benchmark() {
+  heaptrack \
+    --record-only \
+    --output "${MEMORY_DIR}/heaptrack" \
+    "${BUILD_DIR}/tpl-bench-memory" \
+    > "${MEMORY_DIR}/heaptrack.stdout.txt" \
+    2> "${MEMORY_DIR}/heaptrack.stderr.txt"
+}
+
+write_summary() {
+  {
+    echo "Benchmark run: ${RUN_ID}"
+    echo "Output directory: ${OUT_DIR}"
+    echo
+    echo "Built binaries:"
+    ls -lh "${BUILD_DIR}"/tpl* 2>/dev/null || true
+
+    echo
+    echo "== Binary size =="
+    for f in "${BINARY_DIR}"/*.size.txt; do
+      [ -f "$f" ] || continue
+      echo
+      echo "-- $(basename "$f" .size.txt) --"
+      cat "$f"
+    done
+
+    echo
+    echo "== CPU cycles benchmark =="
+    cat "${CYCLES_DIR}/cycles.txt" 2>/dev/null || true
+
+    echo
+    echo "== Hyperfine runtime benchmark =="
+    cat "${RUNTIME_DIR}/hyperfine.txt" 2>/dev/null || true
+
+    echo
+    echo "== Perf stat =="
+    cat "${PERF_DIR}/perf-stat.txt" 2>/dev/null || true
+
+    echo
+    echo "== Heaptrack files =="
+    find "${MEMORY_DIR}" -maxdepth 1 -type f -printf '%f\n' 2>/dev/null || true
+  } > "${OUT_DIR}/summary.txt"
+}
+
+need_cmd cmake
+need_cmd taskset
+need_cmd size
+need_cmd readelf
+need_cmd objdump
+need_cmd nm
+need_cmd file
+need_cmd hyperfine
+need_cmd heaptrack
+
+run_with_spinner \
+  "Configuring benchmark targets..." \
+  "${LOG_DIR}/configure.log" \
+  cmake --preset bench \
+  || panic "configure failed"
+
+run_with_spinner \
+  "Building benchmark targets..." \
+  "${LOG_DIR}/build.log" \
+  cmake --build --preset bench --parallel \
+  || panic "build failed"
+
+run_with_spinner \
+  "Inspecting binaries..." \
+  "${LOG_DIR}/binary-inspection.log" \
+  inspect_binaries \
+  || panic "binary inspection failed"
+
+run_with_spinner \
+  "Running CPU cycle benchmark..." \
+  "${LOG_DIR}/cycles.log" \
+  cycles_benchmark \
+  || panic "cycle benchmark failed"
+
+run_with_spinner \
+  "Running hyperfine runtime benchmark..." \
+  "${LOG_DIR}/hyperfine.log" \
+  hyperfine_benchmark \
+  || panic "hyperfine benchmark failed"
+
+if command -v perf >/dev/null 2>&1; then
+  run_with_spinner \
+    "Running perf stat benchmark..." \
+    "${LOG_DIR}/perf.log" \
+    perf_stat_benchmark \
+    || echo "Warning: perf stat failed; see ${LOG_DIR}/perf.log" >&2
+else
+  echo "Warning: perf not found; skipping perf stat." >&2
+fi
+
+run_with_spinner \
+  "Running heaptrack benchmark..." \
+  "${LOG_DIR}/heaptrack.log" \
+  heaptrack_benchmark \
+  || panic "heaptrack benchmark failed"
+
+write_summary
+
+echo
+echo "Done."
+echo "Results: ${OUT_DIR}"
+echo "Summary: ${OUT_DIR}/summary.txt"
+echo "Heaptrack: heaptrack --analyze ${MEMORY_DIR}/heaptrack.zst"

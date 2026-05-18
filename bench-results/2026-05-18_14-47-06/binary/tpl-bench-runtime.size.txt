@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+1610500	 937233	 676400	3224133	 313245	build/bench/tpl-bench-runtime

@@ -1,0 +1,23 @@
+# started on Mon May 18 14:47:18 2026
+
+
+ Performance counter stats for 'build/bench/tpl-bench-runtime' (10 runs):
+
+        74,786,975      cpu_atom/cycles/u                                                       ( +- 14.39% )  (32.81%)
+       127,279,525      cpu_core/cycles/u                                                       ( +-  7.00% )  (67.19%)
+       113,798,889      cpu_atom/instructions/u                                                 ( +- 16.91% )  (32.81%)
+       234,947,318      cpu_core/instructions/u                                                 ( +-  1.73% )  (67.19%)
+        27,775,745      cpu_atom/branches/u                                                     ( +- 17.97% )  (32.81%)
+        59,489,081      cpu_core/branches/u                                                     ( +-  1.80% )  (67.19%)
+           454,990      cpu_atom/branch-misses/u                                                ( +-  9.03% )  (32.81%)
+           549,115      cpu_core/branch-misses/u                                                ( +-  2.50% )  (67.19%)
+           172,674      cpu_atom/cache-references/u                                             ( +- 10.60% )  (32.81%)
+           300,216      cpu_core/cache-references/u                                             ( +-  9.28% )  (67.19%)
+           102,956      cpu_atom/cache-misses/u                                                 ( +- 12.76% )  (32.81%)
+            78,048      cpu_core/cache-misses/u                                                 ( +-  8.59% )  (67.19%)
+             2,244      page-faults:u                                                           ( +-  0.10% )
+                 0      context-switches:u                                                    
+                 0      cpu-migrations:u                                                      
+
+       0.034499682 +- 0.002472357 seconds time elapsed  ( +-  7.17% )
+

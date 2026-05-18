@@ -1,0 +1,4 @@
+Benchmark 1: build/bench/tpl-bench-runtime
+  Time (mean ± σ):      33.6 ms ±   4.8 ms    [User: 29.6 ms, System: 3.0 ms]
+  Range (min … max):    27.5 ms …  53.7 ms    96 runs
+ 

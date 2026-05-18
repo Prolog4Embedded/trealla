@@ -1,0 +1,19 @@
+
+Benchmark summary
+=================
+warmup iterations:  100
+measure iterations: 10000
+
+name                          answers          min          avg          max
+component_lookup                    1        34256        36025        97234
+simple_fault                        1        36160        40759       568208
+single_diagnosis                    1        41688        44430       158786
+all_diagnoses                       7       118984       128706       502490
+affected_subsystems                 7       113432       123495       595348
+critical_faults                     4        70152        74597       791982
+dependency_true                     1        39494        42001       558630
+dependency_backtracking             7        98564       108713       247856
+list_member                         1        49602        56173       779826
+list_length                         1        50064        54828       579292
+append_list                         1        52108        59342       735120
+reverse_list                        1        54458        61334       622900

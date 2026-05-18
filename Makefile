@@ -28,7 +28,7 @@ configure-compile:
 	$(cmake) -G $(generator) --preset $(preset) -DMAIN_PL="$(main)"
 
 build:
-	$(cmake) --build --preset $(preset)
+	$(cmake) --build --preset $(preset) --parallel
 
 rebuild:
 	$(cmake) -G $(generator) --preset $(preset)

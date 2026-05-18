@@ -1,0 +1,35 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "bench",
+      "displayName": "Benchmarks",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_BUILD_TYPE": "Release",
+        "TPL_ENABLE_BENCHMARKS": "ON",
+        "TPL_USE_READLINE": "OFF",
+        "TPL_USE_EDITLINE": "OFF",
+        "TPL_USE_FFI": "OFF",
+        "TPL_USE_OPENSSL": "OFF",
+        "TPL_USE_THREADS": "OFF",
+        "TPL_LTO": "OFF",
+        "TPL_BENCH_WARMUP_ITERS": "100",
+        "TPL_BENCH_MEASURE_ITERS": "10000"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "bench",
+      "configurePreset": "bench",
+      "targets": [
+        "tpl",
+        "tpl-bench-cycles",
+        "tpl-bench-runtime",
+        "tpl-bench-memory"
+      ]
+    }
+  ]
+}

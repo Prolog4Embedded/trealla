@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+1447619	 937313	 676400	3061332	 2eb654	build/bench/tpl-bench-memory

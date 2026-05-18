@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+1599412	 937233	 676400	3213045	 3106f5	build/bench/tpl-bench-cycles

@@ -1,0 +1,8 @@
+/usr/bin/heaptrack: line 116: hostname: command not found
+NOTE: heaptrack detected DEBUGINFOD_URLS but will disable it to prevent 
+unintended network delays during recording
+If you really want to use DEBUGINFOD, export HEAPTRACK_ENABLE_DEBUGINFOD=1
+heaptrack stats:
+	allocations:          	11616
+	leaked allocations:   	27
+	temporary allocations:	800

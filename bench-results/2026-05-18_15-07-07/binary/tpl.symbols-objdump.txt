@@ -1,0 +1,1733 @@
+
+build/bench/tpl:     file format elf64-x86-64
+
+SYMBOL TABLE:
+0000000000000000 l    df *ABS*	0000000000000000              Scrt1.o
+000000000017fdf8 l     O .note.ABI-tag	0000000000000020              __abi_tag
+0000000000000000 l    df *ABS*	0000000000000000              bif_format.c
+0000000000033f00 l     F .text	000000000000038e              get_next_cell.part.0.constprop.0
+0000000000034290 l     F .text	00000000000003f3              get_next_char
+000000000000da80 l     F .text	000000000000000a              do_format.cold
+0000000000038af0 l     F .text	00000000000008db              bif_format_3
+00000000000393d0 l     F .text	00000000000005fc              bif_format_2
+00000000000399d0 l     F .text	00000000000002bb              bif_format_1
+0000000000000000 l    df *ABS*	0000000000000000              network.c
+000000000000da8a l     F .text	0000000000000011              net_server.cold
+0000000000000000 l    df *ABS*	0000000000000000              toplevel.c
+000000000014d300 l     F .text	0000000000000b8c              dump_vars.part.0
+000000000030a7c0 l     O .bss	0000000000000008              g_items
+000000000000da9b l     F .text	0000000000000005              check_redo.cold
+0000000000000000 l    df *ABS*	0000000000000000              tpl.c
+0000000000000000 l    df *ABS*	0000000000000000              crtbeginS.o
+000000000000ea30 l     F .text	0000000000000000              deregister_tm_clones
+000000000000ea60 l     F .text	0000000000000000              register_tm_clones
+000000000000eaa0 l     F .text	0000000000000000              __do_global_dtors_aux
+00000000002655f0 l     O .bss	0000000000000001              completed.0
+0000000000180958 l     O .fini_array	0000000000000000              __do_global_dtors_aux_fini_array_entry
+000000000000eaf0 l     F .text	0000000000000000              frame_dummy
+0000000000180950 l     O .init_array	0000000000000000              __frame_dummy_init_array_entry
+0000000000000000 l    df *ABS*	0000000000000000              base64.c
+0000000000168820 l     O .rodata	0000000000000041              vec.0
+0000000000000000 l    df *ABS*	0000000000000000              bif_atts.c
+000000000000f340 l     F .text	000000000000016d              find_attribute
+000000000000f4b0 l     F .text	0000000000000245              bif_sys_mark_start_1
+000000000000f700 l     F .text	0000000000000246              bif_sys_redo_trail_1
+000000000000f950 l     F .text	0000000000000726              bif_attribute_3
+0000000000010080 l     F .text	00000000000008ef              bif_sys_attributed_var_1
+0000000000010970 l     F .text	0000000000000011              bif_sys_unattributed_var_1
+0000000000010990 l     F .text	00000000000009d5              bif_sys_undo_trail_2
+0000000000011370 l     F .text	00000000000009e2              bif_sys_list_attributed_2
+0000000000011d60 l     F .text	0000000000000dda              do_put_atts
+0000000000012b40 l     F .text	00000000000012e4              bif_get_atts_2
+0000000000013e30 l     F .text	0000000000000805              bif_put_atts_2
+0000000000265600 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.0
+0000000000000000 l    df *ABS*	0000000000000000              bif_bboard.c
+00000000000149c0 l     F .text	000000000000097f              bif_bb_b_put_2
+0000000000015340 l     F .text	0000000000000a14              bif_bb_put_2
+0000000000015d60 l     F .text	0000000000000b8c              bif_bb_get_2
+00000000000168f0 l     F .text	0000000000000b03              bif_bb_delete_2
+0000000000017400 l     F .text	0000000000000ccb              bif_bb_update_3
+0000000000000000 l    df *ABS*	0000000000000000              bif_control.c
+0000000000018160 l     F .text	0000000000000278              parse_to_heap
+00000000000188f0 l     F .text	00000000000016f2              throw_error3.part.0
+000000000001ec20 l     F .text	000000000000040c              find_exception_handler
+000000000001e0a0 l     F .text	0000000000000b7f              bif_iso_catch_3
+000000000001a5f0 l     F .text	00000000000003eb              bif_sys_cleanup_if_det_1
+000000000001a9e0 l     F .text	000000000000087a              bif_shift_1
+000000000001b510 l     F .text	000000000000039f              do_soft_if_then_else.isra.0
+0000000000265668 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_cut_1.12
+0000000000265660 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.11
+0000000000265658 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.10
+000000000001b8b0 l     F .text	000000000000004d              bif_if_3
+000000000001b900 l     F .text	00000000000003ed              bif_sys_register_cleanup_1
+0000000000265698 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.18
+0000000000265690 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_fail_0.17
+000000000001bef0 l     F .text	0000000000000769              bif_reset_3
+0000000000265688 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.16
+0000000000265680 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_set_if_var_2.15
+000000000001c660 l     F .text	0000000000000479              bif_iso_negation_1
+0000000000265638 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.6
+0000000000265630 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.5
+0000000000265628 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_fail_0.4
+000000000001cae0 l     F .text	0000000000000131              bif_sys_block_catcher_1
+00000000002656d8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.26
+00000000002656d0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.25
+00000000002656f0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.29
+00000000002656e8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.28
+00000000002656e0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.27
+00000000002656a8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_call_1.20
+00000000002656a0 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_block_catcher_1.19
+00000000002656b8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_call_1.22
+00000000002656b0 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.21
+000000000001f030 l     F .text	00000000000002da              bif_iso_throw_1
+00000000002656c0 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_cleanup_if_det_1.23
+00000000002656c8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_cleanup_if_det_1.24
+000000000001fc10 l     F .text	00000000000007d9              bif_iso_disjunction_2
+0000000000265620 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.3
+0000000000265618 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.2
+0000000000265610 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.1
+0000000000265608 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.0
+00000000002656f8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.30
+0000000000021240 l     F .text	00000000000008ba              bif_ignore_1
+0000000000265678 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.14
+0000000000265670 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.13
+0000000000021b00 l     F .text	0000000000000906              bif_iso_once_1
+0000000000265650 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.9
+0000000000265648 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.8
+0000000000022410 l     F .text	0000000000000b0a              bif_iso_call_n
+0000000000265640 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.7
+0000000000265700 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.31
+0000000000000000 l    df *ABS*	0000000000000000              bif_csv.c
+0000000000000000 l    df *ABS*	0000000000000000              bif_database.c
+0000000000028980 l     F .text	00000000000001c2              db_log
+0000000000028b50 l     F .text	000000000000029f              do_dump_term.part.0.constprop.0
+0000000000028df0 l     F .text	0000000000000174              bif_listing_0
+0000000000028f70 l     F .text	0000000000000315              save_name
+0000000000029290 l     F .text	0000000000000260              bif_erase_1
+00000000000294f0 l     F .text	0000000000000362              bif_sys_retract_on_backtrack_1
+0000000000029860 l     F .text	000000000000041b              bif_sys_dump_term_2
+0000000000029c80 l     F .text	000000000000045d              bif_instance_2
+000000000002a0e0 l     F .text	0000000000000296              module_context
+000000000002a380 l     F .text	000000000000062b              bif_iso_clause_2
+0000000000265708 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.0
+000000000002a9b0 l     F .text	0000000000000019              bif_sys_clause_2
+000000000002a9d0 l     F .text	0000000000000804              bif_iso_asserta_1
+000000000002b1e0 l     F .text	0000000000000812              do_assertz_1
+000000000002ba00 l     F .text	000000000000000a              bif_sys_assertz_1
+000000000002ba10 l     F .text	0000000000000007              bif_iso_assertz_1
+000000000002ba20 l     F .text	0000000000000bac              bif_clause_3
+0000000000265710 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.1
+000000000002c5d0 l     F .text	0000000000000019              bif_sys_clause_3
+000000000002c5f0 l     F .text	0000000000000ee4              do_asserta_2
+000000000002d4e0 l     F .text	00000000000003bb              bif_sys_asserta_2
+000000000002d8a0 l     F .text	00000000000003cb              bif_asserta_2
+000000000002dc70 l     F .text	0000000000000934              bif_listing_1
+000000000002e5b0 l     F .text	0000000000000934              bif_sys_dlisting_1
+000000000002eef0 l     F .text	0000000000000934              bif_sys_xlisting_1
+000000000002f830 l     F .text	0000000000000ee4              do_assertz_2
+0000000000030720 l     F .text	00000000000003bb              bif_sys_assertz_2
+0000000000030ae0 l     F .text	00000000000003cb              bif_assertz_2
+00000000000312a0 l     F .text	0000000000000681              bif_iso_retractall_1
+0000000000031930 l     F .text	000000000000024b              bif_iso_retract_1
+0000000000031d80 l     F .text	0000000000001492              bif_abolish_2
+0000000000033220 l     F .text	00000000000009e8              bif_iso_abolish_1
+0000000000000000 l    df *ABS*	0000000000000000              bif_ffi.c
+0000000000000000 l    df *ABS*	0000000000000000              bif_functions.c
+0000000000039cc0 l     F .text	0000000000000074              bif_iso_epsilon_0
+0000000000039d40 l     F .text	000000000000004a              big_mod
+0000000000039d90 l     F .text	0000000000000074              bif_iso_e_0
+0000000000039e10 l     F .text	0000000000000074              bif_iso_pi_0
+0000000000039e90 l     F .text	0000000000000156              bif_rational_1
+0000000000039ff0 l     F .text	0000000000000196              bif_set_seed_1
+000000000003a190 l     F .text	0000000000000265              bif_get_seed_1
+000000000003a400 l     F .text	0000000000000308              bif_iso_compare_lt_2
+000000000003a710 l     F .text	00000000000002f8              bif_iso_compare_le_2
+000000000003aa10 l     F .text	00000000000002f8              bif_iso_compare_ge_2
+000000000003ad10 l     F .text	00000000000002f8              bif_iso_compare_gt_2
+000000000003b010 l     F .text	00000000000002f8              bif_iso_compare_ne_2
+000000000003b310 l     F .text	00000000000002f8              bif_iso_compare_eq_2
+000000000003b610 l     F .text	000000000000049e              rnd
+000000000003bab0 l     F .text	0000000000000145              bif_random_float_0
+000000000003bc00 l     F .text	0000000000000155              bif_rand_0
+000000000003bd60 l     F .text	0000000000000155              bif_random_integer_0
+000000000003bec0 l     F .text	00000000000002bc              bif_random_1
+000000000003c180 l     F .text	00000000000002fc              bif_rand_1
+000000000003c480 l     F .text	0000000000000733              bif_random_between_3
+000000000003cbc0 l     F .text	00000000000011f9              bif_divmod_4
+000000000003fc00 l     F .text	0000000000000540              bif_msb_1
+0000000000040140 l     F .text	0000000000000540              bif_lsb_1
+0000000000040680 l     F .text	0000000000000540              bif_popcount_1
+0000000000040bc0 l     F .text	0000000000000c51              bif_gcd_2
+0000000000041820 l     F .text	00000000000005a3              bif_log10_1
+0000000000041dd0 l     F .text	0000000000000bcb              bif_log_2
+00000000000429a0 l     F .text	0000000000000c23              bif_rdiv_2
+00000000000435d0 l     F .text	00000000000005cf              bif_denominator_1
+0000000000043ba0 l     F .text	00000000000005bf              bif_numerator_1
+0000000000044160 l     F .text	000000000000055d              bif_iso_float_fractional_part_1
+00000000000446c0 l     F .text	00000000000004fd              bif_iso_float_integer_part_1
+0000000000044bc0 l     F .text	000000000000064f              bif_iso_floor_1
+0000000000045210 l     F .text	000000000000063f              bif_iso_ceiling_1
+0000000000045850 l     F .text	000000000000064f              bif_iso_round_1
+0000000000045ea0 l     F .text	0000000000000657              bif_iso_truncate_1
+0000000000046500 l     F .text	0000000000000a3c              bif_iso_copysign_2
+0000000000046f40 l     F .text	0000000000000abe              bif_iso_atan2_2
+0000000000047a00 l     F .text	000000000000065a              bif_erfc_1
+0000000000048060 l     F .text	000000000000065a              bif_erf_1
+00000000000486c0 l     F .text	000000000000063a              bif_atanh_1
+0000000000048d00 l     F .text	00000000000005d8              bif_acosh_1
+00000000000492e0 l     F .text	00000000000005f8              bif_asinh_1
+00000000000498e0 l     F .text	0000000000000628              bif_tanh_1
+0000000000049f10 l     F .text	0000000000000628              bif_cosh_1
+000000000004a540 l     F .text	0000000000000608              bif_sinh_1
+000000000004ab50 l     F .text	0000000000000608              bif_iso_atan_1
+000000000004b160 l     F .text	00000000000005f8              bif_iso_acos_1
+000000000004b760 l     F .text	00000000000005f8              bif_iso_asin_1
+000000000004bd60 l     F .text	00000000000006b8              bif_iso_tan_1
+000000000004c420 l     F .text	0000000000000608              bif_iso_cos_1
+000000000004ca30 l     F .text	00000000000005f8              bif_iso_sin_1
+000000000004d030 l     F .text	0000000000000698              bif_iso_log_1
+000000000004d6d0 l     F .text	00000000000006de              bif_iso_sqrt_1
+000000000004ddb0 l     F .text	00000000000005e9              bif_iso_exp_1
+000000000004e3a0 l     F .text	0000000000000f35              bif_iso_powi_2
+000000000004f2e0 l     F .text	0000000000000b3e              bif_iso_pow_2
+000000000004fe20 l     F .text	0000000000000510              bif_iso_neg_1
+0000000000050330 l     F .text	0000000000000afe              bif_iso_shr_2
+0000000000050e30 l     F .text	0000000000000b4f              bif_iso_shl_2
+0000000000051980 l     F .text	0000000000000c18              bif_iso_or_2
+00000000000525a0 l     F .text	0000000000000c38              bif_iso_and_2
+00000000000531e0 l     F .text	0000000000000c38              bif_iso_xor_2
+0000000000053e20 l     F .text	0000000000000ea2              bif_iso_min_2
+0000000000054cd0 l     F .text	0000000000000ed2              bif_iso_max_2
+0000000000055bb0 l     F .text	0000000000000c52              bif_iso_rem_2
+0000000000056810 l     F .text	0000000000000e95              bif_iso_mod_2
+00000000000576b0 l     F .text	0000000000000e2d              bif_iso_div_2
+00000000000584e0 l     F .text	0000000000001145              bif_iso_divint_2
+0000000000059630 l     F .text	0000000000000e85              bif_iso_divide_2
+000000000005a4c0 l     F .text	00000000000011e1              bif_iso_mul_2
+000000000005b6b0 l     F .text	00000000000011c9              bif_iso_sub_2
+000000000005c880 l     F .text	0000000000000570              bif_iso_sign_1
+000000000005cdf0 l     F .text	000000000000074f              bif_iso_abs_1
+000000000005d540 l     F .text	000000000000077f              bif_iso_negative_1
+000000000005dcc0 l     F .text	00000000000004be              bif_iso_positive_1
+000000000005e180 l     F .text	0000000000000663              bif_iso_is_2
+000000000005e7f0 l     F .text	0000000000000b86              bif_iso_numeric_lt_2
+000000000005f380 l     F .text	0000000000000b7c              bif_iso_numeric_le_2
+000000000005ff00 l     F .text	0000000000000b86              bif_iso_numeric_ge_2
+0000000000060a90 l     F .text	0000000000000bac              bif_iso_numeric_gt_2
+0000000000061640 l     F .text	0000000000000ba4              bif_iso_numeric_ne_2
+00000000000621f0 l     F .text	0000000000000bb4              bif_iso_numeric_eq_2
+0000000000000000 l    df *ABS*	0000000000000000              bif_maps.c
+0000000000062e00 l     F .text	0000000000000005              fake_strcmp
+0000000000062e10 l     F .text	000000000000018a              bif_is_engine_1
+0000000000062fa0 l     F .text	00000000000001b9              bif_engine_self_1
+0000000000063160 l     F .text	000000000000020a              bif_engine_yield_1
+0000000000063370 l     F .text	00000000000001e2              bif_engine_destroy_1
+0000000000063560 l     F .text	00000000000001da              bif_map_close_1
+0000000000063740 l     F .text	000000000000024a              bif_engine_fetch_1
+0000000000063990 l     F .text	000000000000039a              bif_engine_post_2
+0000000000063d30 l     F .text	00000000000004e4              bif_engine_next_2
+0000000000064220 l     F .text	0000000000000436              bif_map_count_2
+0000000000064660 l     F .text	00000000000009f9              bif_map_set_3
+0000000000065060 l     F .text	0000000000000b56              bif_map_get_3
+0000000000065bc0 l     F .text	00000000000005f0              bif_map_del_2
+00000000000661b0 l     F .text	00000000000007b9              bif_map_list_2
+0000000000066970 l     F .text	00000000000017c4              bif_engine_create_4
+0000000000068140 l     F .text	0000000000000e65              bif_map_create_2
+0000000000000000 l    df *ABS*	0000000000000000              bif_os.c
+0000000000068fc0 l     F .text	0000000000000085              bif_sys_timer_0
+0000000000069050 l     F .text	0000000000000090              bif_now_0
+00000000000690e0 l     F .text	00000000000001df              bif_sys_elapsed_0
+00000000000692c0 l     F .text	00000000000006a6              bif_get_unbuffered_char_1
+0000000000069970 l     F .text	0000000000000285              bif_now_1
+0000000000069c00 l     F .text	00000000000002fc              bif_cpu_time_1
+0000000000069f00 l     F .text	00000000000002b5              bif_get_time_1
+000000000006a1c0 l     F .text	00000000000002ad              bif_wall_time_1
+000000000006a470 l     F .text	00000000000002bb              bif_sys_alarm_1
+000000000006a730 l     F .text	000000000000030d              bif_busy_1
+000000000006aa40 l     F .text	00000000000002e6              bif_unsetenv_1
+000000000006ad30 l     F .text	00000000000002f6              bif_shell_1
+000000000006b030 l     F .text	00000000000004e1              bif_get_unbuffered_code_1
+000000000006b520 l     F .text	0000000000000450              bif_time_1
+0000000000309828 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_elapsed_0.1
+0000000000309820 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.0
+000000000006b970 l     F .text	00000000000003b5              bif_sleep_1
+000000000006bd30 l     F .text	0000000000000588              bif_shell_2
+000000000006c2c0 l     F .text	00000000000005ee              bif_setenv_2
+000000000006c8b0 l     F .text	000000000000077f              bif_getenv_2
+000000000006d030 l     F .text	0000000000000fb3              bif_date_time_6
+000000000006dff0 l     F .text	0000000000001114              bif_date_time_7
+0000000000000000 l    df *ABS*	0000000000000000              bif_posix.c
+000000000006f200 l     F .text	000000000000012a              deref.part.0
+000000000006f330 l     F .text	0000000000000245              bif_posix_getpid_1
+000000000006f580 l     F .text	0000000000000235              bif_posix_getppid_1
+000000000006f7c0 l     F .text	0000000000000235              bif_posix_time_1
+000000000006fa00 l     F .text	0000000000000235              bif_posix_fork_1
+000000000006fc40 l     F .text	0000000000000586              bif_posix_localtime_2
+00000000000701d0 l     F .text	0000000000000576              bif_posix_gmtime_2
+0000000000070750 l     F .text	000000000000063f              bif_posix_ctime_2
+0000000000070d90 l     F .text	0000000000000804              bif_posix_strptime_3
+00000000000715a0 l     F .text	0000000000000eeb              bif_posix_mktime_2
+0000000000072490 l     F .text	00000000000014be              bif_posix_strftime_3
+0000000000000000 l    df *ABS*	0000000000000000              bif_predicates.c
+00000000000739a0 l     F .text	000000000000001f              bif_trace_0
+00000000000739c0 l     F .text	0000000000000018              bif_sys_ops_dirty_0
+00000000000739e0 l     F .text	0000000000000020              bif_abort_0
+0000000000073b60 l     F .text	0000000000000a35              do_template
+00000000000745a0 l     F .text	00000000000001ee              search_functor
+0000000000074790 l     F .text	000000000000012a              bif_help_0
+00000000000748c0 l     F .text	0000000000000688              load_ops
+0000000000074f50 l     F .text	0000000000000013              bif_sys_load_ops_0
+0000000000074f70 l     F .text	0000000000000c6f              load_flags
+0000000000075be0 l     F .text	0000000000000013              bif_sys_load_flags_0
+0000000000075c00 l     F .text	00000000000000d2              bif_using_0
+0000000000075ce0 l     F .text	000000000000010a              deref.part.0
+0000000000075df0 l     F .text	0000000000000aec              do_must_be_2
+00000000000768e0 l     F .text	0000000000000158              unshare_cell_
+0000000000076a40 l     F .text	0000000000000264              format_template.part.0
+0000000000076cb0 l     F .text	00000000000000c9              format_property.constprop.0
+0000000000076d80 l     F .text	0000000000000184              format_property.constprop.1
+0000000000076f10 l     F .text	000000000000019c              format_property.constprop.2
+00000000000770b0 l     F .text	0000000000000144              format_property.constprop.4
+0000000000077200 l     F .text	00000000000001da              format_property.constprop.5
+00000000000773e0 l     F .text	0000000000000239              format_template.part.0.constprop.0
+0000000000077620 l     F .text	000000000000004d              share_cell_
+0000000000077670 l     F .text	000000000000002a              make_string.isra.0
+00000000000776a0 l     F .text	0000000000000034              bif_iso_repeat_0
+00000000000776e0 l     F .text	00000000000001d8              flag_value_error
+00000000003098a0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_add_2.15
+00000000000778c0 l     F .text	00000000000001f0              answer_write_options_error
+00000000003098a8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_add_2.16
+0000000000077ab0 l     F .text	0000000000000123              get_first_arg
+0000000000077be0 l     F .text	0000000000000186              bif_iso_var_1
+0000000000077d70 l     F .text	0000000000000176              bif_iso_nonvar_1
+0000000000077ef0 l     F .text	0000000000000176              bif_iso_number_1
+0000000000078070 l     F .text	000000000000016b              get_next_arg
+00000000000781e0 l     F .text	000000000000013a              bif_iso_acyclic_term_1
+0000000000078320 l     F .text	000000000000013a              bif_cyclic_term_1
+0000000000078460 l     F .text	0000000000000197              bif_iso_atom_1
+0000000000078600 l     F .text	000000000000016f              bif_string_1
+0000000000078770 l     F .text	0000000000000167              bif_is_list_1
+00000000000788e0 l     F .text	0000000000000197              bif_iso_callable_1
+0000000000078a80 l     F .text	000000000000016f              bif_iso_atomic_1
+0000000000078bf0 l     F .text	0000000000000162              bif_iso_ground_1
+0000000000078d60 l     F .text	0000000000000197              bif_iso_compound_1
+0000000000078f00 l     F .text	00000000000001bb              bif_is_partial_list_1
+00000000000790c0 l     F .text	00000000000001bb              bif_is_list_or_partial_list_1
+0000000000079280 l     F .text	00000000000001eb              bif_sys_is_partial_string_1
+0000000000079610 l     F .text	00000000000001c6              bif_meta_predicate_1
+00000000000797e0 l     F .text	00000000000001d6              bif_iso_halt_1
+0000000000079c20 l     F .text	0000000000000195              bif_use_module_1
+0000000000079dc0 l     F .text	00000000000002d6              bif_sys_list_1
+000000000007a0a0 l     F .text	00000000000002db              bif_sys_counter_1
+000000000007a380 l     F .text	0000000000000372              bif_sys_modules_1
+000000000007aa10 l     F .text	0000000000000318              bif_iso_unify_with_occurs_check_2
+000000000007b350 l     F .text	00000000000003aa              bif_module_help_1
+000000000007ba40 l     F .text	00000000000002db              bif_multifile_1
+000000000007bd20 l     F .text	000000000000040b              bif_sys_clone_term_2
+000000000007c130 l     F .text	00000000000003ea              bif_use_module_2
+000000000007c520 l     F .text	000000000000036c              bif_current_module_1
+000000000007c890 l     F .text	000000000000051f              bif_sys_first_non_octet_2
+000000000007cdb0 l     F .text	00000000000006a3              bif_term_hash_2
+000000000007d460 l     F .text	00000000000065a0              load_properties
+0000000000083a00 l     F .text	000000000000001a              bif_sys_load_properties_0
+0000000000083a20 l     F .text	00000000000002e9              do_b64decode_2.isra.0
+0000000000083d10 l     F .text	00000000000006f6              bif_source_info_2
+0000000000084410 l     F .text	0000000000000388              bif_must_be_2
+00000000000847a0 l     F .text	000000000000065c              bif_help_1
+0000000000084e00 l     F .text	00000000000006b7              bif_iso_notunifiable_2
+0000000000309898 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_unify_2.14
+0000000000309890 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.13
+0000000000309888 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_fail_0.12
+00000000000854c0 l     F .text	000000000000077a              bif_iso_term_variables_2
+0000000000085c40 l     F .text	000000000000094d              bif_term_singletons_2
+0000000000086590 l     F .text	00000000000004a7              bif_sys_incr_2
+0000000000086a40 l     F .text	0000000000000816              bif_help_2
+0000000000087260 l     F .text	0000000000000551              bif_prolog_load_context_2
+00000000000877c0 l     F .text	00000000000006c0              bif_sys_countall_2
+0000000000309880 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_counter_1.11
+0000000000309878 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_fail_0.10
+0000000000087e80 l     F .text	00000000000005f3              bif_module_info_2
+0000000000088480 l     F .text	0000000000000936              bif_iso_char_code_2
+0000000000088dc0 l     F .text	0000000000000775              bif_module_help_2
+0000000000089540 l     F .text	0000000000000605              bif_crypto_n_random_bytes_2
+0000000000309870 l     O .bss	0000000000000001              s_seed.9
+0000000000089b50 l     F .text	00000000000009e0              bif_sys_unifiable_3
+0000000000309868 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_unify_2.8
+00000000003098c8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.20
+00000000003098c0 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.19
+000000000008aca0 l     F .text	0000000000000b88              bif_load_text_2
+000000000008b830 l     F .text	00000000000006f5              bif_string_length_2
+000000000008bf30 l     F .text	0000000000000421              bif_sys_gt_2
+000000000008c360 l     F .text	00000000000007ba              bif_iso_compare_3
+000000000008cb20 l     F .text	0000000000000431              bif_sys_ne_2
+000000000008cf60 l     F .text	0000000000000429              bif_sys_lt_2
+000000000008d390 l     F .text	0000000000000bc8              bif_module_help_3
+000000000008df60 l     F .text	0000000000000831              bif_call_nth_2
+0000000000309850 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_incr_2.5
+0000000000309848 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.4
+0000000000309840 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_ne_2.3
+0000000000309838 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.2
+0000000000309830 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.1
+000000000008e7a0 l     F .text	0000000000000bd3              bif_can_be_2
+000000000008f380 l     F .text	00000000000004eb              bif_offset_2
+0000000000309860 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_gt_2.7
+000000000008f870 l     F .text	00000000000004fb              bif_limit_2
+0000000000309858 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_lt_2.6
+000000000008fd70 l     F .text	00000000000008df              bif_iso_arg_3
+0000000000090650 l     F .text	0000000000000a4b              bif_sys_memberchk_3
+00000000000910a0 l     F .text	000000000000085f              bif_sys_evaluable_property_2
+0000000000091900 l     F .text	0000000000000c60              bif_iso_findall_3
+00000000003098b8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_queue_1.18
+00000000003098b0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_fail_0.17
+0000000000092560 l     F .text	0000000000000b33              bif_split_4
+00000000000930a0 l     F .text	0000000000000d3e              bif_statistics_2
+0000000000093de0 l     F .text	00000000000008d2              bif_iso_current_rule_1
+00000000000946c0 l     F .text	0000000000000539              bif_uuid_1
+0000000000094c00 l     F .text	0000000000001395              bif_iso_number_codes_2
+0000000000095fa0 l     F .text	0000000000001452              bif_iso_number_chars_2
+0000000000097400 l     F .text	0000000000000acf              bif_sys_skip_max_list_4
+0000000000097ed0 l     F .text	000000000000123f              bif_iso_atom_codes_2
+0000000000099110 l     F .text	0000000000000806              bif_string_upper_2
+0000000000099920 l     F .text	00000000000007f6              bif_string_lower_2
+000000000009a120 l     F .text	0000000000000b92              bif_iso_functor_3
+000000000009b1e0 l     F .text	0000000000001796              bif_char_type_2
+000000000009c980 l     F .text	0000000000000b04              bif_atomic_concat_3
+000000000009d490 l     F .text	0000000000000749              bif_iso_copy_term_nat_2
+000000000009dbe0 l     F .text	0000000000000739              bif_iso_copy_term_2
+000000000009e320 l     F .text	0000000000000739              bif_iso_duplicate_term_2
+000000000009ea60 l     F .text	0000000000000db3              do_op
+000000000009f820 l     F .text	0000000000000b14              bif_iso_op_3
+00000000000a0340 l     F .text	00000000000007bc              bif_numlist_3
+00000000000a0b00 l     F .text	0000000000000b35              bif_split_string_4
+00000000000a1640 l     F .text	0000000000000f9a              bif_can_be_4
+00000000000a25e0 l     F .text	000000000000083e              bif_strip_module_3
+00000000000a2e20 l     F .text	000000000000100d              bif_replace_4
+00000000000a3e30 l     F .text	00000000000008c0              bif_between_3
+00000000000a46f0 l     F .text	0000000000001876              bif_sys_current_prolog_flag_2
+00000000000a5f70 l     F .text	0000000000000792              bif_sys_det_length_rundown_2
+00000000000a6710 l     F .text	0000000000000ee7              bif_atomic_list_concat_3
+00000000000a7600 l     F .text	0000000000002d35              bif_iso_set_prolog_flag_2
+00000000000aa340 l     F .text	0000000000002014              bif_hex_bytes_2
+00000000000ac360 l     F .text	00000000000016f1              do_atom_concat_3
+00000000000ada60 l     F .text	000000000000170f              bif_iso_atom_concat_3.part.0
+00000000000af170 l     F .text	0000000000000015              bif_iso_atom_concat_3
+00000000000af190 l     F .text	00000000000009fe              bif_sys_integer_in_radix_3
+00000000000afb90 l     F .text	0000000000000a4b              bif_iso_current_predicate_1
+00000000000b05e0 l     F .text	0000000000000901              bif_hex_chars_2
+00000000000b0ef0 l     F .text	0000000000001b6a              bif_must_be_4
+00000000000b2a60 l     F .text	00000000000007c1              bif_atom_upper_2
+00000000000b3230 l     F .text	00000000000007b1              bif_atom_lower_2
+00000000000b39f0 l     F .text	00000000000006e1              bif_iso_atom_length_2
+00000000000b40e0 l     F .text	00000000000017f2              bif_iso_sub_string_5
+00000000000b58e0 l     F .text	00000000000007a0              bif_iso_sub_atom_5
+00000000000b6080 l     F .text	00000000000016b3              bif_iso_atom_chars_2
+00000000000b7740 l     F .text	0000000000000e1e              bif_string_concat_3
+00000000000b8560 l     F .text	00000000000011a2              bif_iso_univ_2
+00000000000b9710 l     F .text	0000000000000ec4              bif_base64_3
+00000000000ba5e0 l     F .text	0000000000001375              bif_string_codes_2
+00000000000bb960 l     F .text	00000000000009bb              bif_octal_chars_2
+00000000000bc320 l     F .text	0000000000000c4f              bif_sys_predicate_property_2
+00000000000bd220 l     F .text	0000000000000c8c              bif_urlenc_3
+0000000000000000 l    df *ABS*	0000000000000000              bif_sort.c
+00000000000be480 l     F .text	00000000000003a0              nodecmp_
+00000000000be820 l     F .text	0000000000000380              nodecmp
+00000000000beba0 l     F .text	00000000000008b2              nodesort.constprop.0
+00000000000bf460 l     F .text	0000000000000c83              bif_iso_msort_2
+00000000000c00f0 l     F .text	0000000000000c73              bif_iso_sort_2
+00000000000c0d70 l     F .text	0000000000001fc0              bif_sort_4
+00000000000c2d30 l     F .text	0000000000000e00              bif_iso_keysort_2
+0000000000000000 l    df *ABS*	0000000000000000              bif_sregex.c
+0000000000000000 l    df *ABS*	0000000000000000              bif_streams.c
+00000000000c7b00 l     F .text	00000000000000d1              fixup
+00000000000c7be0 l     F .text	000000000000009d              bif_sys_capture_error_0
+00000000000c7c80 l     F .text	000000000000009d              bif_sys_capture_output_0
+00000000000c7d20 l     F .text	0000000000000005              fake_strcmp
+00000000000c7d30 l     F .text	00000000000000be              bif_edin_told_0
+00000000000c7df0 l     F .text	00000000000000be              bif_edin_seen_0
+00000000000c7eb0 l     F .text	0000000000000038              bif_make_0
+00000000000c7ef0 l     F .text	0000000000000133              bif_iso_at_end_of_stream_0
+00000000000c8030 l     F .text	0000000000000818              add_stream_properties
+00000000000c8850 l     F .text	000000000000011a              deref.part.0
+00000000000c8970 l     F .text	0000000000000315              do_unload_file
+00000000000c8c90 l     F .text	00000000000000d1              bif_iso_nl_0
+00000000000c8d70 l     F .text	0000000000000158              unshare_cell_
+00000000000c8ed0 l     F .text	000000000000170c              parse_write_params.part.0
+00000000000ca5e0 l     F .text	0000000000000137              parse_host.constprop.0
+00000000000ca720 l     F .text	0000000000000071              bif_iso_flush_output_0
+00000000000ca7a0 l     F .text	00000000000000a4              dup_cells.isra.0
+00000000000ca850 l     F .text	000000000000084f              do_parse_url.isra.0
+00000000000cb0a0 l     F .text	0000000000000133              get_first_arg
+00000000000cb1e0 l     F .text	0000000000000133              get_next_arg
+00000000000cb320 l     F .text	00000000000001b6              bif_process_kill_1
+00000000000cb4e0 l     F .text	00000000000001b6              bif_process_wait_1
+00000000000cb6a0 l     F .text	00000000000001b2              bif_portray_clause_1
+00000000000cb860 l     F .text	0000000000000290              bif_unget_byte_1
+00000000000cbaf0 l     F .text	00000000000001d6              bif_is_absolute_file_name_1
+00000000000cbcd0 l     F .text	000000000000025f              bif_iso_write_1
+00000000000cbf30 l     F .text	0000000000000248              bif_iso_write_canonical_1
+00000000000cc180 l     F .text	000000000000026f              bif_iso_writeq_1
+00000000000cc3f0 l     F .text	00000000000002d8              bif_unget_code_1
+00000000000cc6d0 l     F .text	000000000000031b              bif_iso_put_byte_1
+00000000000cc9f0 l     F .text	0000000000000324              bif_iso_put_code_1
+00000000000ccd20 l     F .text	0000000000000317              bif_edin_redo_1
+00000000000cd040 l     F .text	00000000000002c8              bif_sys_put_chars_1
+00000000000cd310 l     F .text	0000000000000396              bif_getlines_1
+00000000000cd6b0 l     F .text	00000000000003b9              bif_edin_tab_1
+00000000000cda70 l     F .text	00000000000002ac              bif_chdir_1
+00000000000cdd20 l     F .text	00000000000003d2              bif_exists_directory_1
+00000000000ce100 l     F .text	00000000000003f2              bif_exists_file_1
+00000000000ce500 l     F .text	00000000000003f4              bif_delete_file_1
+00000000000ce900 l     F .text	00000000000003c4              bif_unget_char_1
+00000000000cecd0 l     F .text	0000000000000414              bif_make_directory_1
+00000000000cf0f0 l     F .text	00000000000004af              bif_iso_peek_byte_1
+00000000000cf5a0 l     F .text	00000000000004fd              bif_make_directory_path_1
+00000000000cfaa0 l     F .text	0000000000000506              bif_iso_peek_code_1
+00000000000cffb0 l     F .text	0000000000000504              bif_iso_get_byte_1
+00000000000d04c0 l     F .text	0000000000000583              bif_unload_files_1
+00000000000d0a50 l     F .text	00000000000005d8              bif_iso_get_code_1
+00000000000d1030 l     F .text	0000000000000598              bif_iso_put_char_1
+00000000000d15d0 l     F .text	0000000000000609              bif_iso_peek_char_1
+00000000000d1be0 l     F .text	00000000000006ea              bif_iso_get_char_1
+00000000000d22d0 l     F .text	0000000000000819              bif_rename_file_2
+00000000000d2af0 l     F .text	000000000000096f              bif_copy_file_2
+00000000000d3460 l     F .text	0000000000000464              bif_getline_1
+00000000000d38d0 l     F .text	00000000000006af              bif_time_file_2
+00000000000d3f80 l     F .text	00000000000006af              bif_size_file_2
+00000000000d4630 l     F .text	00000000000003d8              bif_process_kill_2
+00000000000d4a10 l     F .text	00000000000006bc              bif_savefile_2
+00000000000d50d0 l     F .text	0000000000000471              bif_sys_gsl_vector_size_2
+00000000000d5550 l     F .text	0000000000000bab              bif_iso_write_term_2
+00000000000d6100 l     F .text	00000000000004f3              bif_sys_readline_2
+00000000000d6600 l     F .text	000000000000075b              bif_getfile_2
+00000000000d6d60 l     F .text	000000000000085d              bif_loadfile_2
+00000000000d75c0 l     F .text	00000000000007ce              bif_directory_files_2
+00000000000d7d90 l     F .text	000000000000063a              get_terminator
+00000000000d83d0 l     F .text	000000000000097e              bif_getfile_3
+00000000000d8d50 l     F .text	0000000000000b6d              bif_write_canonical_to_chars_3
+00000000000d98c0 l     F .text	0000000000000b7d              bif_write_term_to_atom_3
+00000000000da440 l     F .text	00000000000006fc              bif_working_directory_2
+00000000000dab40 l     F .text	0000000000000497              bif_sys_capture_error_to_chars_1
+00000000000dafe0 l     F .text	0000000000000477              bif_sys_capture_output_to_chars_1
+00000000000db460 l     F .text	0000000000000477              bif_sys_capture_error_to_atom_1
+00000000000db8e0 l     F .text	0000000000000477              bif_sys_capture_output_to_atom_1
+00000000000dbd60 l     F .text	0000000000000a36              bif_process_wait_2
+00000000000dc7a0 l     F .text	0000000000001097              bif_read_file_to_string_3
+00000000000dd840 l     F .text	0000000000000b1b              bif_write_term_to_chars_3
+00000000000de360 l     F .text	0000000000000d5e              bif_access_file_2
+00000000000df0c0 l     F .text	000000000000107f              bif_absolute_file_name_3
+00000000000e0140 l     F .text	0000000000000456              bif_edin_telling_1
+00000000000e05a0 l     F .text	00000000000004ad              bif_edin_seeing_1
+00000000000e0a50 l     F .text	00000000000006ee              bif_sys_gsl_matrix_size_3
+00000000000e1140 l     F .text	00000000000013c7              do_parse_parts.isra.0
+00000000000e2510 l     F .text	000000000000045c              bif_http_location_2
+00000000000e2970 l     F .text	000000000000046a              bif_parse_url_2
+00000000000e2ee0 l     F .text	000000000000025d              bif_is_stream_1
+00000000000e3220 l     F .text	0000000000000547              bif_sys_gsl_matrix_read_2
+00000000000e3770 l     F .text	000000000000082a              bif_sys_gsl_matrix_alloc_3
+00000000000e3fa0 l     F .text	0000000000000499              bif_sys_gsl_matrix_write_2
+00000000000e4440 l     F .text	000000000000050b              bif_sys_gsl_vector_read_2
+00000000000e4950 l     F .text	0000000000000535              bif_sys_gsl_vector_alloc_2
+00000000000e4e90 l     F .text	00000000000004cf              bif_sys_gsl_vector_write_2
+00000000000e5360 l     F .text	00000000000004fb              bif_sys_bwrite_2
+00000000000e5860 l     F .text	00000000000001fa              bif_sys_bflush_1
+00000000000e5a60 l     F .text	0000000000000aa3              bif_sys_bread_3
+00000000000e6510 l     F .text	0000000000000a02              bif_sys_get_chars_3
+00000000000e6f20 l     F .text	00000000000003dc              bif_sys_stream_to_file_2
+00000000000e7300 l     F .text	0000000000000571              bif_read_line_to_string_2
+00000000000e7880 l     F .text	0000000000000519              bif_sys_put_chars_2
+00000000000e7da0 l     F .text	000000000000083e              bif_getlines_3
+00000000000e85e0 l     F .text	0000000000000596              bif_getlines_2
+00000000000e8b80 l     F .text	00000000000007c3              bif_getline_3
+00000000000e9350 l     F .text	0000000000000531              bif_getline_2
+00000000000e9890 l     F .text	00000000000008c9              bif_set_stream_2
+00000000000ea160 l     F .text	00000000000004f1              bif_unget_byte_2
+00000000000ea660 l     F .text	0000000000000572              bif_unget_code_2
+00000000000eabe0 l     F .text	00000000000006d3              bif_unget_char_2
+00000000000eb2c0 l     F .text	000000000000038a              bif_portray_clause_2
+00000000000eb650 l     F .text	000000000000059a              bif_edin_tab_2
+00000000000ebbf0 l     F .text	00000000000004bf              bif_edin_redo_2
+00000000000ec0b0 l     F .text	0000000000001360              do_stream_property
+00000000000ed410 l     F .text	000000000000022a              bif_iso_set_output_1
+00000000000ed640 l     F .text	000000000000023c              bif_iso_set_input_1
+00000000000ed880 l     F .text	000000000000023d              bif_iso_current_error_1
+00000000000edac0 l     F .text	000000000000023d              bif_iso_current_output_1
+00000000000edd00 l     F .text	000000000000023d              bif_iso_current_input_1
+00000000000edf40 l     F .text	0000000000000703              bif_iso_peek_byte_2
+00000000000ee650 l     F .text	0000000000000748              bif_iso_peek_code_2
+00000000000eeda0 l     F .text	000000000000086f              bif_iso_peek_char_2
+00000000000ef610 l     F .text	000000000000078b              bif_iso_get_byte_2
+00000000000efda0 l     F .text	0000000000000805              bif_iso_get_code_2
+00000000000f05b0 l     F .text	0000000000000921              bif_iso_get_char_2
+00000000000f0ee0 l     F .text	000000000000056e              bif_iso_put_byte_2
+00000000000f1450 l     F .text	0000000000000608              bif_iso_put_code_2
+00000000000f1a60 l     F .text	00000000000007d0              bif_iso_put_char_2
+00000000000f2230 l     F .text	0000000000000272              bif_iso_flush_output_1
+00000000000f24b0 l     F .text	00000000000003ba              bif_iso_set_stream_position_2
+00000000000f2870 l     F .text	000000000000037c              bif_iso_at_end_of_stream_1
+00000000000f2bf0 l     F .text	00000000000002d2              bif_iso_nl_1
+00000000000f2ed0 l     F .text	000000000000050c              bif_iso_write_2
+00000000000f33e0 l     F .text	00000000000004cc              bif_iso_writeq_2
+00000000000f38b0 l     F .text	00000000000004bc              bif_iso_write_canonical_2
+00000000000f3d70 l     F .text	000000000000084f              bif_alias_2
+00000000000f45c0 l     F .text	0000000000000897              bif_accept_2
+00000000000f4e60 l     F .text	0000000000000743              bif_iso_stream_property_2
+00000000000f55b0 l     F .text	0000000000000e5d              bif_iso_write_term_3
+00000000000f64c0 l     F .text	000000000000136f              bif_server_3
+00000000000f7830 l     F .text	00000000000014d9              bif_client_5
+00000000000f8d10 l     F .text	0000000000001481              bif_popen_4
+00000000000fa1a0 l     F .text	0000000000002a9d              bif_process_create_3
+00000000000fcc40 l     F .text	0000000000001edb              bif_iso_open_4
+00000000000ff490 l     F .text	0000000000000923              bif_iso_close_2
+00000000003098d8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_unify_2.1
+00000000003098d0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_unify_2.0
+0000000000102750 l     F .text	0000000000000ce1              bif_sys_read_term_from_chars_4
+0000000000103440 l     F .text	0000000000000993              bif_read_term_from_chars_3
+0000000000103de0 l     F .text	000000000000080c              bif_read_term_from_atom_3
+00000000001045f0 l     F .text	00000000000004c8              bif_iso_read_2
+0000000000104ac0 l     F .text	0000000000000217              bif_iso_read_1
+0000000000104ce0 l     F .text	0000000000000754              bif_iso_read_term_3
+0000000000105440 l     F .text	00000000000004cf              bif_iso_read_term_2
+0000000000105df0 l     F .text	00000000000007f7              bif_load_files_2
+0000000000000000 l    df *ABS*	0000000000000000              bif_tasks.c
+0000000000106600 l     F .text	0000000000000016              bif_end_wait_0
+0000000000106620 l     F .text	0000000000000367              bif_send_1
+0000000000106990 l     F .text	0000000000000041              bif_fork_0
+00000000001069e0 l     F .text	00000000000002e2              bif_await_0
+0000000000106cd0 l     F .text	000000000000021e              bif_wait_0
+0000000000106ef0 l     F .text	0000000000000331              bif_call_task_n
+0000000000107230 l     F .text	00000000000000a4              bif_yield_0
+00000000001072e0 l     F .text	00000000000001a6              bif_sys_set_future_1
+0000000000107490 l     F .text	00000000000001b6              bif_sys_cancel_future_1
+0000000000107650 l     F .text	000000000000024a              bif_recv_1
+0000000000000000 l    df *ABS*	0000000000000000              bif_threads.c
+0000000000000000 l    df *ABS*	0000000000000000              compile.c
+0000000000107ab0 l     F .text	0000000000001dd0              compile_term
+0000000000309c90 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_fail_on_retry_1.34
+0000000000309c88 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.33
+0000000000309ca8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_fail_on_retry_1.37
+0000000000309ca0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.36
+0000000000309c98 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.35
+0000000000309cc0 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_succeed_on_retry_1.40
+0000000000309cb8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_jump_1.39
+0000000000309cb0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.38
+0000000000309ce8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_succeed_on_retry_2.45
+0000000000309ce0 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_cut_1.44
+0000000000309cd8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.43
+0000000000309cd0 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_jump_1.42
+0000000000309cc8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.41
+0000000000309c80 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_succeed_on_retry_2.32
+0000000000309c78 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.31
+0000000000309c70 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_jump_1.30
+0000000000309c68 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.29
+0000000000309c60 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_fail_on_retry_1.28
+0000000000309c58 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_call_check_1.27
+0000000000309c50 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.26
+0000000000309bc0 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_succeed_on_retry_2.8
+0000000000309bb8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_unify_2.7
+0000000000309bb0 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.6
+0000000000309ba8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_fail_0.5
+0000000000309ba0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.4
+0000000000309be8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_succeed_on_retry_2.13
+0000000000309be0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.12
+0000000000309bd8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.11
+0000000000309bd0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_fail_0.10
+0000000000309bc8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.9
+0000000000309c48 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_fail_on_retry_1.25
+0000000000309c40 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_call_check_1.24
+0000000000309c38 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.23
+0000000000309b98 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_module_1.3
+0000000000309b90 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_module_1.2
+0000000000309b88 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_call_check_1.1
+0000000000309b80 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_module_1.0
+0000000000309d10 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_succeed_on_retry_2.50
+0000000000309d08 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.49
+0000000000309d00 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.48
+0000000000309cf8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_jump_1.47
+0000000000309cf0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.46
+0000000000309c10 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_succeed_on_retry_2.18
+0000000000309c08 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_call_check_1.17
+0000000000309c00 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.16
+0000000000309bf8 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.15
+0000000000309bf0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.14
+0000000000309c30 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_fail_on_retry_1.22
+0000000000309c28 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_call_check_1.21
+0000000000309c20 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.20
+0000000000309c18 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.19
+0000000000000000 l    df *ABS*	0000000000000000              heap.c
+0000000000109980 l     F .text	0000000000000d7a              clone_term_to_tmp_internal
+000000000010a700 l     F .text	0000000000000d3a              clone_term_to_tmp_internal.constprop.2
+000000000010b440 l     F .text	0000000000000d41              clone_term_to_tmp_internal.constprop.1
+000000000010c190 l     F .text	0000000000000d31              clone_term_to_tmp_internal.constprop.0
+000000000010e110 l     F .text	0000000000000313              copy_term_to_tmp_with_replacement
+000000000010db40 l     F .text	00000000000004fe              copy_vars
+0000000000000000 l    df *ABS*	0000000000000000              history.c
+000000000010f400 l     F .text	0000000000000020              functor_name_completion
+000000000010f420 l     F .text	000000000000076d              functor_name_generator
+0000000000309da8 l     O .bss	0000000000000004              s_atts_len.36
+0000000000309dac l     O .bss	0000000000000004              s_atts_list_index.37
+0000000000309da4 l     O .bss	0000000000000004              s_bboard_list_index.35
+0000000000309da0 l     O .bss	0000000000000004              s_bboard_len.34
+0000000000309d94 l     O .bss	0000000000000004              s_csv_list_index.31
+0000000000309d90 l     O .bss	0000000000000004              s_csv_len.30
+0000000000309d8c l     O .bss	0000000000000004              s_database_list_index.29
+0000000000309d88 l     O .bss	0000000000000004              s_database_len.28
+0000000000309d84 l     O .bss	0000000000000004              s_evaluable_list_index.27
+0000000000309d80 l     O .bss	0000000000000004              s_evaluable_len.26
+0000000000309d7c l     O .bss	0000000000000004              s_ffi_list_index.25
+0000000000309d78 l     O .bss	0000000000000004              s_ffi_len.24
+0000000000309d74 l     O .bss	0000000000000004              s_format_list_index.21
+0000000000309d70 l     O .bss	0000000000000004              s_format_len.20
+0000000000309d6c l     O .bss	0000000000000004              s_iso_list_index.19
+0000000000309d68 l     O .bss	0000000000000004              s_iso_len.18
+0000000000309d4c l     O .bss	0000000000000004              s_maps_list_index.11
+0000000000309d48 l     O .bss	0000000000000004              s_maps_len.10
+0000000000309d64 l     O .bss	0000000000000004              s_other_list_index.17
+0000000000309d60 l     O .bss	0000000000000004              s_other_len.16
+0000000000309d5c l     O .bss	0000000000000004              s_os_list_index.15
+0000000000309d58 l     O .bss	0000000000000004              s_os_len.14
+0000000000309d9c l     O .bss	0000000000000004              s_control_list_index.33
+0000000000309d98 l     O .bss	0000000000000004              s_control_len.32
+0000000000309d54 l     O .bss	0000000000000004              s_posix_list_index.13
+0000000000309d50 l     O .bss	0000000000000004              s_posix_len.12
+0000000000309d44 l     O .bss	0000000000000004              s_sort_list_index.9
+0000000000309d40 l     O .bss	0000000000000004              s_sort_len.8
+0000000000309d30 l     O .bss	0000000000000004              s_sregex_len.4
+0000000000309d34 l     O .bss	0000000000000004              s_sregex_list_index.5
+0000000000309d38 l     O .bss	0000000000000004              s_streams_len.6
+0000000000309d3c l     O .bss	0000000000000004              s_streams_list_index.7
+0000000000309d28 l     O .bss	0000000000000004              s_tasks_len.2
+0000000000309d2c l     O .bss	0000000000000004              s_tasks_list_index.3
+0000000000309d20 l     O .bss	0000000000000004              s_threads_len.0
+0000000000309d24 l     O .bss	0000000000000004              s_threads_list_index.1
+0000000000309dc0 l     O .bss	0000000000000400              g_filename
+0000000000000000 l    df *ABS*	0000000000000000              library.c
+0000000000000000 l    df *ABS*	0000000000000000              list.c
+0000000000000000 l    df *ABS*	0000000000000000              module.c
+0000000000110340 l     F .text	0000000000000223              search_op_internal
+0000000000110570 l     F .text	00000000000000d1              get_op_internal
+0000000000110650 l     F .text	0000000000000005              fake_strcmp
+0000000000110660 l     F .text	0000000000000046              predicate_cmpkey
+00000000001106b0 l     F .text	00000000000000d8              set_loaded
+0000000000110790 l     F .text	0000000000000104              module_save_fp.constprop.0
+00000000001108a0 l     F .text	000000000000024d              set_op_internal.isra.0
+0000000000110af0 l     F .text	000000000000078d              index_cmpkey_.isra.0
+0000000000111290 l     F .text	00000000000001b1              process_predicate.part.0
+0000000000111450 l     F .text	00000000000002b9              assert_commit.part.0
+0000000000111a90 l     F .text	0000000000000298              unload_realfile.isra.0
+0000000000111e70 l     F .text	0000000000000344              process_cell
+0000000000112a60 l     F .text	0000000000000aff              do_import_predicate.isra.0
+0000000000113eb0 l     F .text	0000000000000ba7              assert_begin
+000000000030a1c0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_qualify_2.0
+0000000000117950 l     F .text	000000000000089d              do_use_module
+0000000000180960 l     O .data.rel.ro	0000000000000350              g_ops
+0000000000000000 l    df *ABS*	0000000000000000              parser.c
+00000000001195c0 l     F .text	00000000000000f7              get_hex
+00000000001196c0 l     F .text	00000000000001f9              get_varno
+00000000001198c0 l     F .text	0000000000000023              make_room.part.0
+00000000001198f0 l     F .text	00000000000000c8              goal_run
+00000000001199c0 l     F .text	00000000000001c9              check_space_before_function
+0000000000119b90 l     F .text	0000000000000023              slicedup.part.0
+0000000000119bc0 l     F .text	00000000000002c6              get_escape.constprop.0
+0000000000119e90 l     F .text	000000000000017d              insert_call_here
+000000000030a1d8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_call_1.2
+000000000011a010 l     F .text	0000000000000804              assign_vars.part.0
+000000000011a820 l     F .text	0000000000000504              consultall
+000000000011ad30 l     F .text	0000000000000c1a              reduce.isra.0
+00000000001d6df0 l     O .data	0000000000000018              tmp.3
+000000000011be10 l     F .text	0000000000000aa7              do_op
+000000000011d7a0 l     F .text	00000000000024f6              directives.isra.0
+000000000011fca0 l     F .text	0000000000000771              process_term
+0000000000127010 l     F .text	0000000000000c37              term_to_body_conversion
+00000000001261b0 l     F .text	0000000000000d8c              goal_expansion.part.0
+0000000000126f40 l     F .text	00000000000000d0              goal_expansion
+000000000030a1c8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_qualify_2.0
+000000000030a1d0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_qualify_2.1
+0000000000000000 l    df *ABS*	0000000000000000              print.c
+0000000000128900 l     F .text	00000000000000da              varformat2.constprop.0.isra.0
+00000000001289e0 l     F .text	0000000000000201              get_slot_name
+0000000000128bf0 l     F .text	0000000000000bc4              print_variable
+00000000001297c0 l     F .text	00000000000001d4              sprint_int_
+00000000001299a0 l     F .text	0000000000000de6              dump_variable
+000000000012d9d0 l     F .text	0000000000000997              print_string_list.isra.0
+000000000012e700 l     F .text	0000000000002cb5              print_term_to_buf_.isra.0
+00000000001313c0 l     F .text	0000000000006af2              print_interned.isra.0
+0000000000137ec0 l     F .text	000000000000215d              print_iso_list.isra.0
+0000000000000000 l    df *ABS*	0000000000000000              prolog.c
+000000000013b380 l     F .text	0000000000000123              add_to_global_atoms
+000000000030a358 l     O .bss	0000000000000008              s_global_atoms_offset
+00000000001d6e30 l     O .data	0000000000000008              s_global_atoms_size
+000000000030a360 l     O .bss	0000000000000008              g_symtab
+000000000013b4b0 l     F .text	0000000000000005              fake_strcmp
+000000000013b4d0 l     F .text	000000000000001d              keyval_free
+000000000030a368 l     O .bss	0000000000000000              g_symtab_guard
+000000000030a354 l     O .bss	0000000000000004              g_tpl_count
+0000000000000000 l    df *ABS*	0000000000000000              query.c
+000000000013f380 l     F .text	00000000000008c2              trace_call
+000000000013fc50 l     F .text	000000000000021b              leave_predicate
+000000000013fe70 l     F .text	0000000000000619              expand_meta_predicate.constprop.0
+000000000030a3a0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_qualify_2.3
+000000000030a3a8 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_qualify_2.4
+0000000000140490 l     F .text	0000000000000419              consultall
+00000000001408b0 l     F .text	0000000000000799              find_key.isra.0
+0000000000141050 l     F .text	00000000000009fd              scan_is_chars_list_internal
+000000000030a3c0 l     O .bss	0000000000000400              tmpbuf.6
+000000000030a3b0 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_true_0.5
+000000000030a398 l     O .bss	0000000000000008              s_fn_ptr_bif_iso_cut_0.2
+000000000030a390 l     O .bss	0000000000000008              s_fn_ptr_bif_sys_drop_barrier_1.1
+000000000030a388 l     O .bss	0000000000000008              g_query_id.0
+0000000000000000 l    df *ABS*	0000000000000000              skiplist.c
+0000000000147c20 l     F .text	0000000000000011              default_cmpkey
+0000000000000000 l    df *ABS*	0000000000000000              terms.c
+0000000000149000 l     F .text	00000000000001c3              accum_var.isra.0
+00000000001491d0 l     F .text	00000000000006be              collect_vars_lists.isra.0
+0000000000149890 l     F .text	0000000000000321              collect_vars_internal.isra.0
+0000000000149bc0 l     F .text	0000000000000686              is_cyclic_term_lists
+000000000014a250 l     F .text	0000000000000343              is_cyclic_term_internal
+000000000014a5a0 l     F .text	0000000000000dc4              skip_max_list.part.0
+000000000014b370 l     F .text	0000000000000b62              has_vars_internal.isra.0
+0000000000000000 l    df *ABS*	0000000000000000              unify.c
+000000000014e700 l     F .text	0000000000000021              unify_floats
+000000000014e730 l     F .text	00000000000000f4              unify_rationals
+000000000014e830 l     F .text	000000000000012d              unify_integers
+000000000014e960 l     F .text	00000000000003c7              unify_cstrings
+000000000014ed30 l     F .text	0000000000000202              set_var
+000000000014ef40 l     F .text	00000000000002d2              unify_var.isra.0
+000000000014f220 l     F .text	0000000000000221              unify_internal
+0000000000180cc0 l     O .data.rel.ro	0000000000000080              g_disp
+00000000001503c0 l     F .text	00000000000003e9              unify_string_to_list.isra.0
+000000000014f450 l     F .text	0000000000000f61              unify_interned
+00000000001507b0 l     F .text	0000000000002036              compare_internal.part.0
+0000000000000000 l    df *ABS*	0000000000000000              utf8.c
+0000000000000000 l    df *ABS*	0000000000000000              version.c
+0000000000000000 l    df *ABS*	0000000000000000              imath.c
+0000000000154040 l     F .text	00000000000001e7              s_qdiv
+0000000000154230 l     F .text	00000000000001ca              s_tobin.isra.0
+0000000000154400 l     F .text	000000000000009c              mp_int_copy.part.0
+00000000001544a0 l     F .text	000000000000008f              mp_int_set_value.constprop.0
+0000000000154530 l     F .text	0000000000000295              s_qmul.part.0
+00000000001547d0 l     F .text	00000000000007ec              s_kmul
+00000000001d6e40 l     O .data	0000000000000004              multiply_threshold
+0000000000154fc0 l     F .text	00000000000003bb              s_ksqr.isra.0
+00000000001d6e44 l     O .data	0000000000000004              default_precision
+0000000000156e50 l     F .text	000000000000084c              s_reduce
+00000000001576a0 l     F .text	0000000000000618              s_embar.isra.0
+0000000000168a60 l     O .rodata	0000000000000128              s_log2
+0000000000000000 l    df *ABS*	0000000000000000              imrat.c
+000000000015f4e0 l     F .text	0000000000000132              s_rat_reduce
+0000000000000000 l    df *ABS*	0000000000000000              re.c
+0000000000161310 l     F .text	00000000000002c9              matchcharclass
+00000000001615e0 l     F .text	000000000000019c              matchone
+0000000000161780 l     F .text	000000000000031f              matchpattern
+0000000000000000 l    df *ABS*	0000000000000000              abnf.c
+0000000000000000 l    df *ABS*	0000000000000000              aggregate.c
+0000000000000000 l    df *ABS*	0000000000000000              arithmetic.c
+0000000000000000 l    df *ABS*	0000000000000000              assoc.c
+0000000000000000 l    df *ABS*	0000000000000000              atts.c
+0000000000000000 l    df *ABS*	0000000000000000              builtins.c
+0000000000000000 l    df *ABS*	0000000000000000              charsio.c
+0000000000000000 l    df *ABS*	0000000000000000              clpz.c
+0000000000000000 l    df *ABS*	0000000000000000              concurrent.c
+0000000000000000 l    df *ABS*	0000000000000000              curl.c
+0000000000000000 l    df *ABS*	0000000000000000              dcgs.c
+0000000000000000 l    df *ABS*	0000000000000000              debug.c
+0000000000000000 l    df *ABS*	0000000000000000              dif.c
+0000000000000000 l    df *ABS*	0000000000000000              error.c
+0000000000000000 l    df *ABS*	0000000000000000              format.c
+0000000000000000 l    df *ABS*	0000000000000000              freeze.c
+0000000000000000 l    df *ABS*	0000000000000000              gensym.c
+0000000000000000 l    df *ABS*	0000000000000000              gsl.c
+0000000000000000 l    df *ABS*	0000000000000000              heaps.c
+0000000000000000 l    df *ABS*	0000000000000000              http.c
+0000000000000000 l    df *ABS*	0000000000000000              iso_ext.c
+0000000000000000 l    df *ABS*	0000000000000000              json.c
+0000000000000000 l    df *ABS*	0000000000000000              lambda.c
+0000000000000000 l    df *ABS*	0000000000000000              linda.c
+0000000000000000 l    df *ABS*	0000000000000000              lists.c
+0000000000000000 l    df *ABS*	0000000000000000              ordsets.c
+0000000000000000 l    df *ABS*	0000000000000000              pairs.c
+0000000000000000 l    df *ABS*	0000000000000000              pio.c
+0000000000000000 l    df *ABS*	0000000000000000              random.c
+0000000000000000 l    df *ABS*	0000000000000000              raylib.c
+0000000000000000 l    df *ABS*	0000000000000000              rbtrees.c
+0000000000000000 l    df *ABS*	0000000000000000              reif.c
+0000000000000000 l    df *ABS*	0000000000000000              si.c
+0000000000000000 l    df *ABS*	0000000000000000              sqlite3.c
+0000000000000000 l    df *ABS*	0000000000000000              time.c
+0000000000000000 l    df *ABS*	0000000000000000              ugraphs.c
+0000000000000000 l    df *ABS*	0000000000000000              uuid.c
+0000000000000000 l    df *ABS*	0000000000000000              when.c
+0000000000000000 l    df *ABS*	0000000000000000              crtendS.o
+000000000017fcf4 l     O .eh_frame	0000000000000000              __FRAME_END__
+0000000000000000 l    df *ABS*	0000000000000000              
+0000000000162180 l     F .text	0000000000000193              __divti3
+0000000000168ed8 l       .eh_frame_hdr	0000000000000000              __GNU_EH_FRAME_HDR
+0000000000180fe8 l     O .got.plt	0000000000000000              _GLOBAL_OFFSET_TABLE_
+0000000000180d80 l     O .dynamic	0000000000000000              _DYNAMIC
+000000000011b9c0 g     F .text	0000000000000051              slicecmp
+000000000015b960 g     F .text	0000000000000bca              mp_int_egcd
+0000000000116740 g     F .text	0000000000000199              unload_file
+0000000000181520  w      .data	0000000000000000              data_start
+000000000013b7c0 g     F .text	000000000000000e              get_halt
+0000000000000000       F *UND*	0000000000000000              log10@GLIBC_2.2.5
+0000000000153a90 g     F .text	00000000000000c4              peek_char_utf8
+000000000025d4c0 g     O .data	0000000000000004              library_sqlite3_pl_len
+000000000030a228 g     O .bss	0000000000000004              g_sys_jump_if_nil_s
+000000000010d8d0 g     F .text	000000000000026e              copy_term_to_heap_with_replacement
+000000000015fb00 g     F .text	0000000000000033              mp_rat_copy
+000000000030a350 g     O .bss	0000000000000004              g_empty_s
+0000000000000000       F *UND*	0000000000000000              tcsetattr@GLIBC_2.2.5
+000000000018f1c0 g     O .data	0000000000000a80              g_format_bifs
+0000000000111990 g     F .text	00000000000000f1              find_predicate
+0000000000148bc0 g     F .text	00000000000000b2              sl_first
+0000000000023160 g     F .text	0000000000000023              throw_error3
+00000000001127b0 g     F .text	00000000000002ae              clear_property
+0000000000148cc0 g     F .text	0000000000000033              sl_next
+0000000000000000       F *UND*	0000000000000000              chdir@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              fileno@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              printf@GLIBC_2.2.5
+00000000002538e0 g     O .data	00000000000002bf              library_random_pl
+000000000011b950 g     F .text	000000000000002f              is_graphic
+0000000000000000       F *UND*	0000000000000000              __getdelim@GLIBC_2.2.5
+0000000000018120 g     F .text	0000000000000020              bif_iso_conjunction_2
+000000000015a200 g     F .text	00000000000003f3              mp_int_expt_full
+0000000000000000       F *UND*	0000000000000000              posix_spawn_file_actions_addopen@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              atan2@GLIBC_2.2.5
+00000000000bd130 g     F .text	00000000000000e5              url_encode
+0000000000160dd0 g     F .text	000000000000001b              mp_rat_decimal_len
+0000000000000000       F *UND*	0000000000000000              acosh@GLIBC_2.2.5
+000000000015e260 g     F .text	0000000000000078              mp_int_binary_len
+00000000002538c0 g     O .data	0000000000000004              library_random_pl_len
+0000000000000000       F *UND*	0000000000000000              tanh@GLIBC_2.2.5
+00000000000bd060 g     F .text	00000000000000aa              uuid_from_buf
+000000000013bb60 g     F .text	0000000000000023              pl_done
+000000000015fae0 g     F .text	0000000000000005              mp_rat_denom_ref
+000000000030a334 g     O .bss	0000000000000004              g_neck_s
+0000000000000000       F *UND*	0000000000000000              mktime@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              memset@GLIBC_2.2.5
+00000000002411c0 g     O .data	0000000000000004              library_heaps_pl_len
+000000000030a2c4 g     O .bss	0000000000000004              g_sys_drop_barrier_s
+0000000000155e10 g     F .text	0000000000000051              mp_int_clear
+0000000000000000       F *UND*	0000000000000000              asinh@GLIBC_2.2.5
+0000000000110280 g     F .text	000000000000004c              listx_pop_front
+0000000000107950 g     F .text	00000000000000d2              do_yield_then
+0000000000033e90 g     F .text	000000000000004c              do_erase
+0000000000000000       F *UND*	0000000000000000              snprintf@GLIBC_2.2.5
+00000000001580c0 g     F .text	00000000000000f9              mp_int_mul_pow2
+00000000001e3180 g     O .data	0000000000000004              library_clpz_pl_len
+000000000013be00 g     F .text	0000000000000333              get_fn_ptr
+0000000000000000       F *UND*	0000000000000000              setsid@GLIBC_2.2.5
+000000000013b7d0 g     F .text	000000000000000b              get_error
+0000000000110080 g     F .text	0000000000000035              list_push_back
+0000000000118d70 g     F .text	0000000000000027              module_duplicate
+00000000000fedc0 g     F .text	00000000000004e1              stream_close
+0000000000152830 g     F .text	0000000000000063              add_trail
+0000000000110220 g     F .text	000000000000005b              listx_push_back
+000000000000ea00 g     F .text	0000000000000026              _start
+000000000030a2d4 g     O .bss	0000000000000004              g_sys_incr_s
+000000000015fab0 g     F .text	0000000000000005              mp_rat_numer
+000000000030a254 g     O .bss	0000000000000004              g_sys_reset_handler_s
+000000000013a9a0 g     F .text	0000000000000102              print_term_to_strbuf
+0000000000000000       F *UND*	0000000000000000              write_history
+0000000000159de0 g     F .text	0000000000000416              mp_int_expt_value
+0000000000160180 g     F .text	0000000000000107              mp_rat_add_int
+0000000000000000       F *UND*	0000000000000000              close@GLIBC_2.2.5
+0000000000160420 g     F .text	0000000000000091              mp_rat_div_int
+000000000013b6b0 g     F .text	0000000000000086              new_atom
+000000000030a31c g     O .bss	0000000000000004              g_sys_elapsed_s
+0000000000141e00 g     F .text	000000000000007f              check_slot
+0000000000000000       F *UND*	0000000000000000              wait@GLIBC_2.2.5
+000000000014bee0 g     F .text	00000000000003fd              collect_vars
+0000000000000000       F *UND*	0000000000000000              ceil@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              ioctl@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              abort@GLIBC_2.2.5
+000000000013bac0 g     F .text	0000000000000041              pl_redo
+000000000015c740 g     F .text	0000000000000313              mp_int_lcm
+0000000000000000       F *UND*	0000000000000000              exp@GLIBC_2.29
+0000000000000000       F *UND*	0000000000000000              stpcpy@GLIBC_2.2.5
+000000000013b300 g     F .text	0000000000000064              clear_write_options
+000000000013a020 g     F .text	0000000000000200              print_canonical_to_strbuf
+0000000000247a20 g     O .data	0000000000001acd              library_lambda_pl
+0000000000161b80 g     F .text	0000000000000332              re_compile
+0000000000031b80 g     F .text	00000000000001fd              do_abolish
+0000000000000000       F *UND*	0000000000000000              tan@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              clock_gettime@GLIBC_2.17
+0000000000141fb0 g     F .text	0000000000000126              prepare_call
+000000000013c140 g     F .text	00000000000007ec              load_builtins
+0000000000113990 g     F .text	00000000000001c3              set_dynamic_in_db
+0000000000000000       F *UND*	0000000000000000              isatty@GLIBC_2.2.5
+0000000000235cc0 g     O .data	0000000000001efc              library_error_pl
+000000000011b980 g     F .text	0000000000000038              slicedup
+00000000001168e0 g     F .text	0000000000000679              load_fp
+000000000030a2bc g     O .bss	0000000000000004              g_soft_cut_s
+000000000008a530 g     F .text	0000000000000763              bif_iso_qualify_2
+000000000030a270 g     O .bss	0000000000000004              g_sys_set_if_var_s
+0000000000119520 g     F .text	0000000000000010              net_read
+00000000001d6e60 g     O .data	0000000000000004              library_abnf_pl_len
+000000000011cc50 g     F .text	0000000000000020              make_atom
+00000000001465b0 g     F .text	0000000000000af9              start
+0000000000000000  w      *UND*	0000000000000000              __gmon_start__
+0000000000147d00 g     F .text	00000000000000c1              sl_destroy
+000000000013b7e0 g     F .text	000000000000000e              get_status
+0000000000107a70 g     F .text	0000000000000001              init_lock
+0000000000000000       F *UND*	0000000000000000              puts@GLIBC_2.2.5
+0000000000168b89 g     O .rodata	0000000000000001              MP_NEG
+0000000000107aa0 g     F .text	0000000000000001              release_lock
+0000000000153bf0 g     F .text	00000000000000c4              get_char_utf8
+0000000000127c50 g     F .text	0000000000000026              term_to_body
+00000000000feb80 g     F .text	000000000000023b              valid_list
+000000000015f690 g     F .text	000000000000008b              mp_rat_alloc
+0000000000117740 g     F .text	000000000000020d              make
+0000000000000000       F *UND*	0000000000000000              fseek@GLIBC_2.2.5
+0000000000026370 g     F .text	000000000000112f              bif_parse_csv_line_3
+00000000001e31a0 g     O .data	000000000004445c              library_clpz_pl
+000000000010ced0 g     F .text	0000000000000067              alloc_grow
+000000000013bb90 g     F .text	0000000000000023              pl_consult_fp
+000000000023e7c0 g     O .data	0000000000000004              library_gensym_pl_len
+0000000000247a00 g     O .data	0000000000000004              library_lambda_pl_len
+000000000015fac0 g     F .text	0000000000000004              mp_rat_numer_ref
+000000000030a2fc g     O .bss	0000000000000004              g_sys_var_s
+0000000000025e20 g     F .text	000000000000054a              bif_parse_csv_line_2
+00000000000c6d40 g     F .text	0000000000000da0              bif_sre_matchp_4
+0000000000000000       F *UND*	0000000000000000              fstat@GLIBC_2.33
+0000000000118900 g     F .text	000000000000046b              module_create
+0000000000232bc0 g     O .data	0000000000000004              library_dcgs_pl_len
+000000000015de90 g     F .text	00000000000000b3              mp_int_to_binary
+0000000000000000       F *UND*	0000000000000000              read_history
+000000000030a24c g     O .bss	0000000000000004              g_sys_get_level_s
+00000000002655a0 g     O .bss	0000000000000004              rl_completion_append_character
+000000000010ec90 g     F .text	0000000000000151              end_list_unsafe
+0000000000000000       F *UND*	0000000000000000              getaddrinfo@GLIBC_2.2.5
+000000000015c530 g     F .text	0000000000000205              mp_int_invmod
+000000000015f330 g     F .text	000000000000019e              mp_int_set_double
+0000000000000000       F *UND*	0000000000000000              gettimeofday@GLIBC_2.2.5
+0000000000160f20 g     F .text	000000000000033f              mp_rat_read_cdecimal
+00000000000c5ec0 g     F .text	0000000000000e72              bif_sre_substp_4
+0000000000000000       F *UND*	0000000000000000              setvbuf@GLIBC_2.2.5
+0000000000244260 g     O .data	0000000000000c0b              library_iso_ext_pl
+0000000000162314 g     F .fini	0000000000000000              .hidden _fini
+0000000000109880 g     F .text	00000000000000e0              compile_clause
+0000000000264a40 g     O .data	0000000000000004              library_when_pl_len
+000000000030a2a0 g     O .bss	0000000000000004              g_term_expansion_s
+000000000015de20 g     F .text	0000000000000007              mp_int_read_string
+000000000030a33c g     O .bss	0000000000000004              g_fail_s
+0000000000000000       F *UND*	0000000000000000              putchar@GLIBC_2.2.5
+0000000000160990 g     F .text	00000000000003f9              mp_rat_to_decimal
+00000000003098e0 g     O .bss	00000000000002a0              g_threads_bifs
+000000000013bc60 g     F .text	0000000000000012              fake_free
+000000000023dfe0 g     O .data	00000000000007cc              library_freeze_pl
+0000000000111710 g     F .text	00000000000000cf              get_module_help
+000000000015d590 g     F .text	000000000000005d              mp_int_to_uint
+0000000000118f10 g     F .text	00000000000001cc              net_connect
+000000000030a244 g     O .bss	0000000000000004              g_if_s
+000000000011bc40 g     F .text	00000000000001c1              list_tail
+0000000000227e60 g     O .data	0000000000000004              library_curl_pl_len
+00000000001d8f40 g     O .data	0000000000000269              library_arithmetic_pl
+00000000000e3140 g     F .text	00000000000000d2              get_stream
+0000000000000000       F *UND*	0000000000000000              strncmp@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              malloc@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              fopen@GLIBC_2.2.5
+0000000000142740 g     F .text	0000000000000091              try_me
+000000000014c310 g     F .text	0000000000000656              is_cyclic_term
+000000000015ffc0 g     F .text	0000000000000070              mp_rat_mul
+0000000000144b90 g     F .text	00000000000005e7              match_clause
+0000000000000000       F *UND*	0000000000000000              setitimer@GLIBC_2.2.5
+0000000000160580 g     F .text	000000000000013b              mp_rat_compare_unsigned
+000000000015fb40 g     F .text	0000000000000018              mp_rat_zero
+00000000001193b0 g     F .text	0000000000000128              net_write
+0000000000157cc0 g     F .text	00000000000000aa              mp_int_sub_value
+0000000000000000       F *UND*	0000000000000000              system@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              clear_history
+00000000001d6e28 g     O .data	0000000000000004              g_avc
+000000000013a5e0 g     F .text	00000000000003b3              print_canonical
+00000000001bb680 g     O .data	0000000000000d20              g_sort_bifs
+0000000000034930 g     F .text	00000000000041c0              do_format
+0000000000000000       F *UND*	0000000000000000              unlink@GLIBC_2.2.5
+000000000011cf00 g     F .text	000000000000019c              unshare_cells
+0000000000147130 g     F .text	0000000000000667              query_destroy
+000000000011ce10 g     F .text	0000000000000021              make_dbref
+00000000001d6a40 g     O .data	00000000000003a8              g_libs
+0000000000159a50 g     F .text	0000000000000382              mp_int_expt
+00000000001205b0 g     F .text	000000000000009e              make_interned
+000000000030a1fc g     O .bss	0000000000000004              g_ac
+0000000000000000       F *UND*	0000000000000000              posix_spawnattr_destroy@GLIBC_2.2.5
+0000000000110020 g     F .text	0000000000000019              history_save
+0000000000024de0 g     F .text	000000000000103f              do_parse_csv_line
+0000000000147f20 g     F .text	0000000000000409              sl_set
+00000000000bdf90 g     F .text	0000000000000285              bif_sys_reset_handler_1
+00000000000bd020 g     F .text	0000000000000035              uuid_to_buf
+000000000007afa0 g     F .text	00000000000003ab              bif_sys_jump_if_nil_2
+0000000000156820 g     F .text	0000000000000624              mp_int_sub
+00000000001553a0 g     F .text	000000000000002a              mp_int_init
+0000000000000000       F *UND*	0000000000000000              cos@GLIBC_2.2.5
+000000000030a1f8 g     O .bss	0000000000000004              g_argvc
+000000000011c920 g     F .text	000000000000004e              slicecpy
+000000000030a28c g     O .bss	0000000000000004              g_colon_s
+0000000000153100 g     F .text	0000000000000038              strlen_utf8
+0000000000000000       F *UND*	0000000000000000              setsockopt@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              __isoc23_fscanf@GLIBC_2.38
+00000000001424d0 g     F .text	0000000000000261              undo_me
+000000000011d360 g     F .text	0000000000000299              parser_destroy
+0000000000143f50 g     F .text	0000000000000c38              match_rule
+0000000000023190 g     F .text	000000000000006c              throw_error2
+0000000000073a00 g     F .text	0000000000000078              bif_sys_undo_1
+0000000000117060 g     F .text	00000000000006df              load_file
+0000000000000000       F *UND*	0000000000000000              getpid@GLIBC_2.2.5
+0000000000018100 g     F .text	0000000000000006              bif_iso_true_0
+0000000000111280 g     F .text	0000000000000008              index_cmpkey
+000000000014c970 g     F .text	00000000000006b6              is_acyclic_term
+000000000011d0a0 g     F .text	0000000000000204              clear_clause
+0000000000148e40 g     F .text	0000000000000083              sl_next_key
+000000000011cc90 g     F .text	0000000000000043              make_smalln
+0000000000147a50 g     F .text	00000000000001a6              query_create_subquery
+00000000000183e0 g     F .text	00000000000001bf              bif_sys_get_level_1
+0000000000253ba0 g     O .data	0000000000000004              library_raylib_pl_len
+00000000001dd480 g     O .data	0000000000000004              library_atts_pl_len
+000000000013b880 g     F .text	0000000000000004              pl_stdin
+000000000030a340 g     O .bss	0000000000000004              g_true_s
+000000000015fc60 g     F .text	00000000000001a2              mp_rat_add
+000000000015f620 g     F .text	0000000000000067              mp_rat_init
+00000000001528a0 g     F .text	00000000000002b7              reset_var
+00000000001dd660 g     O .data	0000000000004ecd              library_builtins_pl
+0000000000142bf0 g     F .text	00000000000001d1              push_succeed_on_retry
+000000000030a2c0 g     O .bss	0000000000000004              g_if_then_s
+00000000001436d0 g     F .text	000000000000087b              has_next_key
+00000000001470b0 g     F .text	0000000000000072              execute
+0000000000000000  w      *UND*	0000000000000000              _ITM_deregisterTMCloneTable
+0000000000112720 g     F .text	0000000000000090              push_property
+000000000015f8a0 g     F .text	0000000000000081              mp_rat_init_size
+000000000015d2f0 g     F .text	00000000000000ea              mp_int_to_int
+000000000030a290 g     O .bss	0000000000000004              g_as_s
+000000000011c970 g     F .text	000000000000022e              make_cstringn
+000000000009acc0 g     F .text	0000000000000513              bif_sys_make_string_2
+0000000000235260 g     O .data	0000000000000a3b              library_dif_pl
+000000000015a9a0 g     F .text	00000000000004b7              mp_int_exptmod
+00000000001190e0 g     F .text	000000000000017d              net_server
+0000000000000000       F *UND*	0000000000000000              rl_completion_matches
+00000000001561a0 g     F .text	00000000000005ce              mp_int_add
+00000000000c5030 g     F .text	0000000000000e88              bif_sre_subst_4
+000000000015d980 g     F .text	000000000000007a              mp_int_string_len
+000000000023e9e0 g     O .data	00000000000027dc              library_gsl_pl
+0000000000163000 g     O .rodata	0000000000000004              _IO_stdin_used
+000000000010f0e0 g     F .text	000000000000014b              end_structure
+00000000001118a0 g     F .text	0000000000000062              get_parent
+0000000000000000       F *UND*	0000000000000000              ungetc@GLIBC_2.2.5
+0000000000243240 g     O .data	0000000000000004              library_http_pl_len
+0000000000000000       F *UND*	0000000000000000              __ctype_toupper_loc@GLIBC_2.3
+000000000030a214 g     O .bss	0000000000000004              g_double_bar_s
+0000000000000000       F *UND*	0000000000000000              iswblank@GLIBC_2.2.5
+0000000000127c80 g     F .text	000000000000012f              virtual_term
+0000000000000000       F *UND*	0000000000000000              fputc@GLIBC_2.2.5
+0000000000141e80 g     F .text	000000000000007f              check_trail
+000000000011ce40 g     F .text	0000000000000021              make_kvref
+000000000010f230 g     F .text	00000000000001bf              alloc_queuen
+0000000000000000       F *UND*	0000000000000000              log@GLIBC_2.29
+0000000000254900 g     O .data	00000000000076cc              library_rbtrees_pl
+0000000000113e50 g     F .text	000000000000005e              convert_to_literal
+0000000000000000       F *UND*	0000000000000000              freeaddrinfo@GLIBC_2.2.5
+000000000030a310 g     O .bss	0000000000000004              g_call_s
+00000000001d6e08 g     O .data	0000000000000008              g_anti_escapes
+000000000030a308 g     O .bss	0000000000000004              g_unify_s
+0000000000030eb0 g     F .text	00000000000003e7              do_retract
+0000000000000000       F *UND*	0000000000000000              free@GLIBC_2.2.5
+0000000000227620 g     O .data	0000000000000829              library_concurrent_pl
+000000000030a22c g     O .bss	0000000000000004              g_sys_undo_s
+0000000000122e00 g     F .text	00000000000033b0              tokenize
+0000000000000000       F *UND*	0000000000000000              atan@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              strlen@GLIBC_2.2.5
+000000000015e560 g     F .text	0000000000000059              mp_int_unsigned_len
+0000000000148ed0 g     F .text	0000000000000109              sl_done
+00000000001101c0 g     F .text	0000000000000053              listx_push_front
+0000000000000000  w      *UND*	0000000000000000              _ITM_registerTMCloneTable
+0000000000181520 g       .data	0000000000000000              __data_start
+000000000023e7e0 g     O .data	00000000000001de              library_gensym_pl
+000000000015a8a0 g     F .text	00000000000000f3              mp_int_compare_uvalue
+0000000000118e40 g     F .text	00000000000000cc              net_domain_server
+0000000000000000       F *UND*	0000000000000000              ferror@GLIBC_2.2.5
+000000000010e720 g     F .text	0000000000000148              allocate_list
+0000000000000000       F *UND*	0000000000000000              opendir@GLIBC_2.2.5
+0000000000107a80 g     F .text	0000000000000001              deinit_lock
+000000000015e2e0 g     F .text	0000000000000024              mp_int_to_unsigned
+0000000000110050 g     F .text	000000000000002d              list_push_front
+0000000000000000       F *UND*	0000000000000000              cosh@GLIBC_2.2.5
+00000000002526c0 g     O .data	0000000000000004              library_pairs_pl_len
+000000000030a294 g     O .bss	0000000000000004              g_sys_cut_if_det_s
+000000000010edf0 g     F .text	00000000000001e6              allocate_structure
+000000000014d030 g     F .text	000000000000001b              skip_max_list
+000000000011d2b0 g     F .text	00000000000000a8              parser_reset
+00000000000185a0 g     F .text	0000000000000348              bif_sys_set_if_var_2
+000000000001d8b0 g     F .text	00000000000007ea              bif_iso_if_then_2
+000000000015ca60 g     F .text	0000000000000065              mp_int_is_pow2
+00000000000799c0 g     F .text	0000000000000253              bif_sys_create_var_1
+00000000001d3b00 g     O .data	0000000000002f40              g_tasks_bifs
+0000000000000000       F *UND*	0000000000000000              posix_spawn_file_actions_destroy@GLIBC_2.2.5
+000000000030a2ec g     O .bss	0000000000000004              g_post_unify_hook_s
+0000000000000000       F *UND*	0000000000000000              listen@GLIBC_2.2.5
+00000000001161b0 g     F .text	00000000000000d8              erase_from_db
+0000000000000000       F *UND*	0000000000000000              __ctype_b_loc@GLIBC_2.3
+000000000030a2c8 g     O .bss	0000000000000004              g_sys_block_catcher_s
+000000000011d6c0 g     F .text	00000000000000de              relative_to
+0000000000000000  w    F *UND*	0000000000000000              __cxa_finalize@GLIBC_2.2.5
+00000000000feb40 g     F .text	0000000000000031              convert_path
+000000000013bc20 g     F .text	0000000000000022              pl_logging
+0000000000168b88 g     O .rodata	0000000000000001              MP_ZPOS
+0000000000000000       F *UND*	0000000000000000              realpath@GLIBC_2.3
+000000000015af10 g     F .text	00000000000000aa              mp_int_exptmod_bvalue
+000000000030a2f4 g     O .bss	0000000000000004              g_minus_s
+000000000015f0a0 g     F .text	0000000000000092              mp_int_popcount
+0000000000155390 g     F .text	0000000000000007              mp_int_multiply_threshold
+00000000000e2de0 g     F .text	00000000000000f1              get_named_stream
+000000000030a318 g     O .bss	0000000000000004              g_sys_queue_s
+0000000000147c00 g     F .text	0000000000000015              query_create_task
+000000000010e6e0 g     F .text	0000000000000035              fix_list
+0000000000147c40 g     F .text	00000000000000c0              sl_create
+0000000000000000       F *UND*	0000000000000000              posix_spawn_file_actions_init@GLIBC_2.2.5
+00000000002655f8 g     O .bss	0000000000000008              g_envp
+0000000000000000       F *UND*	0000000000000000              iswalpha@GLIBC_2.2.5
+0000000000249920 g     O .data	00000000000041e0              library_lists_pl
+00000000000ff2b0 g     F .text	00000000000001d2              bif_iso_close_1
+0000000000000000       F *UND*	0000000000000000              readdir@GLIBC_2.2.5
+0000000000105910 g     F .text	000000000000005a              parse_write_params
+00000000000bdeb0 g     F .text	00000000000000df              url_decode
+00000000001dd4a0 g     O .data	0000000000000181              library_atts_pl
+000000000015f1e0 g     F .text	0000000000000057              mp_int_msb
+00000000001159f0 g     F .text	00000000000003c4              asserta_to_db
+000000000025ed60 g     O .data	0000000000004e0b              library_ugraphs_pl
+0000000000000000       F *UND*	0000000000000000              sprintf@GLIBC_2.2.5
+000000000010d210 g     F .text	0000000000000104              alloc_heap
+000000000011ce70 g     F .text	0000000000000081              share_cells
+0000000000244ea0 g     O .data	0000000000002b50              library_json_pl
+000000000001b260 g     F .text	00000000000002a5              bif_sys_fail_on_retry_1
+00000000001432f0 g     F .text	000000000000010e              push_reset_handler
+00000000002655b0 g     O .bss	0000000000000008              stdin@GLIBC_2.2.5
+000000000013b810 g     F .text	0000000000000008              get_halt_code
+00000000001d8f20 g     O .data	0000000000000004              library_arithmetic_pl_len
+0000000000181540 g     O .data	0000000000001a40              g_atts_bifs
+0000000000000000       F *UND*	0000000000000000              asin@GLIBC_2.2.5
+000000000015f930 g     F .text	000000000000005c              mp_rat_init_copy
+0000000000000000       F *UND*	0000000000000000              iswalnum@GLIBC_2.2.5
+0000000000160720 g     F .text	0000000000000164              mp_rat_compare_value
+000000000030a234 g     O .bss	0000000000000004              g_sys_module_s
+00000000001102d0 g     F .text	000000000000004c              listx_pop_back
+000000000030a2e8 g     O .bss	0000000000000004              g_sys_record_key_s
+00000000001186a0 g     F .text	0000000000000258              module_destroy
+0000000000000000       F *UND*	0000000000000000              fgetc@GLIBC_2.2.5
+0000000000119550 g     F .text	000000000000006f              net_close
+00000000001117e0 g     F .text	000000000000005f              set_unloaded
+000000000010fc80 g     F .text	00000000000000dc              history_getch
+0000000000000000       F *UND*	0000000000000000              fdopen@GLIBC_2.2.5
+000000000015a730 g     F .text	0000000000000025              mp_int_compare_zero
+0000000000000000       F *UND*	0000000000000000              towupper@GLIBC_2.2.5
+000000000019e0a0 g     O .data	0000000000002a00              g_maps_bifs
+0000000000000000       F *UND*	0000000000000000              strrchr@GLIBC_2.2.5
+000000000013b4f0 g     F .text	0000000000000049              ptrfree
+000000000014e6b0 g     F .text	0000000000000019              dump_vars
+000000000010fb90 g     F .text	00000000000000ec              history_getch_fd
+0000000000000000       F *UND*	0000000000000000              iswdigit@GLIBC_2.2.5
+000000000030a30c g     O .bss	0000000000000004              g_sys_stream_property_s
+0000000000019ff0 g     F .text	0000000000000205              bif_sys_drop_barrier_1
+000000000030a2dc g     O .bss	0000000000000004              g_at_s
+000000000030a324 g     O .bss	0000000000000004              g_eq_s
+000000000030a330 g     O .bss	0000000000000004              g_eof_s
+00000000001d6e20 g     O .data	0000000000000004              g_cpu_count
+000000000013bc80 g     F .text	00000000000000ba              get_help
+0000000000115dc0 g     F .text	0000000000000394              assertz_to_db
+00000000002655b8 g     O .bss	0000000000000008              rl_attempted_completion_function
+0000000000119510 g     F .text	0000000000000008              net_getc
+0000000000000000       F *UND*	0000000000000000              pipe@GLIBC_2.2.5
+000000000030a268 g     O .bss	0000000000000004              g_maplist_s
+000000000030a264 g     O .bss	0000000000000004              g_sys_succeed_on_retry_s
+000000000003ddc0 g     F .text	00000000000000da              call_builtin
+0000000000120450 g     F .text	000000000000015f              check_body_callable
+0000000000168b9c g     O .rodata	0000000000000004              MP_RANGE
+00000000001428c0 g     F .text	00000000000001bd              retry_choice
+000000000006f180 g     F .text	0000000000000069              get_time_in_usec
+000000000030a208 g     O .bss	0000000000000008              g_global_atoms
+0000000000000000       F *UND*	0000000000000000              ftello@GLIBC_2.2.5
+0000000000264a60 g     O .data	0000000000000b21              library_when_pl
+00000000001100c0 g     F .text	000000000000002a              list_insert_after
+000000000015de30 g     F .text	0000000000000051              mp_int_count_bits
+0000000000243260 g     O .data	0000000000000fd0              library_http_pl
+000000000015fa60 g     F .text	0000000000000013              mp_rat_clear
+0000000000079470 g     F .text	0000000000000195              bif_sys_jump_1
+00000000001d6e38 g     O .data	0000000000000008              g_version
+00000000000274a0 g     F .text	00000000000014ab              bif_parse_csv_file_2
+000000000001a200 g     F .text	00000000000001f5              bif_sys_match_1
+0000000000161aa0 g     F .text	00000000000000db              re_matchp
+0000000000000000       F *UND*	0000000000000000              fetestexcept@GLIBC_2.2.5
+000000000010cfa0 g     F .text	00000000000000b7              alloc_tmp
+0000000000000000       F *UND*	0000000000000000              gmtime_r@GLIBC_2.2.5
+0000000000265588 g     O .data	0000000000000000              .hidden __TMC_END__
+000000000015d3e0 g     F .text	000000000000014d              mp_int_div_value
+0000000000000000       F *UND*	0000000000000000              kill@GLIBC_2.2.5
+00000000001bd360 g     O .data	00000000000167a0              g_streams_bifs
+0000000000000000       F *UND*	0000000000000000              strerror@GLIBC_2.2.5
+0000000000153450 g     F .text	000000000000026f              strchr_utf8
+0000000000159990 g     F .text	00000000000000be              mp_int_div_pow2
+0000000000000000       F *UND*	0000000000000000              strstr@GLIBC_2.2.5
+0000000000142fd0 g     F .text	00000000000000f0              push_succeed_on_retry_with_barrier
+000000000010ffd0 g     F .text	0000000000000045              history_load
+000000000013a220 g     F .text	00000000000003bb              print_canonical_to_stream
+0000000000227600 g     O .data	0000000000000004              library_concurrent_pl_len
+00000000001553d0 g     F .text	0000000000000051              mp_int_alloc
+0000000000120420 g     F .text	0000000000000021              assign_vars
+0000000000000000       F *UND*	0000000000000000              atanh@GLIBC_2.2.5
+000000000013b860 g     F .text	000000000000001d              pl_isatty
+0000000000232be0 g     O .data	0000000000002140              library_dcgs_pl
+0000000000000000       F *UND*	0000000000000000              strcat@GLIBC_2.2.5
+000000000015a760 g     F .text	0000000000000132              mp_int_compare_value
+0000000000114d00 g     F .text	0000000000000896              match_op
+000000000025ed40 g     O .data	0000000000000004              library_ugraphs_pl_len
+000000000007b700 g     F .text	000000000000033a              bif_sys_module_1
+0000000000181528 g     O .data	0000000000000000              .hidden __dso_handle
+0000000000000000       F *UND*	0000000000000000              iswspace@GLIBC_2.2.5
+0000000000160030 g     F .text	000000000000014b              mp_rat_div
+0000000000112460 g     F .text	000000000000014c              search_goal_expansion
+0000000000182f80 g     O .data	0000000000000fc0              g_bboard_bifs
+0000000000160df0 g     F .text	000000000000011c              mp_rat_read_cstring
+0000000000249520 g     O .data	00000000000003cb              library_linda_pl
+000000000015fba0 g     F .text	0000000000000033              mp_rat_neg
+0000000000000000       F *UND*	0000000000000000              fputs@GLIBC_2.2.5
+000000000025c000 g     O .data	0000000000000833              library_reif_pl
+000000000030a2b0 g     O .bss	0000000000000004              g_error_s
+0000000000235240 g     O .data	0000000000000004              library_dif_pl_len
+0000000000000000       F *UND*	0000000000000000              __isoc23_sscanf@GLIBC_2.38
+000000000015faf0 g     F .text	0000000000000005              mp_rat_sign
+00000000001193a0 g     F .text	0000000000000003              net_enable_ssl
+00000000002655c0 g     O .bss	0000000000000004              rl_attempted_completion_over
+000000000011cd40 g     F .text	000000000000001a              make_int
+0000000000073a80 g     F .text	00000000000000d1              bif_statistics_0
+0000000000114a60 g     F .text	0000000000000129              find_functor
+0000000000000000       F *UND*	0000000000000000              connect@GLIBC_2.2.5
+00000000000232c0 g     F .text	0000000000001b20              bif_write_csv_file_3
+000000000015b2b0 g     F .text	0000000000000179              mp_int_redux_const
+000000000013bbc0 g     F .text	0000000000000022              pl_consult
+000000000013bd40 g     F .text	00000000000000ba              get_builtin
+0000000000147e10 g     F .text	0000000000000107              sl_get
+0000000000168b98 g     O .rodata	0000000000000004              MP_UNDEF
+000000000013b890 g     F .text	0000000000000126              pl_eval
+0000000000142dd0 g     F .text	00000000000001f4              push_barrier
+0000000000161260 g     F .text	0000000000000098              mp_rat_read_ustring
+000000000015a600 g     F .text	00000000000000a6              mp_int_compare
+0000000000000000       F *UND*	0000000000000000              towlower@GLIBC_2.2.5
+00000000001539b0 g     F .text	00000000000000d1              put_char_utf8
+000000000030a300 g     O .bss	0000000000000004              g_off_s
+000000000030a1f0 g     O .bss	0000000000000008              g_av
+0000000000141f00 g     F .text	0000000000000058              make_call
+000000000014de90 g     F .text	000000000000037d              check_interrupt
+000000000007a700 g     F .text	0000000000000308              bif_iso_unify_2
+0000000000160710 g     F .text	0000000000000005              mp_rat_compare_zero
+0000000000107a30 g     F .text	0000000000000040              do_yield_at
+0000000000168ba8 g     O .rodata	0000000000000004              MP_FALSE
+0000000000157d70 g     F .text	000000000000029d              mp_int_mul
+000000000001f310 g     F .text	00000000000008f7              bif_sys_call_cleanup_3
+000000000030a25c g     O .bss	0000000000000004              g_sys_call_check_s
+000000000013aab0 g     F .text	000000000000039b              print_term_to_stream
+0000000000160d90 g     F .text	000000000000003d              mp_rat_string_len
+0000000000234d20 g     O .data	0000000000000004              library_debug_pl_len
+0000000000062db0 g     F .text	0000000000000013              call_userfun
+0000000000120e10 g     F .text	0000000000000020              eat_continuation
+000000000025e320 g     O .data	0000000000000a10              library_time_pl
+0000000000000000       F *UND*	0000000000000000              tcgetattr@GLIBC_2.2.5
+00000000000bd110 g     F .text	0000000000000013              dump_key
+0000000000253bc0 g     O .data	0000000000000d08              library_raylib_pl
+00000000000ffdc0 g     F .text	0000000000002986              do_read_term
+000000000011ba20 g     F .text	0000000000000218              list_head
+0000000000155610 g     F .text	00000000000001a8              mp_int_init_value
+000000000001d170 g     F .text	000000000000073e              bif_soft_if_then_2
+000000000013cb20 g     F .text	0000000000002852              pl_create
+00000000001603a0 g     F .text	0000000000000073              mp_rat_mul_int
+00000000001554f0 g     F .text	000000000000011b              mp_int_init_copy
+000000000015e9f0 g     F .text	0000000000000407              mp_int_xor
+0000000000110170 g     F .text	0000000000000033              list_remove
+000000000024db20 g     O .data	0000000000004b9b              library_ordsets_pl
+0000000000145180 g     F .text	0000000000000d67              match_head
+0000000000152dc0 g     F .text	000000000000033c              unify
+000000000015e310 g     F .text	0000000000000244              mp_int_read_unsigned
+000000000013b820 g     F .text	0000000000000008              set_trace
+000000000030a32c g     O .bss	0000000000000004              g_lt_s
+000000000011cdc0 g     F .text	000000000000001d              make_end
+0000000000252cc0 g     O .data	0000000000000bf6              library_pio_pl
+000000000010e870 g     F .text	0000000000000135              append_list
+0000000000148c80 g     F .text	0000000000000033              sl_has_next
+0000000000000000       F *UND*	0000000000000000              signal@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              strptime@GLIBC_2.2.5
+0000000000148d00 g     F .text	0000000000000013              sl_key
+0000000000000000       F *UND*	0000000000000000              erf@GLIBC_2.2.5
+000000000011c8c0 g     F .text	0000000000000058              get_logical_body
+00000000000c4240 g     F .text	0000000000000de7              bif_sre_match_4
+0000000000000000       F *UND*	0000000000000000              memmove@GLIBC_2.2.5
+0000000000113b60 g     F .text	00000000000002ed              set_meta_predicate_in_db
+000000000030a2f0 g     O .bss	0000000000000004              g_once_s
+000000000030a274 g     O .bss	0000000000000004              g_cont_s
+0000000000000000       F *UND*	0000000000000000              strchr@GLIBC_2.2.5
+00000000001121c0 g     F .text	0000000000000245              create_predicate
+0000000000000000       F *UND*	0000000000000000              waitpid@GLIBC_2.2.5
+0000000000155380 g     F .text	0000000000000007              mp_int_default_precision
+00000000001a41c0 g     O .data	0000000000001f80              g_posix_bifs
+00000000001d91c0 g     O .data	0000000000000004              library_assoc_pl_len
+000000000024db00 g     O .data	0000000000000004              library_ordsets_pl_len
+000000000030a2e0 g     O .bss	0000000000000004              g_disjunction_s
+0000000000168b90 g     O .rodata	0000000000000004              MP_BADARG
+000000000018fc40 g     O .data	000000000000e460              g_evaluable_bifs
+0000000000000000       F *UND*	0000000000000000              socket@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              fread@GLIBC_2.2.5
+000000000030a278 g     O .bss	0000000000000004              g_memberchk_s
+0000000000000000       F *UND*	0000000000000000              setenv@GLIBC_2.2.5
+00000000001d8380 g     O .data	0000000000000b9d              library_aggregate_pl
+000000000012a790 g     F .text	000000000000009a              string_to_chars_list
+000000000030a288 g     O .bss	0000000000000004              g_member_s
+0000000000160f10 g     F .text	0000000000000007              mp_rat_read_string
+0000000000160890 g     F .text	000000000000001c              mp_rat_is_integer
+000000000030a338 g     O .bss	0000000000000004              g_anon_s
+0000000000110130 g     F .text	0000000000000031              list_pop_back
+0000000000105970 g     F .text	000000000000047a              do_load_file
+0000000000244240 g     O .data	0000000000000004              library_iso_ext_pl_len
+000000000030a284 g     O .bss	0000000000000004              g_caret_s
+0000000000000000       F *UND*	0000000000000000              getenv@GLIBC_2.2.5
+000000000015d530 g     F .text	0000000000000059              mp_int_divisible_value
+000000000001cc20 g     F .text	0000000000000543              bif_sys_succeed_on_retry_2
+0000000000000000       F *UND*	0000000000000000              __isoc23_strtoll@GLIBC_2.38
+00000000002548e0 g     O .data	0000000000000004              library_rbtrees_pl_len
+0000000000116160 g     F .text	0000000000000049              retract_from_db
+0000000000145ef0 g     F .text	0000000000000287              do_cleanup
+00000000001155a0 g     F .text	0000000000000095              get_op
+000000000030a320 g     O .bss	0000000000000004              g_false_s
+00000000001420e0 g     F .text	0000000000000028              dump_id
+0000000000014640 g     F .text	0000000000000222              any_attributed
+000000000013bbf0 g     F .text	0000000000000022              pl_consult_text
+0000000000148d20 g     F .text	000000000000011e              sl_find_key
+000000000030a2a8 g     O .bss	0000000000000004              g_sys_cleanup_if_det_s
+000000000030a314 g     O .bss	0000000000000004              g_braces_s
+0000000000153960 g     F .text	000000000000000c              is_char_utf8
+0000000000000000       F *UND*	0000000000000000              rand_r@GLIBC_2.2.5
+0000000000235ca0 g     O .data	0000000000000004              library_error_pl_len
+000000000030a2d8 g     O .bss	0000000000000004              g_sys_ne_s
+0000000000000000       F *UND*	0000000000000000              __errno_location@GLIBC_2.2.5
+0000000000168b8c g     O .rodata	0000000000000004              MP_MINERR
+0000000000000000       F *UND*	0000000000000000              qsort@GLIBC_2.2.5
+00000000001b4d80 g     O .data	0000000000006900              g_iso_bifs
+00000000001100f0 g     F .text	0000000000000032              list_pop_front
+00000000001d91e0 g     O .data	000000000000428d              library_assoc_pl
+0000000000127db0 g     F .text	0000000000000b3d              run
+000000000010d730 g     F .text	0000000000000198              clone_term_to_heap
+000000000030a29c g     O .bss	0000000000000004              g_tm_s
+0000000000119530 g     F .text	0000000000000016              net_getline
+0000000000000000       F *UND*	0000000000000000              strdup@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              readline
+0000000000148990 g     F .text	0000000000000229              sl_del
+00000000002655a0 g       .bss	0000000000000000              __bss_start
+0000000000114c30 g     F .text	00000000000000ca              search_op
+00000000001427e0 g     F .text	00000000000000d4              stash_frame
+0000000000148740 g     F .text	0000000000000247              sl_rem
+00000000001101b0 g     F .text	0000000000000010              listx_init
+0000000000159870 g     F .text	0000000000000120              mp_int_mod
+000000000025e300 g     O .data	0000000000000004              library_time_pl_len
+0000000000000000       F *UND*	0000000000000000              iswlower@GLIBC_2.2.5
+00000000000be220 g     F .text	00000000000001d8              format_property
+000000000013bc50 g     F .text	000000000000000c              pl_restore
+000000000010cf40 g     F .text	0000000000000051              init_tmp_heap
+000000000012ae20 g     F .text	0000000000000403              needs_quoting
+000000000030a34c g     O .bss	0000000000000004              g_dot_s
+000000000030a200 g     O .bss	0000000000000008              g_tpl_lib
+0000000000000000       F *UND*	0000000000000000              clock@GLIBC_2.2.5
+000000000011cba0 g     F .text	00000000000000ac              make_stringn
+0000000000249900 g     O .data	0000000000000004              library_lists_pl_len
+00000000000feb20 g     F .text	0000000000000019              is_closed_stream
+000000000015fbe0 g     F .text	000000000000007f              mp_rat_recip
+000000000030a304 g     O .bss	0000000000000004              g_on_s
+000000000013ae50 g     F .text	000000000000045f              print_term
+0000000000014870 g     F .text	0000000000000118              do_post_unify_hook
+000000000013bb10 g     F .text	0000000000000023              pl_yield_at
+000000000030a2cc g     O .bss	0000000000000004              g_throw_s
+0000000000120a30 g     F .text	00000000000003d2              read_integer
+000000000010e460 g     F .text	0000000000000271              copy_term_to_heap
+0000000000000000       F *UND*	0000000000000000              __stack_chk_fail@GLIBC_2.4
+0000000000161f90 g     F .text	00000000000001e4              re_print
+000000000015df50 g     F .text	0000000000000303              mp_int_read_binary
+00000000001bc3a0 g     O .data	0000000000000fc0              g_sregex_bifs
+000000000007ad30 g     F .text	000000000000026a              bif_sys_queue_1
+0000000000155ff0 g     F .text	00000000000000c9              mp_int_abs
+0000000000118620 g     F .text	0000000000000076              save_file
+000000000015ee00 g     F .text	0000000000000298              mp_int_and
+00000000001157d0 g     F .text	000000000000021a              module_dump_term
+000000000013b540 g     F .text	0000000000000169              is_multifile_in_db
+0000000000000000       F *UND*	0000000000000000              iswgraph@GLIBC_2.2.5
+0000000000073980 g     F .text	0000000000000013              bif_iso_halt_0
+0000000000183f40 g     O .data	00000000000063c0              g_control_bifs
+00000000002526e0 g     O .data	00000000000005b2              library_pairs_pl
+0000000000018110 g     F .text	0000000000000003              bif_iso_fail_0
+0000000000000000       F *UND*	0000000000000000              posix_spawnp@GLIBC_2.15
+0000000000000000       F *UND*	0000000000000000              strcmp@GLIBC_2.2.5
+0000000000120650 g     F .text	00000000000003d8              eat_space
+00000000001604c0 g     F .text	00000000000000ba              mp_rat_expt
+0000000000249500 g     O .data	0000000000000004              library_linda_pl_len
+000000000015e630 g     F .text	00000000000003bd              mp_int_or
+000000000014d050 g     F .text	00000000000002a7              check_list
+0000000000148330 g     F .text	0000000000000409              sl_app
+0000000000142250 g     F .text	000000000000027c              create_vars
+000000000003dea0 g     F .text	000000000000056b              bif_iso_float_1
+0000000000168bac g     O .rodata	0000000000000004              MP_OK
+0000000000000000       F *UND*	0000000000000000              getcwd@GLIBC_2.2.5
+000000000013b7f0 g     F .text	000000000000000e              get_redo
+000000000018b020 g     O .data	00000000000041a0              g_database_bifs
+000000000012b230 g     F .text	0000000000002796              formatted
+000000000025c840 g     O .data	0000000000000004              library_si_pl_len
+0000000000000000       F *UND*	0000000000000000              acos@GLIBC_2.2.5
+0000000000244e80 g     O .data	0000000000000004              library_json_pl_len
+0000000000111d30 g     F .text	0000000000000134              search_predicate
+0000000000116290 g     F .text	00000000000004af              load_text
+0000000000018140 g     F .text	0000000000000013              bif_iso_cut_0
+0000000000168ba0 g     O .rodata	0000000000000004              MP_MEMORY
+000000000013bb40 g     F .text	0000000000000013              pl_did_yield
+0000000000115750 g     F .text	0000000000000080              process_module
+00000000001181f0 g     F .text	0000000000000100              do_use_module_1
+0000000000168b94 g     O .rodata	0000000000000004              MP_TRUNC
+0000000000155e70 g     F .text	0000000000000040              mp_int_free
+000000000012e370 g     F .text	000000000000038c              sprint_int
+000000000030a210 g     O .bss	0000000000000004              g_dummy_s
+0000000000000000       F *UND*	0000000000000000              strcpy@GLIBC_2.2.5
+0000000000118da0 g     F .text	0000000000000097              net_domain_connect
+00000000001a6140 g     O .data	000000000000ec40              g_other_bifs
+000000000030a1e0 g     O .bss	0000000000000008              g_argv0
+0000000000110040 g     F .text	0000000000000010              list_init
+000000000010fd60 g     F .text	000000000000026f              history_readline_eol
+0000000000022f20 g     F .text	000000000000023a              bif_call_0
+0000000000263b80 g     O .data	0000000000000004              library_uuid_pl_len
+000000000015f990 g     F .text	000000000000005b              mp_rat_set_value
+00000000002411e0 g     O .data	0000000000002055              library_heaps_pl
+0000000000000000       F *UND*	0000000000000000              nanosleep@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              srand@GLIBC_2.2.5
+000000000013b9c0 g     F .text	00000000000000ff              pl_query
+0000000000237bc0 g     O .data	0000000000000004              library_format_pl_len
+00000000001557c0 g     F .text	0000000000000177              mp_int_init_uvalue
+0000000000023200 g     F .text	000000000000008a              throw_error
+00000000001527f0 g     F .text	0000000000000032              compare
+000000000030a240 g     O .bss	0000000000000004              g_sys_call_s
+000000000015ae60 g     F .text	00000000000000aa              mp_int_exptmod_evalue
+000000000013b850 g     F .text	0000000000000008              set_opt
+0000000000147de0 g     F .text	000000000000000f              sl_is_find
+000000000015cad0 g     F .text	0000000000000811              mp_int_root
+0000000000153cc0 g     F .text	00000000000000fd              xgetc_utf8
+00000000001dd640 g     O .data	0000000000000004              library_builtins_pl_len
+000000000030a2b4 g     O .bss	0000000000000004              g_none_s
+0000000000119350 g     F .text	000000000000004f              net_set_nonblocking
+0000000000000000       F *UND*	0000000000000000              __ctype_tolower_loc@GLIBC_2.3
+0000000000153140 g     F .text	000000000000030a              substrlen_utf8
+0000000000152b60 g     F .text	0000000000000256              undo_var
+000000000030a298 g     O .bss	0000000000000004              g_float_s
+00000000001430c0 g     F .text	000000000000022a              push_fail_on_retry_with_barrier
+0000000000000000       F *UND*	0000000000000000              memcmp@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              calloc@GLIBC_2.2.5
+00000000000f6410 g     F .text	00000000000000ad              new_stream
+000000000015f9f0 g     F .text	0000000000000067              mp_rat_set_uvalue
+0000000000263ba0 g     O .data	0000000000000e8f              library_uuid_pl
+00000000001608f0 g     F .text	0000000000000097              mp_rat_to_string
+0000000000143400 g     F .text	0000000000000271              push_catcher
+000000000013b4c0 g     F .text	0000000000000005              keyfree
+000000000030a230 g     O .bss	0000000000000004              g_sys_reunify_s
+0000000000000000       F *UND*	0000000000000000              feclearexcept@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              feof@GLIBC_2.2.5
+0000000000111910 g     F .text	000000000000007f              set_parent
+000000000010d090 g     F .text	0000000000000176              append_to_tmp
+000000000030a7c8 g       .bss	0000000000000000              _end
+000000000030a280 g     O .bss	0000000000000004              g_sys_counter_s
+0000000000265720 g     O .bss	00000000000a4100              g_ffi_bifs
+00000000001d6e10 g     O .data	0000000000000008              g_escapes
+0000000000146180 g     F .text	0000000000000427              cut
+000000000030a260 g     O .bss	0000000000000004              g_sys_fail_on_retry_s
+0000000000000000       F *UND*	0000000000000000              iswupper@GLIBC_2.2.5
+000000000015fb60 g     F .text	0000000000000033              mp_rat_abs
+000000000023dfc0 g     O .data	0000000000000004              library_freeze_pl_len
+0000000000000000       F *UND*	0000000000000000              fclose@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              remove@GLIBC_2.2.5
+0000000000111840 g     F .text	000000000000005b              get_loaded
+0000000000000000       F *UND*	0000000000000000              iswpunct@GLIBC_2.2.5
+0000000000034690 g     F .text	0000000000000293              format_integer
+000000000015da00 g     F .text	000000000000041d              mp_int_read_cstring
+00000000000be400 g     F .text	0000000000000051              format_template
+00000000001194e0 g     F .text	0000000000000027              net_peekc
+00000000001477a0 g     F .text	00000000000002b0              query_create
+0000000000000000       F *UND*	0000000000000000              strncpy@GLIBC_2.2.5
+0000000000020f10 g     F .text	000000000000032a              bif_sys_call_check_1
+0000000000020660 g     F .text	00000000000008a6              bif_iso_call_1
+0000000000000000       F *UND*	0000000000000000              getrlimit@GLIBC_2.2.5
+00000000001d6e80 g     O .data	00000000000014c6              library_abnf_pl
+000000000011cde0 g     F .text	0000000000000021              make_blob
+000000000015d5f0 g     F .text	000000000000038f              mp_int_to_string
+000000000030a21c g     O .bss	0000000000000004              g_sys_create_var_s
+000000000001a400 g     F .text	00000000000001e5              bif_sys_cut_1
+0000000000000000       F *UND*	0000000000000000              localtime_r@GLIBC_2.2.5
+000000000015b430 g     F .text	0000000000000527              mp_int_gcd
+00000000001135f0 g     F .text	00000000000001c3              set_discontiguous_in_db
+0000000000000000       F *UND*	0000000000000000              fseeko@GLIBC_2.2.5
+000000000025d4e0 g     O .data	0000000000000e0b              library_sqlite3_pl
+0000000000153b60 g     F .text	000000000000008c              len_char_utf8
+000000000010e9b0 g     F .text	00000000000002d8              end_list
+00000000001d6e18 g     O .data	0000000000000008              g_solo
+000000000030a348 g     O .bss	0000000000000004              g_cut_s
+0000000000120e30 g     F .text	0000000000001fc7              get_token
+000000000030a2d0 g     O .bss	0000000000000004              g_dcg_s
+0000000000153970 g     F .text	0000000000000033              put_len_utf8
+000000000030a224 g     O .bss	0000000000000004              g_sys_loop_s
+000000000013b800 g     F .text	000000000000000b              did_dump_vars
+0000000000000000       F *UND*	0000000000000000              using_history
+0000000000160290 g     F .text	0000000000000107              mp_rat_sub_int
+0000000000000000       F *UND*	0000000000000000              unsetenv@GLIBC_2.2.5
+0000000000147df0 g     F .text	000000000000000c              sl_count
+000000000015fad0 g     F .text	0000000000000009              mp_rat_denom
+0000000000147dd0 g     F .text	000000000000000a              sl_set_wild_card
+00000000001137c0 g     F .text	00000000000001c3              set_multifile_in_db
+0000000000141b90 g     F .text	0000000000000137              check_pressure
+000000000015afc0 g     F .text	00000000000002e1              mp_int_exptmod_known
+000000000010efe0 g     F .text	00000000000000f9              append_structure
+000000000012a830 g     F .text	00000000000005e7              chars_list_to_string
+0000000000000000       F *UND*	0000000000000000              closedir@GLIBC_2.2.5
+0000000000155430 g     F .text	00000000000000b7              mp_int_init_size
+00000000002655e0 g     O .bss	0000000000000008              stderr@GLIBC_2.2.5
+000000000011cce0 g     F .text	0000000000000032              make_var
+00000000001125b0 g     F .text	00000000000000de              create_goal_expansion
+0000000000141f60 g     F .text	000000000000004d              make_call_redo
+000000000030a2f8 g     O .bss	0000000000000004              g_plus_s
+0000000000168ba4 g     O .rodata	0000000000000004              MP_TRUE
+0000000000000000       F *UND*	0000000000000000              posix_spawn_file_actions_adddup2@GLIBC_2.2.5
+000000000025bfe0 g     O .data	0000000000000004              library_reif_pl_len
+0000000000112690 g     F .text	000000000000008a              find_in_db
+000000000011cd60 g     F .text	000000000000001a              make_uint
+000000000015f140 g     F .text	0000000000000099              mp_int_lsb
+000000000030a258 g     O .bss	0000000000000004              g_ignore_s
+0000000000000000       F *UND*	0000000000000000              clearerr@GLIBC_2.2.5
+0000000000153dc0 g     F .text	00000000000000e9              character_at_pos
+0000000000000000       F *UND*	0000000000000000              posix_spawnattr_init@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              access@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              fork@GLIBC_2.2.5
+00000000000c3b40 g     F .text	00000000000006f5              bif_sre_compile_2
+0000000000000000       F *UND*	0000000000000000              getppid@GLIBC_2.2.5
+000000000030a23c g     O .bss	0000000000000004              g_sys_cut_s
+00000000001536c0 g     F .text	000000000000029f              strrchr_utf8
+00000000001078a0 g     F .text	00000000000000a8              do_yield
+0000000000153f80 g     F .text	00000000000000b2              pos_at_offset
+0000000000033c10 g     F .text	0000000000000276              save_db
+0000000000000000       F *UND*	0000000000000000              bind@GLIBC_2.2.5
+000000000011cd20 g     F .text	000000000000001b              make_float
+000000000015fe10 g     F .text	00000000000001a2              mp_rat_sub
+000000000014c2e0 g     F .text	0000000000000022              has_vars
+00000000001608b0 g     F .text	000000000000003b              mp_rat_to_ints
+000000000030a380 g     O .bss	0000000000000004              g_tpl_interrupt
+000000000001bcf0 g     F .text	00000000000001f5              bif_sys_succeed_on_retry_1
+000000000030a27c g     O .bss	0000000000000004              g_catch_s
+0000000000000000       F *UND*	0000000000000000              fwrite@GLIBC_2.2.5
+000000000030a1e8 g     O .bss	0000000000000008              g_argv
+000000000013b740 g     F .text	0000000000000072              find_module
+0000000000000000       F *UND*	0000000000000000              realloc@GLIBC_2.2.5
+00000000001e2560 g     O .data	0000000000000c20              library_charsio_pl
+0000000000112410 g     F .text	0000000000000043              find_goal_expansion
+000000000013b840 g     F .text	0000000000000008              set_quiet
+00000000001e2540 g     O .data	0000000000000004              library_charsio_pl_len
+0000000000000000       F *UND*	0000000000000000              setlocale@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              floor@GLIBC_2.2.5
+0000000000161ec0 g     F .text	00000000000000cd              re_match
+0000000000107a90 g     F .text	0000000000000001              acquire_lock
+0000000000115640 g     F .text	0000000000000109              process_clause
+000000000023e9c0 g     O .data	0000000000000004              library_gsl_pl_len
+0000000000000000       F *UND*	0000000000000000              perror@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              rand@GLIBC_2.2.5
+00000000001a0aa0 g     O .data	0000000000003720              g_os_bifs
+000000000030a26c g     O .bss	0000000000000004              g_is_s
+00000000001581c0 g     F .text	00000000000001d3              mp_int_sqr
+000000000030a250 g     O .bss	0000000000000004              g_reset_s
+0000000000265581 g       .data	0000000000000000              _edata
+0000000000234d40 g     O .data	00000000000004f0              library_debug_pl
+000000000015e5c0 g     F .text	0000000000000065              mp_error_string
+0000000000116f60 g     F .text	00000000000000fa              restore_log
+0000000000252ca0 g     O .data	0000000000000004              library_pio_pl_len
+0000000000113560 g     F .text	000000000000008e              push_template
+000000000013b2b0 g     F .text	0000000000000045              partial_clear_write_options
+0000000000000000       F *UND*	0000000000000000              fprintf@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              add_history
+0000000000147e00 g     F .text	0000000000000005              sl_set_tmp
+0000000000143680 g     F .text	0000000000000044              drop_barrier
+000000000030a238 g     O .bss	0000000000000004              g_notunify_s
+000000000015a6b0 g     F .text	0000000000000073              mp_int_compare_unsigned
+0000000000153eb0 g     F .text	00000000000000c5              offset_at_pos
+0000000000155bc0 g     F .text	000000000000024b              mp_int_set_uvalue
+000000000000eff0 g     F .text	0000000000000319              b64_decode
+0000000000000000       F *UND*	0000000000000000              __libc_start_main@GLIBC_2.34
+000000000000eb20 g     F .text	00000000000004cf              b64_encode
+0000000000000000       F *UND*	0000000000000000              posix_spawnattr_setflags@GLIBC_2.2.5
+000000000030a218 g     O .bss	0000000000000004              g_sys_match_s
+00000000001583a0 g     F .text	00000000000014cd              mp_int_div
+0000000000000000       F *UND*	0000000000000000              ctime_r@GLIBC_2.2.5
+00000000001d6e24 g     O .data	0000000000000004              g_max_depth
+000000000014e210 g     F .text	0000000000000460              check_redo
+000000000011cd80 g     F .text	000000000000001a              make_ptr
+0000000000000000       F *UND*	0000000000000000              strftime@GLIBC_2.2.5
+0000000000155fd0 g     F .text	0000000000000016              mp_int_zero
+00000000000bcf70 g     F .text	00000000000000b0              uuid_gen
+000000000011cda0 g     F .text	000000000000001f              make_struct
+000000000030a220 g     O .bss	0000000000000004              g_sys_end_s
+0000000000142a80 g     F .text	000000000000016e              push_choice
+000000000030a248 g     O .bss	0000000000000004              g_sys_jump_s
+0000000000155eb0 g     F .text	00000000000000bc              mp_int_copy
+000000000030a344 g     O .bss	0000000000000004              g_nil_s
+000000000015fa80 g     F .text	0000000000000022              mp_rat_free
+0000000000142110 g     F .text	0000000000000027              scan_is_chars_list2
+0000000000000000       F *UND*	0000000000000000              stat@GLIBC_2.33
+0000000000142140 g     F .text	0000000000000063              scan_is_chars_list
+0000000000000000       F *UND*	0000000000000000              accept@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              popen@GLIBC_2.2.5
+0000000000155940 g     F .text	0000000000000273              mp_int_set_value
+0000000000000000       F *UND*	0000000000000000              pow@GLIBC_2.29
+0000000000000000       F *UND*	0000000000000000              sqrt@GLIBC_2.2.5
+0000000000141cd0 g     F .text	0000000000000130              check_frame
+0000000000237be0 g     O .data	00000000000063d6              library_format_pl
+0000000000141a50 g     F .text	0000000000000136              dump_term
+000000000030a328 g     O .bss	0000000000000004              g_gt_s
+000000000013c930 g     F .text	00000000000001e9              pl_destroy
+0000000000227e80 g     O .data	000000000000ad3e              library_curl_pl
+0000000000000000       F *UND*	0000000000000000              umask@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              memcpy@GLIBC_2.14
+000000000030a2b8 g     O .bss	0000000000000004              g_negation_s
+000000000025c860 g     O .data	0000000000000c5d              library_si_pl
+000000000011d600 g     F .text	00000000000000bd              parser_create
+0000000000158010 g     F .text	00000000000000aa              mp_int_mul_value
+000000000010d320 g     F .text	0000000000000407              trim_heap
+000000000030a2e4 g     O .bss	0000000000000004              g_conjunction_s
+0000000000161300 g     F .text	0000000000000007              mp_rat_read_decimal
+000000000003e410 g     F .text	00000000000005e4              bif_iso_integer_1
+000000000014e670 g     F .text	0000000000000031              query_redo
+00000000001d8360 g     O .data	0000000000000004              library_aggregate_pl_len
+000000000010e040 g     F .text	00000000000000c8              rebase_term
+00000000001421b0 g     F .text	0000000000000095              make_slice
+000000000013b830 g     F .text	0000000000000008              set_autofail
+000000000011cc70 g     F .text	0000000000000014              make_nil
+000000000018a300 g     O .data	0000000000000d20              g_csv_bifs
+0000000000000000       F *UND*	0000000000000000              mmap@GLIBC_2.2.5
+00000000001560c0 g     F .text	00000000000000d7              mp_int_neg
+0000000000000000       F *UND*	0000000000000000              sin@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              rename@GLIBC_2.2.5
+000000000015f240 g     F .text	00000000000000ea              mp_int_to_double
+000000000030a2a4 g     O .bss	0000000000000004              g_goal_expansion_s
+000000000010d060 g     F .text	0000000000000029              clone_term_to_tmp
+0000000000119260 g     F .text	00000000000000e9              net_accept
+0000000000000000       F *UND*	0000000000000000              strtod@GLIBC_2.2.5
+000000000010e430 g     F .text	0000000000000022              copy_term_to_tmp
+00000000002655e8 g     O .bss	0000000000000008              stdout@GLIBC_2.2.5
+000000000003ea00 g     F .text	00000000000011f1              bif_iso_add_2
+000000000000eb00 g     F .text	0000000000000017              sigfn
+0000000000156770 g     F .text	00000000000000aa              mp_int_add_value
+0000000000000000       F *UND*	0000000000000000              mkdir@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              time@GLIBC_2.2.5
+000000000000daa0 g     F .text	0000000000000f51              main
+000000000000d000 g     F .init	0000000000000000              .hidden _init
+000000000030a2ac g     O .bss	0000000000000004              g_slash_s
+000000000015f720 g     F .text	0000000000000175              mp_rat_reduce
+0000000000000000       F *UND*	0000000000000000              fflush@GLIBC_2.2.5
+00000000000203f0 g     F .text	000000000000026f              call_check
+0000000000114b90 g     F .text	0000000000000091              set_op
+0000000000155f70 g     F .text	0000000000000057              mp_int_swap
+0000000000000000       F *UND*	0000000000000000              sinh@GLIBC_2.2.5
+00000000001606c0 g     F .text	0000000000000049              mp_rat_compare
+00000000001182f0 g     F .text	000000000000032d              do_use_module_2
+000000000006f110 g     F .text	000000000000006c              cpu_time_in_usec
+
+

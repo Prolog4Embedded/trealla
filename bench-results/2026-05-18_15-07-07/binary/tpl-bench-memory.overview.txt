@@ -1,0 +1,5 @@
+Binary: build/bench/tpl-bench-memory
+
+build/bench/tpl-bench-memory: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=e7609ef3f240e401506e32c7ed420d83c917cbfc, for GNU/Linux 4.4.0, with debug_info, not stripped
+
+-rwxr-xr-x 1 simon simon 9.4M May 18 15:07 build/bench/tpl-bench-memory

@@ -1,0 +1,5 @@
+Binary: build/bench/tpl-bench-cycles
+
+build/bench/tpl-bench-cycles: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=3401ae968063b5de805ee526cf062f81a6ffe480, for GNU/Linux 4.4.0, not stripped
+
+-rwxr-xr-x 1 simon simon 2.5M May 18 14:45 build/bench/tpl-bench-cycles

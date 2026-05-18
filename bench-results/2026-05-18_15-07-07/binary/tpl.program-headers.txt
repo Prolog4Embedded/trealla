@@ -1,0 +1,57 @@
+
+Elf file type is DYN (Position-Independent Executable file)
+Entry point 0xea00
+There are 15 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  PHDR           0x0000000000000040 0x0000000000000040 0x0000000000000040
+                 0x0000000000000348 0x0000000000000348  R      0x8
+  INTERP         0x00000000000003ac 0x00000000000003ac 0x00000000000003ac
+                 0x000000000000001c 0x000000000000001c  R      0x1
+      [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+  LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x000000000000c9f0 0x000000000000c9f0  R      0x1000
+  LOAD           0x000000000000d000 0x000000000000d000 0x000000000000d000
+                 0x0000000000155321 0x0000000000155321  R E    0x1000
+  LOAD           0x0000000000163000 0x0000000000163000 0x0000000000163000
+                 0x000000000001ce18 0x000000000001ce18  R      0x1000
+  LOAD           0x0000000000180950 0x0000000000180950 0x0000000000180950
+                 0x00000000000e4c31 0x0000000000189e78  RW     0x1000
+  DYNAMIC        0x0000000000180d80 0x0000000000180d80 0x0000000000180d80
+                 0x0000000000000210 0x0000000000000210  RW     0x8
+  NOTE           0x0000000000000388 0x0000000000000388 0x0000000000000388
+                 0x0000000000000024 0x0000000000000024  R      0x4
+  NOTE           0x000000000017fdb8 0x000000000017fdb8 0x000000000017fdb8
+                 0x0000000000000040 0x0000000000000040  R      0x8
+  NOTE           0x000000000017fdf8 0x000000000017fdf8 0x000000000017fdf8
+                 0x0000000000000020 0x0000000000000020  R      0x4
+  GNU_PROPERTY   0x000000000017fdb8 0x000000000017fdb8 0x000000000017fdb8
+                 0x0000000000000040 0x0000000000000040  R      0x8
+  GNU_EH_FRAME   0x0000000000168ed8 0x0000000000168ed8 0x0000000000168ed8
+                 0x00000000000021ac 0x00000000000021ac  R      0x4
+  GNU_SFRAME     0x000000000017fcf8 0x000000000017fcf8 0x000000000017fcf8
+                 0x00000000000000c0 0x00000000000000c0  R      0x8
+  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000000 0x0000000000000000  RW     0x10
+  GNU_RELRO      0x0000000000180950 0x0000000000180950 0x0000000000180950
+                 0x00000000000006b0 0x00000000000006b0  R      0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .interp 
+   02     .note.gnu.build-id .interp .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt 
+   03     .init .plt .plt.got .text .fini 
+   04     .rodata .eh_frame_hdr .eh_frame .sframe .note.gnu.property .note.ABI-tag 
+   05     .init_array .fini_array .data.rel.ro .dynamic .got .got.plt .data .bss 
+   06     .dynamic 
+   07     .note.gnu.build-id 
+   08     .note.gnu.property 
+   09     .note.ABI-tag 
+   10     .note.gnu.property 
+   11     .eh_frame_hdr 
+   12     .sframe 
+   13     
+   14     .init_array .fini_array .data.rel.ro .dynamic .got 
