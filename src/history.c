@@ -14,17 +14,20 @@
 #include <histedit.h>
 #endif
 
-#if !defined(USE_ISOCLINE) && !defined(USE_EDITLINE)
+#if !defined(USE_ISOCLINE) && !defined(USE_EDITLINE) && !defined(TPL_BACKEND_BAREMETAL)
 #include <readline/history.h>
 #include <readline/readline.h>
 #endif
 
+#if !defined(TPL_BACKEND_BAREMETAL)
 #include <termios.h>
+#endif
 
 #include "history.h"
 #include "internal.h"
 #include "prolog.h"
 
+#if !defined(TPL_BACKEND_BAREMETAL)
 int history_getch_fd(int fd)
 {
     struct termios oldattr, newattr;
@@ -47,10 +50,21 @@ int history_getch(void)
 {
     return history_getch_fd(STDIN_FILENO);
 }
+#else
+int history_getch_fd(int fd)
+{
+    (void)fd;
+    return -1;
+}
+int history_getch(void)
+{
+    return -1;
+}
+#endif
 
 static char g_filename[1024];
 
-#if !USE_ISOCLINE
+#if !USE_ISOCLINE && !defined(TPL_BACKEND_BAREMETAL)
 char *history_readline_eol(prolog *pl, const char *prompt, char eol)
 {
     char *cmd = NULL;
@@ -189,19 +203,19 @@ static char *functor_name_generator(const char *text, int state)
             return strdup(name);
     }
 
-    while ((name = g_csv_bifs[s_csv_list_index].name)) {
-        s_csv_list_index++;
-
-        if (strncmp(name, text, s_csv_len) == 0)
-            return strdup(name);
-    }
-
-    while ((name = g_database_bifs[s_database_list_index].name)) {
-        s_database_list_index++;
-
-        if (strncmp(name, text, s_database_len) == 0)
-            return strdup(name);
-    }
+    // while ((name = g_csv_bifs[s_csv_list_index].name)) {
+    //     s_csv_list_index++;
+    //
+    //     if (strncmp(name, text, s_csv_len) == 0)
+    //         return strdup(name);
+    // }
+    //
+    // while ((name = g_database_bifs[s_database_list_index].name)) {
+    //     s_database_list_index++;
+    //
+    //     if (strncmp(name, text, s_database_len) == 0)
+    //         return strdup(name);
+    // }
 
     while ((name = g_evaluable_bifs[s_evaluable_list_index].name)) {
         s_evaluable_list_index++;
@@ -210,12 +224,12 @@ static char *functor_name_generator(const char *text, int state)
             return strdup(name);
     }
 
-    while ((name = g_ffi_bifs[s_ffi_list_index].name)) {
-        s_ffi_list_index++;
-
-        if (strncmp(name, text, s_ffi_len) == 0)
-            return strdup(name);
-    }
+    // while ((name = g_ffi_bifs[s_ffi_list_index].name)) {
+    //     s_ffi_list_index++;
+    //
+    //     if (strncmp(name, text, s_ffi_len) == 0)
+    //         return strdup(name);
+    // }
 
     while ((name = g_format_bifs[s_format_list_index].name)) {
         s_format_list_index++;
@@ -245,12 +259,12 @@ static char *functor_name_generator(const char *text, int state)
             return strdup(name);
     }
 
-    while ((name = g_os_bifs[s_os_list_index].name)) {
-        s_os_list_index++;
-
-        if (strncmp(name, text, s_os_len) == 0)
-            return strdup(name);
-    }
+    // while ((name = g_os_bifs[s_os_list_index].name)) {
+    //     s_os_list_index++;
+    //
+    //     if (strncmp(name, text, s_os_len) == 0)
+    //         return strdup(name);
+    // }
 
     while ((name = g_control_bifs[s_control_list_index].name)) {
         s_control_list_index++;
@@ -259,12 +273,12 @@ static char *functor_name_generator(const char *text, int state)
             return strdup(name);
     }
 
-    while ((name = g_posix_bifs[s_posix_list_index].name)) {
-        s_posix_list_index++;
-
-        if (strncmp(name, text, s_posix_len) == 0)
-            return strdup(name);
-    }
+    // while ((name = g_posix_bifs[s_posix_list_index].name)) {
+    //     s_posix_list_index++;
+    //
+    //     if (strncmp(name, text, s_posix_len) == 0)
+    //         return strdup(name);
+    // }
 
     while ((name = g_sort_bifs[s_sort_list_index].name)) {
         s_sort_list_index++;
@@ -273,33 +287,33 @@ static char *functor_name_generator(const char *text, int state)
             return strdup(name);
     }
 
-    while ((name = g_sregex_bifs[s_sregex_list_index].name)) {
-        s_sregex_list_index++;
-
-        if (strncmp(name, text, s_sregex_len) == 0)
-            return strdup(name);
-    }
-
-    while ((name = g_streams_bifs[s_streams_list_index].name)) {
-        s_streams_list_index++;
-
-        if (strncmp(name, text, s_streams_len) == 0)
-            return strdup(name);
-    }
-
-    while ((name = g_tasks_bifs[s_tasks_list_index].name)) {
-        s_tasks_list_index++;
-
-        if (strncmp(name, text, s_tasks_len) == 0)
-            return strdup(name);
-    }
-
-    while ((name = g_threads_bifs[s_threads_list_index].name)) {
-        s_threads_list_index++;
-
-        if (strncmp(name, text, s_threads_len) == 0)
-            return strdup(name);
-    }
+    // while ((name = g_sregex_bifs[s_sregex_list_index].name)) {
+    //     s_sregex_list_index++;
+    //
+    //     if (strncmp(name, text, s_sregex_len) == 0)
+    //         return strdup(name);
+    // }
+    //
+    // while ((name = g_streams_bifs[s_streams_list_index].name)) {
+    //     s_streams_list_index++;
+    //
+    //     if (strncmp(name, text, s_streams_len) == 0)
+    //         return strdup(name);
+    // }
+    //
+    // while ((name = g_tasks_bifs[s_tasks_list_index].name)) {
+    //     s_tasks_list_index++;
+    //
+    //     if (strncmp(name, text, s_tasks_len) == 0)
+    //         return strdup(name);
+    // }
+    //
+    // while ((name = g_threads_bifs[s_threads_list_index].name)) {
+    //     s_threads_list_index++;
+    //
+    //     if (strncmp(name, text, s_threads_len) == 0)
+    //         return strdup(name);
+    // }
 
     return NULL;
 }
@@ -324,6 +338,30 @@ void history_save(void)
     write_history(g_filename);
     // rl_clear_history();
     clear_history();
+}
+#endif
+
+#if defined(TPL_BACKEND_BAREMETAL)
+char *history_readline_eol(prolog *pl, const char *prompt, char eol)
+{
+    (void)pl;
+    (void)prompt;
+    (void)eol;
+    return NULL;
+}
+
+void history_load(const char *filename)
+{
+    (void)filename;
+}
+
+void history_keywords(const char **word_array)
+{
+    (void)word_array;
+}
+
+void history_save(void)
+{
 }
 #endif
 

@@ -2027,8 +2027,9 @@ static bool bif_sys_struct_to_pointer_2(query *q)
 }
 #endif
 
-builtins g_ffi_bifs[MAX_FFI] = {
-#if USE_FFI
+builtins g_ffi_bifs[0] = {
+// #if USE_FFI
+#if NEVER
     {"$dlopen", 3, bif_sys_dlopen_3, "+atom,+atom,-term", false, false, BLAH},
     {"$dlsym", 3, bif_sys_dlsym_3, "+atom,+symbol,-term", false, false, BLAH},
     {"$dlclose", 1, bif_sys_dlclose_1, "+term", false, false, BLAH},
@@ -2043,5 +2044,6 @@ builtins g_ffi_bifs[MAX_FFI] = {
 #endif
 
     // 8 builtins: see 'max_ffi_idx'
+};
 
-    {0}};
+// {0}};

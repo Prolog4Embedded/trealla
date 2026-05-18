@@ -540,7 +540,7 @@ static bool bif_engine_destroy_1(query *q)
     return bif_iso_close_1(q);
 }
 
-builtins g_maps_bifs[] = {
+const builtins g_maps_bifs[] = {
     {"map_create", 2, bif_map_create_2, "--stream,+list", false, false, BLAH},
     {"map_set", 3, bif_map_set_3, "+stream,+atomic,+atomic", false, false, BLAH},
     {"map_get", 3, bif_map_get_3, "+stream,+atomic,-atomic", false, false, BLAH},

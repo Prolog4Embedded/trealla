@@ -1780,7 +1780,7 @@ bool module_dump_term(module *m, cell *p1)
     cell *tmp = p1;
 
     for (unsigned i = 0; i < p1->num_cells; i++, tmp++) {
-        printf("[%02u] tag=%10s, num_cells=%u, arity=%u", i,
+        printf("[%02u] tag=%10s, num_cells=%" PRIu32 ", arity=%" PRIu32 "", i,
                ((tmp->tag == TAG_VAR && is_ref(tmp)) ? "var_ref"
                 : tmp->tag == TAG_VAR                ? "var"
                 : tmp->tag == TAG_INTERNED           ? "interned"
@@ -1805,9 +1805,9 @@ bool module_dump_term(module *m, cell *p1)
             printf(", local=%d, temp=%d, anon=%d", is_local(tmp), is_temporary(tmp), is_anon(tmp));
 
         if (is_ref(tmp))
-            printf(", slot=%u, ctx=%u", tmp->var_num, tmp->val_ctx);
+            printf(", slot=%" PRIu32 ", ctx=%" PRIu32 "", tmp->var_num, tmp->val_ctx);
         else if (is_var(tmp))
-            printf(", slot=%u, %s", tmp->var_num, C_STR(q, tmp));
+            printf(", slot=%" PRIu32 ", %s", tmp->var_num, C_STR(q, tmp));
 
         printf("\n");
     }

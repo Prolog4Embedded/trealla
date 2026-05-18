@@ -515,10 +515,10 @@ bool bif_write_csv_file_3(query *q)
     return true;
 }
 
-builtins g_csv_bifs[] = {
-    {"parse_csv_line", 2, bif_parse_csv_line_2, "+atom,-list", false, false, BLAH},
-    {"parse_csv_line", 3, bif_parse_csv_line_3, "+atom,-compound,+options", false, false, BLAH},
-    {"parse_csv_file", 2, bif_parse_csv_file_2, "+atom,+list", false, false, BLAH},
-    {"write_csv_file", 3, bif_write_csv_file_3, "+atom,+list,+options", false, false, BLAH},
-
-    {0}};
+// builtins g_csv_bifs[] = {
+//     {"parse_csv_line", 2, bif_parse_csv_line_2, "+atom,-list", false, false, BLAH},
+//     {"parse_csv_line", 3, bif_parse_csv_line_3, "+atom,-compound,+options", false, false, BLAH},
+//     {"parse_csv_file", 2, bif_parse_csv_file_2, "+atom,+list", false, false, BLAH},
+//     {"write_csv_file", 3, bif_write_csv_file_3, "+atom,+list,+options", false, false, BLAH},
+//
+//     {0}};

@@ -3008,7 +3008,7 @@ static bool bif_divmod_4(query *q)
     return true;
 }
 
-builtins g_evaluable_bifs[] = {
+const builtins g_evaluable_bifs[] = {
     // Predicate...
 
     {"=:=", 2, bif_iso_numeric_eq_2, "+number,+number", true, false, BLAH},

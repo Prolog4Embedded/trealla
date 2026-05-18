@@ -16,14 +16,19 @@ jobs:
                   sudo apt-get update
                   sudo apt-get install libreadline-dev xxd libffi-dev libssl-dev cmake
 
+            - name: Install just
+              uses: taiki-e/install-action@v2
+              with:
+                  tool: just
+
             - name: Fetch tags
               run: git fetch --tags --force origin
 
             - name: Configure CMake
-              run: PRESET=linux-release make configure
+              run: just preset=linux-release configure
 
-            - name: Buid
-              run: PRESET=linux-release make build
+            - name: Build
+              run: just preset=linux-release build
 
             - name: Test
-              run: PRESET=linux-release make test
+              run: just preset=linux-release test

@@ -12,6 +12,7 @@ void pl_destroy(prolog *);
 
 bool pl_consult(prolog *, const char *filename);
 bool pl_consult_fp(prolog *, FILE *fp, const char *filename);
+bool pl_consult_text(prolog *, const char *text);
 bool pl_eval(prolog *, const char *expr, bool interactive);
 bool pl_isatty(prolog *);
 FILE *pl_stdin(prolog *);

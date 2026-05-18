@@ -1,3 +1,102 @@
+# Trealla for Embedded
+
+> [!WARNING]
+> Weird shit I don't 100% understand yet causes stuff not to work
+> directly when using qemu. The `.gdbinit` config contains a
+> "workaround", so that when you start qemu and then connect gdb,
+> it works! Need to check wether or not this occurs on actual hardware,
+> if not the workaround is fine as is.
+
+A port of [Trealla Prolog](https://github.com/trealla-prolog/trealla) targeting bare-metal embedded systems (ARM Cortex-M) alongside the standard Linux build.
+
+## Setup
+
+### Automatic (recommended)
+
+```bash
+./setup.sh
+```
+
+Detects your distro (Arch, Debian, Ubuntu) and installs all dependencies. Optionally installs cross-compilation tools when prompted.
+
+### Manual
+
+<details>
+<summary>Arch Linux</summary>
+
+```bash
+# Required
+sudo pacman -S base-devel cmake readline libffi openssl xxd just clang cppcheck
+
+# Cross-compilation (bare metal ARM)
+sudo pacman -S arm-none-eabi-gcc meson ninja
+
+# Emulation / debugging
+sudo pacman -S qemu-system-arm arm-none-eabi-gdb
+```
+</details>
+
+<details>
+<summary>Debian / Ubuntu</summary>
+
+```bash
+# Required
+sudo apt install build-essential cmake libreadline-dev libffi-dev libssl-dev xxd clang-format cppcheck
+
+# just (available in Debian 13+ / Ubuntu 24.04+, otherwise install via cargo)
+sudo apt install just
+
+# Cross-compilation (bare metal ARM)
+sudo apt install gcc-arm-none-eabi meson ninja-build
+
+# Emulation / debugging
+sudo apt install qemu-system-arm gdb-multiarch
+```
+</details>
+
+## Common commands
+
+All commands use [`just`](https://github.com/casey/just). Run `just` with no arguments to list everything.
+
+### Linux build
+
+```bash
+just linux          # configure + build (debug)
+just linux-rel      # configure + build (release)
+just run            # run the built binary
+just test           # run ctest test suite
+just test-sh        # run shell-based test suite
+```
+
+### Working with presets
+
+```bash
+just use linux-debug              # set default preset (saved to .preset)
+just configure                    # cmake configure with current preset
+just build                        # cmake build with current preset
+just compile                      # configure + build in one step
+just rebuild                      # clean + compile
+
+just preset=linux-release compile # one-off override without changing .preset
+```
+
+### Code quality
+
+```bash
+just format         # auto-format all sources with clang-format
+just format-check   # check formatting (used in CI)
+just lint           # run cppcheck static analysis
+```
+
+### Cross-compilation (bare metal ARM)
+
+```bash
+just arm-generic-picolibc         # build for generic ARM with picolibc
+just arm-qemu-picolibc            # build for QEMU mps3-an524 with picolibc
+just qemu                         # run the QEMU mps3-an524 build in QEMU
+```
+
+---
 Trealla Prolog
 ==============
 

@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+BOLD='\033[1m'
+RESET='\033[0m'
+
+info()    { echo -e "${BOLD}[setup]${RESET} $*"; }
+success() { echo -e "${GREEN}[setup]${RESET} $*"; }
+warn()    { echo -e "${YELLOW}[setup]${RESET} $*"; }
+die()     { echo -e "${RED}[setup] error:${RESET} $*" >&2; exit 1; }
+
+
+if [[ ! -f /etc/os-release ]]; then
+    die "/etc/os-release not found — cannot detect distribution."
+fi
+
+source /etc/os-release
+
+case "${ID:-}" in
+    arch)           DISTRO=arch ;;
+    debian)         DISTRO=debian ;;
+    ubuntu)         DISTRO=ubuntu ;;
+    *)
+        case "${ID_LIKE:-}" in
+            *arch*)   DISTRO=arch ;;
+            *debian*) DISTRO=debian ;;
+            *ubuntu*) DISTRO=ubuntu ;;
+            *) die "Unsupported distro '${PRETTY_NAME:-$ID}'. Install dependencies manually (see README.md)." ;;
+        esac
+        ;;
+esac
+
+info "Detected distro: ${PRETTY_NAME:-$ID} (treating as ${DISTRO})"
+
+install_arch() {
+    info "Installing packages via pacman..."
+
+    REQUIRED=(
+        base-devel cmake # Build essentials
+        xxd just clang cppcheck # Tooling
+    )
+
+    CROSS=(
+        arm-none-eabi-gcc meson ninja # Cross-compilation (bare metal ARM)
+        qemu-system-arm arm-none-eabi-gdb # Emulation / debugging
+    )
+
+    sudo pacman -Sy --needed "${REQUIRED[@]}"
+
+    echo
+    read -r -p "Install cross-compilation tools (arm-none-eabi, meson, qemu)? [y/N] " yn
+    if [[ "${yn,,}" == "y" ]]; then
+        sudo pacman -Sy --needed "${CROSS[@]}"
+    fi
+}
+
+install_debian_ubuntu() {
+    info "Updating package lists..."
+    sudo apt-get update -qq
+
+    REQUIRED=(
+        build-essential cmake # Build essentials
+        xxd clang-format cppcheck # Tooling
+    )
+
+    CROSS=(
+        gcc-arm-none-eabi meson ninja-build # Cross-compilation (bare metal ARM)
+        qemu-system-arm gdb-multiarch # Emulation / debugging
+    )
+
+    info "Installing required packages..."
+    sudo apt-get install -y "${REQUIRED[@]}"
+
+    # just: available in Debian 13+ / Ubuntu 24.04+
+    if apt-cache show just &>/dev/null 2>&1; then
+        sudo apt-get install -y just
+    else
+        warn "'just' is not available in your apt repos."
+        if command -v cargo &>/dev/null; then
+            info "Installing 'just' via cargo..."
+            cargo install just
+        else
+            warn "Install 'just' manually: https://github.com/casey/just#packages"
+            warn "Or install Rust first: https://rustup.rs"
+        fi
+    fi
+
+    echo
+    read -r -p "Install cross-compilation tools (arm-none-eabi, meson, qemu)? [y/N] " yn
+    if [[ "${yn,,}" == "y" ]]; then
+        sudo apt-get install -y "${CROSS[@]}"
+    fi
+}
+
+case "${DISTRO}" in
+    arch)           install_arch ;;
+    debian|ubuntu)  install_debian_ubuntu ;;
+esac
+
+echo
+success "Dependencies installed."
+info "To build, run:"
+echo "    just use <preset>               # Select a preset to use"
+echo "    just configure                  # configure cmake with the selected preset"
+echo "    just build                      # build the selected preset"
+echo "    just preset=<preset> compile    # override the preset and configure+build"
